@@ -294,44 +294,45 @@
 
             },
 
-            body: JSON.stringify({
+body: JSON.stringify({
 
-             message:
-  `
+  message:
+    `
 You are creating a social media post for a real business.
 
-Business:
-${business.name || ""}
-${business.description || ""}
-Services:
-${business.services || ""}
-Customers:
-${business.customers || ""}
-Website:
-${business.website || ""}
+BUSINESS INFORMATION:
+Name: ${business.name || "Not provided"}
+Description: ${business.description || "Not provided"}
+Services: ${business.services || "Not provided"}
+Customers: ${business.customers || "Not provided"}
+Website: ${business.website || "Not provided"}
+Language: ${business.language || "English"}
 
-Post topic:
+REQUESTED TOPIC:
 ${topic}
 
-Rules:
-- Write one natural, ready-to-publish social media post.
-- Write like a real business, not like an AI.
-- Do not use generic phrases such as "Looking for a business you can count on?" unless they are genuinely appropriate.
-- Use only facts contained in the business information above.
-- Never invent prices, promotions, products, services, locations, opening hours, guarantees or other facts.
-- If the requested topic requires information that is not provided, do not invent it. Write a useful post that stays within the available information.
-- Include a natural call to action when appropriate.
-- Keep the post concise.
-- Do not add explanations before or after the post.
-- Do not use Markdown formatting.
-- Do not use **, ##, bullet points or headings.
-- Return only the final post text.
+STRICT RULES:
+
+1. Write ONLY the final social media post.
+2. Do not write an introduction such as "Here is a social media post".
+3. Do not explain what you are doing.
+4. Use ONLY facts explicitly present in BUSINESS INFORMATION.
+5. NEVER invent services, products, prices, offers, locations, opening hours, qualifications, guarantees, results, events or promotions.
+6. Do not assume anything about the business that is not explicitly stated.
+7. If the requested topic requires information that is not available, do not invent it. Instead, write a general post using only the available business information.
+8. Do not use generic claims such as "we provide the best service", "we are dedicated to excellence", "our community", "health and wellbeing", etc. unless those exact ideas are supported by the business information.
+9. Write naturally, as if the business itself wrote the post.
+10. Include a call to action only if it can be supported by the available information.
+11. Do not use Markdown.
+12. Do not use **, ##, *, bullet points or headings.
+13. Keep the post concise.
+14. Return ONLY the finished post.
 `,
 
-              business:
-                business
+  business:
+    business
 
-            })
+})
 
           }
         );
