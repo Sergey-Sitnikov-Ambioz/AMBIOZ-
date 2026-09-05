@@ -422,23 +422,117 @@
 
   async function sendMessage() {
 
-    const input =
-      document.getElementById("messageInput");
+  const input =
+    document.getElementById("messageInput");
 
-    const button =
-      document.querySelector(
-        'button[onclick="sendMessage()"]'
+  const button =
+    document.querySelector(
+      'button[onclick="sendMessage()"]'
+    );
+
+  const chat =
+    document.querySelector(".chat");
+
+  const question =
+    input.value.trim();
+
+  if (!question) {
+    return;
+  }
+
+  const userMessage =
+    document.createElement("div");
+
+  userMessage.className = "message";
+
+  userMessage.innerHTML =
+    "<strong>You</strong>" +
+    question;
+
+  chat.appendChild(userMessage);
+
+  input.value = "";
+
+  button.disabled = true;
+  button.textContent = "Ambi is thinking...";
+
+  const loadingMessage =
+    document.createElement("div");
+
+  loadingMessage.className = "message";
+
+  loadingMessage.innerHTML =
+    "<strong>Ambi</strong>" +
+    "Thinking...";
+
+  chat.appendChild(loadingMessage);
+
+  try {
+
+    const response =
+      await fetch(
+        "https://qabvpdmdikjqdzeogrcz.supabase.co/functions/v1/chat-with-ambi",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+            "apikey":
+              "sb_publishable_bySPn4HxH44yhY11-3H4hQ_2yMEh5FN"
+          },
+
+          body: JSON.stringify({
+            message: question,
+            business: business
+          })
+        }
       );
 
-    const chat =
-      document.querySelector(".chat");
+    const data =
+      await response.json();
 
-    const question =
-      input.value.trim();
+    loadingMessage.remove();
 
-    if (!question) {
-      return;
+    if (!data.success) {
+      throw new Error(
+        data.error ||
+        "Ambi could not answer."
+      );
     }
+
+    const ambiMessage =
+      document.createElement("div");
+
+    ambiMessage.className = "message";
+
+    ambiMessage.innerHTML =
+      "<strong>Ambi</strong>" +
+      data.reply;
+
+    chat.appendChild(ambiMessage);
+
+  } catch (error) {
+
+    loadingMessage.remove();
+
+    const errorMessage =
+      document.createElement("div");
+
+    errorMessage.className = "message";
+
+    errorMessage.innerHTML =
+      "<strong>Ambi</strong>" +
+      "Error: " +
+      error.message;
+
+    chat.appendChild(errorMessage);
+
+    console.error(error);
+  }
+
+  button.disabled = false;
+  button.textContent = "Ask Ambi →";
+}
 
 
     // Show user's message
