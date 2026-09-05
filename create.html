@@ -267,27 +267,116 @@
 
   </div>
 
-  <script>
-    document.getElementById("ambiForm").addEventListener("submit", function(event) {
-  event.preventDefault();
+ <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  const business = {
-    name: document.getElementById("businessName").value.trim(),
-    description: document.getElementById("businessType").value.trim(),
-    website: document.getElementById("website").value.trim(),
-    services: document.getElementById("services").value.trim(),
-    customers: document.getElementById("customers").value.trim(),
-    language: document.getElementById("language").value
-  };
+<script>
 
-  localStorage.setItem(
-    "ambiBusiness",
-    JSON.stringify(business)
-  );
+  const SUPABASE_URL =
+    "https://qabvpdmdikjqdzeogrcz.supabase.co";
 
-  window.location.href = "ambi.html";
-});
-  </script>
+  const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_bySPn4HxH44yhY11-3H4hQ_2yMEh5FN";
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+
+  document
+    .getElementById("ambiForm")
+    .addEventListener("submit", async function(event) {
+
+      event.preventDefault();
+
+      const button =
+        event.target.querySelector("button");
+
+      button.disabled = true;
+      button.textContent = "Creating your Ambi...";
+
+
+      const business = {
+
+        name:
+          document
+            .getElementById("businessName")
+            .value
+            .trim(),
+
+        description:
+          document
+            .getElementById("businessType")
+            .value
+            .trim(),
+
+        website:
+          document
+            .getElementById("website")
+            .value
+            .trim(),
+
+        services:
+          document
+            .getElementById("services")
+            .value
+            .trim(),
+
+        customers:
+          document
+            .getElementById("customers")
+            .value
+            .trim(),
+
+        language:
+          document
+            .getElementById("language")
+            .value
+      };
+
+
+      try {
+
+        const { data, error } =
+          await supabaseClient
+            .from("businesses")
+            .insert([business])
+            .select()
+            .single();
+
+
+        if (error) {
+          throw error;
+        }
+
+
+        localStorage.setItem(
+          "ambiBusiness",
+          JSON.stringify(data)
+        );
+
+
+        window.location.href =
+          "ambi.html";
+
+      } catch (error) {
+
+        console.error(error);
+
+        alert(
+          "Could not create your Ambi.\n\n" +
+          error.message
+        );
+
+        button.disabled = false;
+        button.textContent =
+          "Create my Ambi →";
+      }
+
+    });
+
+</script>
 
 </body>
 </html>
