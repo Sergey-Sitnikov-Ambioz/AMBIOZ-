@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create your Ambi — AMBIOZ</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #ffffff;
+      color: #111111;
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 24px 7%;
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 55px 7% 80px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 40px;
+      color: #666666;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .eyebrow {
+      font-size: 13px;
+      font-weight: 600;
+      color: #777777;
+      margin-bottom: 15px;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 64px);
+      line-height: 1;
+      letter-spacing: -3px;
+      margin-bottom: 18px;
+    }
+
+    .intro {
+      color: #666666;
+      font-size: 18px;
+      line-height: 1.5;
+      margin-bottom: 45px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 9px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #dddddd;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #111111;
+      font-family: inherit;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #111111;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .hint {
+      margin-top: 7px;
+      color: #888888;
+      font-size: 12px;
+    }
+
+    .button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 17px 24px;
+      border: none;
+      border-radius: 10px;
+      background: #111111;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      opacity: 0.85;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 25px;
+      color: #999999;
+      font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding-top: 40px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <header>
+      <div class="logo">AMBIOZ</div>
+    </header>
+
+    <main>
+
+      <a class="back" href="index.html">
+        ← Back
+      </a>
+
+      <div class="eyebrow">
+        STEP 1 OF 3
+      </div>
+
+      <h1>
+        Create your Ambi.
+      </h1>
+
+      <p class="intro">
+        Tell us about your business.
+        Your Ambi will use this information to represent your business.
+      </p>
+
+      <form id="ambiForm">
+
+        <div class="form-group">
+          <label for="businessName">
+            Business name
+          </label>
+
+          <input
+            type="text"
+            id="businessName"
+            placeholder="e.g. Acme Studio"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="businessType">
+            What does your business do?
+          </label>
+
+          <textarea
+            id="businessType"
+            placeholder="Describe your business in a few sentences..."
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="website">
+            Website
+          </label>
+
+          <input
+            type="url"
+            id="website"
+            placeholder="https://yourbusiness.com"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="services">
+            Main services
+          </label>
+
+          <textarea
+            id="services"
+            placeholder="What products or services do you offer?"
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="customers">
+            Who are your customers?
+          </label>
+
+          <textarea
+            id="customers"
+            placeholder="Describe your typical customers..."
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="language">
+            Language
+          </label>
+
+          <select id="language">
+            <option value="English">English</option>
+            <option value="Polish">Polish</option>
+            <option value="Russian">Russian</option>
+            <option value="Ukrainian">Ukrainian</option>
+            <option value="German">German</option>
+            <option value="French">French</option>
+            <option value="Spanish">Spanish</option>
+          </select>
+        </div>
+
+        <button class="button" type="submit">
+          Create my Ambi →
+        </button>
+
+      </form>
+
+      <div class="footer-note">
+        You can change these details later.
+      </div>
+
+    </main>
+
+  </div>
+
+  <script>
+    document.getElementById("ambiForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const businessName =
+        document.getElementById("businessName").value;
+
+      localStorage.setItem(
+        "ambiBusinessName",
+        businessName
+      );
+
+      window.location.href = "ambi.html";
+    });
+  </script>
+
+</body>
+</html>
