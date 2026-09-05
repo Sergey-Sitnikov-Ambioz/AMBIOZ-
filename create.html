@@ -270,7 +270,6 @@
  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-
   const SUPABASE_URL =
     "https://qabvpdmdikjqdzeogrcz.supabase.co";
 
@@ -282,7 +281,6 @@
       SUPABASE_URL,
       SUPABASE_PUBLISHABLE_KEY
     );
-
 
   document
     .getElementById("ambiForm")
@@ -296,9 +294,7 @@
       button.disabled = true;
       button.textContent = "Creating your Ambi...";
 
-
       const business = {
-
         name:
           document
             .getElementById("businessName")
@@ -335,7 +331,6 @@
             .value
       };
 
-
       try {
 
         const { data, error } =
@@ -345,20 +340,16 @@
             .select()
             .single();
 
-
         if (error) {
           throw error;
         }
-
 
         localStorage.setItem(
           "ambiBusiness",
           JSON.stringify(data)
         );
 
-
-        window.location.href =
-          "ambi.html";
+        window.location.href = "ambi.html";
 
       } catch (error) {
 
@@ -375,7 +366,6 @@
       }
 
     });
-
 </script>
 
 </body>
