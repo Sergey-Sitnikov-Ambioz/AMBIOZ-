@@ -296,20 +296,36 @@
 
             body: JSON.stringify({
 
-              message:
-                `
-Create a social media post for this business.
+             message:
+  `
+You are creating a social media post for a real business.
 
-Topic:
+Business:
+${business.name || ""}
+${business.description || ""}
+Services:
+${business.services || ""}
+Customers:
+${business.customers || ""}
+Website:
+${business.website || ""}
+
+Post topic:
 ${topic}
 
-Requirements:
-- Write a ready-to-publish social media post.
-- Make it natural and engaging.
-- Do not invent facts, prices, offers or services.
-- Use only the business information provided.
-- Include a clear call to action.
-- Keep it concise.
+Rules:
+- Write one natural, ready-to-publish social media post.
+- Write like a real business, not like an AI.
+- Do not use generic phrases such as "Looking for a business you can count on?" unless they are genuinely appropriate.
+- Use only facts contained in the business information above.
+- Never invent prices, promotions, products, services, locations, opening hours, guarantees or other facts.
+- If the requested topic requires information that is not provided, do not invent it. Write a useful post that stays within the available information.
+- Include a natural call to action when appropriate.
+- Keep the post concise.
+- Do not add explanations before or after the post.
+- Do not use Markdown formatting.
+- Do not use **, ##, bullet points or headings.
+- Return only the final post text.
 `,
 
               business:
