@@ -385,62 +385,169 @@
 
   <script>
 
-    const savedBusiness =
-  localStorage.getItem("ambiBusiness");
+  const savedBusiness =
+    localStorage.getItem("ambiBusiness");
 
-if (savedBusiness) {
+  let business = {};
 
-  const business = JSON.parse(savedBusiness);
+  if (savedBusiness) {
 
-  document.getElementById("businessName").textContent =
-    business.name || "Your business";
+    business = JSON.parse(savedBusiness);
 
-  document.getElementById("ambiName").textContent =
-    "Ambi";
+    document.getElementById("businessName").textContent =
+      business.name || "Your business";
 
-  document.getElementById("knowledgeName").textContent =
-    business.name || "—";
+    document.getElementById("ambiName").textContent =
+      "Ambi";
 
-  document.getElementById("knowledgeDescription").textContent =
-    business.description || "—";
+    document.getElementById("knowledgeName").textContent =
+      business.name || "—";
 
-  document.getElementById("knowledgeServices").textContent =
-    business.services || "—";
+    document.getElementById("knowledgeDescription").textContent =
+      business.description || "—";
 
-  document.getElementById("knowledgeCustomers").textContent =
-    business.customers || "—";
+    document.getElementById("knowledgeServices").textContent =
+      business.services || "—";
 
-  document.getElementById("knowledgeWebsite").textContent =
-    business.website || "Not provided";
+    document.getElementById("knowledgeCustomers").textContent =
+      business.customers || "—";
 
-  document.getElementById("knowledgeLanguage").textContent =
-    business.language || "English";
-}
+    document.getElementById("knowledgeWebsite").textContent =
+      business.website || "Not provided";
 
-    function sendMessage() {
-
-  const input =
-    document.getElementById("messageInput");
-
-  const question =
-    input.value.trim();
-
-  if (!question) {
-    return;
+    document.getElementById("knowledgeLanguage").textContent =
+      business.language || "English";
   }
 
-  alert(
-    "Ambi received your question:\n\n" +
-    question +
-    "\n\nAI conversation will be connected in the next version."
-  );
 
-  input.value = "";
-}
+  async function sendMessage() {
+
+    const input =
+      document.getElementById("messageInput");
+
+    const button =
+      document.querySelector(
+        'button[onclick="sendMessage()"]'
+      );
+
+    const chat =
+      document.querySelector(".chat");
+
+    const question =
+      input.value.trim();
+
+    if (!question) {
+      return;
+    }
 
 
+    // Show user's message
 
-  </script>
+    const userMessage =
+      document.createElement("div");
 
+    userMessage.className = "message";
+
+    userMessage.innerHTML =
+      "<strong>You</strong>" +
+      question;
+
+    chat.appendChild(userMessage);
+
+
+    input.value = "";
+
+    button.disabled = true;
+    button.textContent = "Ambi is thinking...";
+
+
+    // Temporary loading message
+
+    const loadingMessage =
+      document.createElement("div");
+
+    loadingMessage.className = "message";
+
+    loadingMessage.innerHTML =
+      "<strong>Ambi</strong>" +
+      "Thinking...";
+
+    chat.appendChild(loadingMessage);
+
+
+    try {
+
+      const response =
+        await fetch(
+          "https://qabvpdmdikjqdzeogrcz.supabase.co/functions/v1/chat-with-ambi",
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+              message: question,
+              business: business
+            })
+          }
+        );
+
+
+      const data =
+        await response.json();
+
+
+      loadingMessage.remove();
+
+
+      if (!data.success) {
+
+        throw new Error(
+          data.error ||
+          "Ambi could not answer."
+        );
+      }
+
+
+      const ambiMessage =
+        document.createElement("div");
+
+      ambiMessage.className = "message";
+
+      ambiMessage.innerHTML =
+        "<strong>Ambi</strong>" +
+        data.reply;
+
+      chat.appendChild(ambiMessage);
+
+
+    } catch (error) {
+
+      loadingMessage.remove();
+
+      const errorMessage =
+        document.createElement("div");
+
+      errorMessage.className = "message";
+
+      errorMessage.innerHTML =
+        "<strong>Ambi</strong>" +
+        "Sorry, I couldn't answer right now.";
+
+
+      chat.appendChild(errorMessage);
+
+      console.error(error);
+
+    }
+
+
+    button.disabled = false;
+    button.textContent = "Ask Ambi →";
+  }
+
+</script>
 </body>
 </html>
