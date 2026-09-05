@@ -269,18 +269,24 @@
 
   <script>
     document.getElementById("ambiForm").addEventListener("submit", function(event) {
-      event.preventDefault();
+  event.preventDefault();
 
-      const businessName =
-        document.getElementById("businessName").value;
+  const business = {
+    name: document.getElementById("businessName").value.trim(),
+    description: document.getElementById("businessType").value.trim(),
+    website: document.getElementById("website").value.trim(),
+    services: document.getElementById("services").value.trim(),
+    customers: document.getElementById("customers").value.trim(),
+    language: document.getElementById("language").value
+  };
 
-      localStorage.setItem(
-        "ambiBusinessName",
-        businessName
-      );
+  localStorage.setItem(
+    "ambiBusiness",
+    JSON.stringify(business)
+  );
 
-      window.location.href = "ambi.html";
-    });
+  window.location.href = "ambi.html";
+});
   </script>
 
 </body>
