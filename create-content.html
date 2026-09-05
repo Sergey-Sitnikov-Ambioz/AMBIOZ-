@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Create with Ambi — AMBIOZ</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      background: #f7f7f5;
+      color: #111;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    .logo {
+      display: inline-block;
+      color: #111;
+      text-decoration: none;
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 60px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 30px;
+      color: #666;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    h1 {
+      font-size: 42px;
+      line-height: 1.05;
+      margin: 0 0 15px;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 18px;
+      margin-bottom: 45px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e5e5e5;
+      border-radius: 18px;
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 130px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font: inherit;
+      resize: vertical;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: #999;
+    }
+
+    button {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 12px;
+      background: #111;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    .result {
+      display: none;
+      white-space: pre-wrap;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .result.visible {
+      display: block;
+    }
+
+    .error {
+      color: #b00020;
+      margin-top: 15px;
+      white-space: pre-wrap;
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <div class="container">
+
+    <a
+      href="index.html"
+      class="logo"
+    >
+      AMBIOZ
+    </a>
+
+    <br>
+
+    <a
+      href="ambi.html"
+      class="back"
+    >
+      ← Back to Ambi
+    </a>
+
+
+    <h1>
+      Create with Ambi
+    </h1>
+
+    <div class="subtitle">
+      Create content for your business in seconds.
+    </div>
+
+
+    <div class="card">
+
+      <label for="topic">
+        What should the post be about?
+      </label>
+
+      <textarea
+        id="topic"
+        placeholder="Example: Our new breakfast menu, a special offer, or why customers should visit us..."
+      ></textarea>
+
+      <br><br>
+
+      <button
+        id="createButton"
+        onclick="createPost()"
+      >
+        Create social post →
+      </button>
+
+      <div
+        id="error"
+        class="error"
+      ></div>
+
+    </div>
+
+
+    <div
+      id="resultCard"
+      class="card result"
+    >
+
+      <strong>Ambi created:</strong>
+
+      <br><br>
+
+      <div id="result"></div>
+
+    </div>
+
+  </div>
+
+
+<script>
+
+  let business = {};
+
+  const savedBusiness =
+    localStorage.getItem("ambiBusiness");
+
+
+  if (savedBusiness) {
+
+    business =
+      JSON.parse(savedBusiness);
+
+  }
+
+
+  async function createPost() {
+
+    const topic =
+      document
+        .getElementById("topic")
+        .value
+        .trim();
+
+
+    const button =
+      document
+        .getElementById("createButton");
+
+
+    const error =
+      document
+        .getElementById("error");
+
+
+    const resultCard =
+      document
+        .getElementById("resultCard");
+
+
+    const result =
+      document
+        .getElementById("result");
+
+
+    if (!topic) {
+
+      error.textContent =
+        "Please enter a topic.";
+
+      return;
+
+    }
+
+
+    error.textContent = "";
+
+    resultCard.classList.remove(
+      "visible"
+    );
+
+
+    button.disabled = true;
+
+    button.textContent =
+      "Ambi is creating...";
+
+
+    try {
+
+      const response =
+        await fetch(
+          "https://qabvpdmdikjqdzeogrcz.supabase.co/functions/v1/chat-with-ambi",
+          {
+
+            method: "POST",
+
+            headers: {
+
+              "Content-Type":
+                "application/json",
+
+              "apikey":
+                "sb_publishable_bySPn4HxH44yhY11-3H4hQ_2yMEh5FN"
+
+            },
+
+            body: JSON.stringify({
+
+              message:
+                `
+Create a social media post for this business.
+
+Topic:
+${topic}
+
+Requirements:
+- Write a ready-to-publish social media post.
+- Make it natural and engaging.
+- Do not invent facts, prices, offers or services.
+- Use only the business information provided.
+- Include a clear call to action.
+- Keep it concise.
+`,
+
+              business:
+                business
+
+            })
+
+          }
+        );
+
+
+      const data =
+        await response.json();
+
+
+      if (!data.success) {
+
+        throw new Error(
+          data.error ||
+          "Ambi could not create the post."
+        );
+
+      }
+
+
+      result.textContent =
+        data.reply;
+
+
+      resultCard.classList.add(
+        "visible"
+      );
+
+
+    } catch (err) {
+
+      error.textContent =
+        "Error: " +
+        err.message;
+
+    }
+
+
+    button.disabled = false;
+
+    button.textContent =
+      "Create social post →";
+
+  }
+
+</script>
+
+
+</body>
+
+</html>
