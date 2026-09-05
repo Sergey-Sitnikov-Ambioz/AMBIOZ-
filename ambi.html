@@ -115,6 +115,32 @@
       margin-bottom: 22px;
     }
 
+    .knowledge {
+  display: grid;
+  gap: 12px;
+}
+
+.knowledge-item {
+  padding: 17px;
+  background: #f7f7f7;
+  border-radius: 12px;
+}
+
+.knowledge-item span {
+  display: block;
+  color: #888888;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.knowledge-item strong {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
     .chat {
       min-height: 190px;
       background: #f7f7f7;
@@ -245,7 +271,49 @@
       </div>
 
     </section>
+    <section class="section">
 
+  <h2>What Ambi knows</h2>
+
+  <p class="section-intro">
+    This is the business knowledge your Ambi uses when representing your company.
+  </p>
+
+  <div class="knowledge">
+
+    <div class="knowledge-item">
+      <span>BUSINESS</span>
+      <strong id="knowledgeName">—</strong>
+    </div>
+
+    <div class="knowledge-item">
+      <span>ABOUT</span>
+      <strong id="knowledgeDescription">—</strong>
+    </div>
+
+    <div class="knowledge-item">
+      <span>SERVICES</span>
+      <strong id="knowledgeServices">—</strong>
+    </div>
+
+    <div class="knowledge-item">
+      <span>CUSTOMERS</span>
+      <strong id="knowledgeCustomers">—</strong>
+    </div>
+
+    <div class="knowledge-item">
+      <span>WEBSITE</span>
+      <strong id="knowledgeWebsite">—</strong>
+    </div>
+
+    <div class="knowledge-item">
+      <span>LANGUAGE</span>
+      <strong id="knowledgeLanguage">—</strong>
+    </div>
+
+  </div>
+
+</section>
     <section class="section">
 
       <h2>Talk to your Ambi</h2>
@@ -314,16 +382,37 @@
 
   <script>
 
-    const businessName =
-      localStorage.getItem("ambiBusinessName");
+    const savedBusiness =
+  localStorage.getItem("ambiBusiness");
 
-    if (businessName) {
-      document.getElementById("businessName").textContent =
-        businessName;
+if (savedBusiness) {
 
-      document.getElementById("ambiName").textContent =
-        "Ambi";
-    }
+  const business = JSON.parse(savedBusiness);
+
+  document.getElementById("businessName").textContent =
+    business.name || "Your business";
+
+  document.getElementById("ambiName").textContent =
+    "Ambi";
+
+  document.getElementById("knowledgeName").textContent =
+    business.name || "—";
+
+  document.getElementById("knowledgeDescription").textContent =
+    business.description || "—";
+
+  document.getElementById("knowledgeServices").textContent =
+    business.services || "—";
+
+  document.getElementById("knowledgeCustomers").textContent =
+    business.customers || "—";
+
+  document.getElementById("knowledgeWebsite").textContent =
+    business.website || "Not provided";
+
+  document.getElementById("knowledgeLanguage").textContent =
+    business.language || "English";
+}
 
     function sendMessage() {
 
