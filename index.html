@@ -1,1 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMBIOZ — Every business deserves an Ambi</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #ffffff;
+      color: #111111;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 7%;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .badge {
+      font-size: 13px;
+      color: #666666;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 70px 7%;
+    }
+
+    .hero {
+      max-width: 850px;
+    }
+
+    .eyebrow {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: #666666;
+    }
+
+    h1 {
+      font-size: clamp(48px, 8vw, 88px);
+      line-height: 0.98;
+      letter-spacing: -4px;
+      margin-bottom: 30px;
+    }
+
+    .description {
+      max-width: 600px;
+      font-size: 21px;
+      line-height: 1.5;
+      color: #555555;
+      margin-bottom: 40px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 17px 28px;
+      background: #111111;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .button:hover {
+      opacity: 0.85;
+    }
+
+    .concept {
+      margin-top: 90px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 850px;
+    }
+
+    .card {
+      padding: 24px;
+      border: 1px solid #e5e5e5;
+      border-radius: 16px;
+    }
+
+    .card strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .card span {
+      color: #666666;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    footer {
+      padding: 25px 7%;
+      color: #888888;
+      font-size: 13px;
+    }
+
+    @media (max-width: 700px) {
+      main {
+        padding-top: 40px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .description {
+        font-size: 18px;
+      }
+
+      .concept {
+        grid-template-columns: 1fr;
+        margin-top: 60px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <header>
+      <div class="logo">AMBIOZ</div>
+      <div class="badge">AI Business Representative</div>
+    </header>
+
+    <main>
+      <section class="hero">
+
+        <div class="eyebrow">
+          THE DIGITAL REPRESENTATIVE FOR YOUR BUSINESS
+        </div>
+
+        <h1>
+          Every business deserves an Ambi.
+        </h1>
+
+        <p class="description">
+          Create an AI representative that knows your business,
+          communicates with your customers and creates content on your behalf.
+        </p>
+
+        <a class="button" href="#">
+          Create your Ambi →
+        </a>
+
+        <div class="concept">
+
+          <div class="card">
+            <strong>KNOW</strong>
+            <span>
+              Ambi learns your business, products and services.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>TALK</strong>
+            <span>
+              Ambi communicates with customers in your style.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>CREATE</strong>
+            <span>
+              Ambi turns your knowledge into useful content.
+            </span>
+          </div>
+
+        </div>
+
+      </section>
+    </main>
+
+    <footer>
+      AMBIOZ — Your business. Your knowledge. Your AI representative.
+    </footer>
+
+  </div>
+
+</body>
+</html>
