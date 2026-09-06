@@ -451,28 +451,33 @@
 
     userMessage.className = "message";
 
-    userMessage.innerHTML =
-      "<strong>You</strong>" +
-      question;
+    const userLabel = document.createElement("strong");
+      userLabel.textContent = "You";
 
-    chat.appendChild(userMessage);
+    const userText = document.createElement("div");
+      userText.textContent = question;
 
-    input.value = "";
+      userMessage.appendChild(userLabel);
+      userMessage.appendChild(userText);
 
-    button.disabled = true;
-    button.textContent = "Ambi is thinking...";
+      chat.appendChild(userMessage);
+
+      input.value = "";
+
+      button.disabled = true;
+      button.textContent = "Ambi is thinking...";
 
 
     const loadingMessage =
       document.createElement("div");
 
-    loadingMessage.className = "message";
+      loadingMessage.className = "message";
 
-    loadingMessage.innerHTML =
+      loadingMessage.innerHTML =
       "<strong>Ambi</strong>" +
       "Thinking...";
 
-    chat.appendChild(loadingMessage);
+      chat.appendChild(loadingMessage);
 
 
     try {
@@ -518,9 +523,14 @@
 
       ambiMessage.className = "message";
 
-      ambiMessage.innerHTML =
-        "<strong>Ambi</strong>" +
-        data.reply;
+      const ambiLabel = document.createElement("strong");
+      ambiLabel.textContent = "Ambi";
+
+      const ambiText = document.createElement("div");
+      ambiText.textContent = data.reply;
+
+      ambiMessage.appendChild(ambiLabel);
+      ambiMessage.appendChild(ambiText);
 
       chat.appendChild(ambiMessage);
 
