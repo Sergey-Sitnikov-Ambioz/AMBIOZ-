@@ -203,119 +203,88 @@
 
   </main>
 
-  <script>
+ <script>
 
-    let business = {};
+let business = {};
 
-    const savedBusiness =
-      localStorage.getItem("ambiBusiness");
+const savedBusiness = localStorage.getItem("ambiBusiness");
 
-    if (savedBusiness) {
-      business = JSON.parse(savedBusiness);
+if (savedBusiness) {
+  try {
+    business = JSON.parse(savedBusiness);
+  } catch (error) {
+    console.error("Could not read business data:", error);
+  }
+}
+
+async function createReply() {
+
+  const input = document.getElementById("customerMessage");
+  const button = document.getElementById("replyButton");
+  const resultSection = document.getElementById("resultSection");
+  const result = document.getElementById("result");
+
+  const customerMessage = input.value.trim();
+
+  if (!customerMessage) {
+    result.textContent = "Please enter a customer message.";
+    resultSection.classList.remove("hidden");
+    return;
+  }
+
+  input.disabled = true;
+  button.disabled = true;
+  button.textContent = "Ambi is thinking...";
+
+  resultSection.classList.remove("hidden");
+  result.textContent = "Thinking...";
+
+  try {
+
+    const response = await fetch(
+      "https://qabvpdmdikjqdzeogrcz.supabase.co/functions/v1/chat-with-ambi",
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": "sb_publishable_bySPn4HxH44yhY11-3H4hQ_2yMEh5FN"
+        },
+
+        body: JSON.stringify({
+          mode: "customer_reply",
+          message: customerMessage,
+          business: business
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(
+        data.error || "Ambi could not create the reply."
+      );
     }
 
-    async function createReply() {
+    result.textContent = data.reply;
 
-      const input =
-        document.getElementById("customerMessage");
+  } catch (error) {
 
-      const button =
-        document.getElementById("replyButton");
+    console.error("Customer reply error:", error);
 
-      const resultSection =
-        document.getElementById("resultSection");
+    result.textContent =
+      "Error: " + error.message;
 
-      const result =
-        document.getElementById("result");
+  } finally {
 
-      const customerMessage =
-        input.value.trim();
+    input.disabled = false;
+    button.disabled = false;
+    button.textContent = "Create reply →";
 
-      if (!customerMessage) {
-        return;
-      }
+  }
+}
 
-      input.disabled = true;
-      button.disabled = true;
-      button.textContent = "Ambi is thinking...";
-      resultSection.classList.remove("hidden");
-      result.textContent = "Thinking...";
-
-      try {
-
-        const response =
-          await fetch(
-            "https://qabvpdmdikjqdzeogrcz.supabase.co/functions/v1/chat-with-ambi",
-            {
-              method: "POST",
-
-              headers: {
-                "Content-Type": "application/json",
-                "apikey":
-                  "sb_publishable_bySPn4HxH44yhY11-3H4hQ_2yMEh5FN"
-              },
-
-             body: JSON.stringify({
-              mode: "customer_reply",
-              message: customerMessage,
-              business: business
-            })
-
-CUSTOMER MESSAGE:
-${customerMessage}
-
-Rules:
-- Write only the final reply to the customer.
-- Be natural, concise, polite and professional.
-- Do not address the customer using the business name.
-- Use the business name only when it is natural and necessary.
-- Use only information available in the business information.
-- Never invent prices, services, availability, opening hours, policies, guarantees or other facts.
-- If the business information does not answer the customer's question, clearly say that you do not currently have that information.
-- Never promise that someone will check, confirm, contact the customer, follow up, or respond later unless this capability is explicitly provided in the business information.
-- Never invent a team, staff, manager or support department.
-- Do not claim to have checked external systems, databases or the internet.
-- Do not mention that you are an AI.
-- Do not apologize unless the customer is actually reporting a problem, mistake or inconvenience.
-- Do not use generic filler.
-- Match the language of the customer's message.
-- Return only the final customer reply.
-`,
-
-                business: business
-
-              })
-            }
-          );
-
-        const data =
-          await response.json();
-
-        if (!data.success) {
-          throw new Error(
-            data.error ||
-            "Ambi could not create the reply."
-          );
-        }
-
-        result.textContent =
-          data.reply;
-
-      } catch (error) {
-
-        result.textContent =
-          "Error: " + error.message;
-
-        console.error(error);
-
-      }
-
-      input.disabled = false;
-      button.disabled = false;
-      button.textContent = "Create reply →";
-    }
-
-  </script>
-
+</script>
 </body>
 </html>
