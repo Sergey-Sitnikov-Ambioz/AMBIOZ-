@@ -99,6 +99,10 @@
       border-color: #999999;
     }
 
+    textarea:disabled {
+      opacity: 0.6;
+    }
+
     button {
       width: 100%;
       margin-top: 12px;
@@ -231,6 +235,7 @@
         return;
       }
 
+      input.disabled = true;
       button.disabled = true;
       button.textContent = "Ambi is thinking...";
       resultSection.classList.remove("hidden");
@@ -250,15 +255,11 @@
                   "sb_publishable_bySPn4HxH44yhY11-3H4hQ_2yMEh5FN"
               },
 
-              body: JSON.stringify({
-
-                message:
-                  `
-Create a professional reply to this customer message.
-
-message:
-  `
-Write a customer support reply on behalf of this business.
+             body: JSON.stringify({
+              mode: "customer_reply",
+              message: customerMessage,
+              business: business
+            })
 
 CUSTOMER MESSAGE:
 ${customerMessage}
@@ -309,6 +310,7 @@ Rules:
 
       }
 
+      input.disabled = false;
       button.disabled = false;
       button.textContent = "Create reply →";
     }
