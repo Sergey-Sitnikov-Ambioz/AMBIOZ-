@@ -472,9 +472,18 @@
 
       loadingMessage.className = "message";
 
-      loadingMessage.innerHTML =
-      "<strong>Ambi</strong>" +
-      "Thinking..."</div>";
+    const loadingLabel =
+      document.createElement("strong");
+
+      loadingLabel.textContent = "Ambi";
+
+    const loadingText =
+      document.createElement("div");
+
+      loadingText.textContent = "Thinking...";
+
+      loadingMessage.appendChild(loadingLabel);
+      loadingMessage.appendChild(loadingText);
 
       chat.appendChild(loadingMessage);
 
