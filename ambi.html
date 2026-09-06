@@ -544,10 +544,14 @@
 
       errorMessage.className = "message";
 
-      errorMessage.innerHTML =
-        "<strong>Ambi</strong>" +
-        "Error: " +
-        error.message;
+      const errorLabel = document.createElement("strong");
+      errorLabel.textContent = "Ambi";
+
+      const errorText = document.createElement("div");
+      errorText.textContent = "Error: " + error.message;
+
+      errorMessage.appendChild(errorLabel);
+      errorMessage.appendChild(errorText);
 
       chat.appendChild(errorMessage);
 
