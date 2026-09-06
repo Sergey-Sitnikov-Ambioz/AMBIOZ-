@@ -119,33 +119,35 @@
     }
 
     .knowledge {
-  display: grid;
-  gap: 12px;
-}
+      display: grid;
+      gap: 12px;
+    }
 
-.knowledge-item {
-  padding: 17px;
-  background: #f7f7f7;
-  border-radius: 12px;
-}
+    .knowledge-item {
+      padding: 17px;
+      background: #f7f7f7;
+      border-radius: 12px;
+    }
 
-.knowledge-item span {
-  display: block;
-  color: #888888;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-bottom: 6px;
-}
+    .knowledge-item span {
+      display: block;
+      color: #888888;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
 
-.knowledge-item strong {
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1.5;
-}
+    .knowledge-item strong {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.5;
+    }
 
     .chat {
       min-height: 190px;
+      max-height: 420px;
+      overflow-y: auto;
       background: #f7f7f7;
       border-radius: 14px;
       padding: 18px;
@@ -179,6 +181,10 @@
       outline: none;
     }
 
+    textarea:disabled {
+      opacity: 0.6;
+    }
+
     button {
       width: 100%;
       margin-top: 12px;
@@ -190,6 +196,11 @@
       font-size: 16px;
       font-weight: 600;
       cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 
     .actions {
@@ -205,6 +216,11 @@
       background: #ffffff;
       text-align: left;
       cursor: pointer;
+    }
+
+    .action:focus-visible {
+      outline: 2px solid #111111;
+      outline-offset: 2px;
     }
 
     .action strong {
@@ -275,47 +291,47 @@
     </section>
     <section class="section">
 
-  <h2>What Ambi knows</h2>
+      <h2>What Ambi knows</h2>
 
-  <p class="section-intro">
-    This is the business knowledge your Ambi uses when representing your company.
-  </p>
+      <p class="section-intro">
+        This is the business knowledge your Ambi uses when representing your company.
+      </p>
 
-  <div class="knowledge">
+      <div class="knowledge">
 
-    <div class="knowledge-item">
-      <span>BUSINESS</span>
-      <strong id="knowledgeName">—</strong>
-    </div>
+        <div class="knowledge-item">
+          <span>BUSINESS</span>
+          <strong id="knowledgeName">—</strong>
+        </div>
 
-    <div class="knowledge-item">
-      <span>ABOUT</span>
-      <strong id="knowledgeDescription">—</strong>
-    </div>
+        <div class="knowledge-item">
+          <span>ABOUT</span>
+          <strong id="knowledgeDescription">—</strong>
+        </div>
 
-    <div class="knowledge-item">
-      <span>SERVICES</span>
-      <strong id="knowledgeServices">—</strong>
-    </div>
+        <div class="knowledge-item">
+          <span>SERVICES</span>
+          <strong id="knowledgeServices">—</strong>
+        </div>
 
-    <div class="knowledge-item">
-      <span>CUSTOMERS</span>
-      <strong id="knowledgeCustomers">—</strong>
-    </div>
+        <div class="knowledge-item">
+          <span>CUSTOMERS</span>
+          <strong id="knowledgeCustomers">—</strong>
+        </div>
 
-    <div class="knowledge-item">
-      <span>WEBSITE</span>
-      <strong id="knowledgeWebsite">—</strong>
-    </div>
+        <div class="knowledge-item">
+          <span>WEBSITE</span>
+          <strong id="knowledgeWebsite">—</strong>
+        </div>
 
-    <div class="knowledge-item">
-      <span>LANGUAGE</span>
-      <strong id="knowledgeLanguage">—</strong>
-    </div>
+        <div class="knowledge-item">
+          <span>LANGUAGE</span>
+          <strong id="knowledgeLanguage">—</strong>
+        </div>
 
-  </div>
+      </div>
 
-</section>
+    </section>
     <section class="section">
 
       <h2>Talk to your Ambi</h2>
@@ -325,7 +341,7 @@
         Your Ambi will answer as your digital representative.
       </p>
 
-      <div class="chat">
+      <div class="chat" id="chatBox">
 
         <div class="message">
           <strong>Ambi</strong>
@@ -337,10 +353,11 @@
 
       <textarea
         id="messageInput"
+        maxlength="1000"
         placeholder="Ask your Ambi something..."
       ></textarea>
 
-      <button onclick="sendMessage()">
+      <button id="askButton" onclick="sendMessage()">
         Ask Ambi →
       </button>
 
@@ -356,27 +373,46 @@
 
       <div class="actions">
 
-        <div class="action" onclick="alert('Content generation will be connected in the next version.')">
+        <div
+          class="action"
+          role="button"
+          tabindex="0"
+          onclick="alert('Content generation will be connected in the next version.')"
+          onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();alert('Content generation will be connected in the next version.');}"
+        >
           <strong>Business introduction</strong>
           <span>Create a clear introduction to your business.</span>
         </div>
 
         <div
           class="action"
+          role="button"
+          tabindex="0"
           onclick="window.location.href='create-content.html'"
-          >
+          onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='create-content.html';}"
+        >
           <strong>Social media post</strong>
           <span>Create a post for your audience.</span>
         </div>
-        <div 
+
+        <div
           class="action"
+          role="button"
+          tabindex="0"
           onclick="window.location.href='customer-reply.html'"
+          onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='customer-reply.html';}"
         >
           <strong>Customer reply</strong>
           <span>Create a professional response to a customer.</span>
         </div>
 
-        <div class="action" onclick="alert('Content generation will be connected in the next version.')">
+        <div
+          class="action"
+          role="button"
+          tabindex="0"
+          onclick="alert('Content generation will be connected in the next version.')"
+          onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();alert('Content generation will be connected in the next version.');}"
+        >
           <strong>Product description</strong>
           <span>Explain a product or service clearly.</span>
         </div>
@@ -390,6 +426,9 @@
   <script>
 
   let business = {};
+  let conversationHistory = [];
+  const MAX_LENGTH = 1000;
+  const MAX_HISTORY = 20;
 
   const savedBusiness =
     localStorage.getItem("ambiBusiness");
@@ -423,154 +462,111 @@
       business.language || "English";
   }
 
+  function scrollChatToBottom(chat) {
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  function appendMessage(chat, label, text) {
+    const message = document.createElement("div");
+    message.className = "message";
+
+    const messageLabel = document.createElement("strong");
+    messageLabel.textContent = label;
+
+    const messageText = document.createElement("div");
+    messageText.textContent = text;
+
+    message.appendChild(messageLabel);
+    message.appendChild(messageText);
+
+    chat.appendChild(message);
+    scrollChatToBottom(chat);
+
+    return message;
+  }
 
   async function sendMessage() {
 
-    const input =
-      document.getElementById("messageInput");
+    const input = document.getElementById("messageInput");
+    const button = document.getElementById("askButton");
+    const chat = document.getElementById("chatBox");
 
-    const button =
-      document.querySelector(
-        'button[onclick="sendMessage()"]'
-      );
-
-    const chat =
-      document.querySelector(".chat");
-
-    const question =
-      input.value.trim();
+    const question = input.value.trim();
 
     if (!question) {
       return;
     }
 
+    if (question.length > MAX_LENGTH) {
+      alert(`Please keep your message under ${MAX_LENGTH} characters.`);
+      return;
+    }
 
-    const userMessage =
-      document.createElement("div");
+    conversationHistory.push({ role: "user", content: question });
 
-    userMessage.className = "message";
+    appendMessage(chat, "You", question);
 
-    const userLabel = document.createElement("strong");
-      userLabel.textContent = "You";
+    input.value = "";
+    input.disabled = true;
+    button.disabled = true;
+    button.textContent = "Ambi is thinking...";
 
-    const userText = document.createElement("div");
-      userText.textContent = question;
-
-      userMessage.appendChild(userLabel);
-      userMessage.appendChild(userText);
-
-      chat.appendChild(userMessage);
-
-      input.value = "";
-
-      button.disabled = true;
-      button.textContent = "Ambi is thinking...";
-
-
-    const loadingMessage =
-      document.createElement("div");
-
-      loadingMessage.className = "message";
-
-    const loadingLabel =
-      document.createElement("strong");
-
-      loadingLabel.textContent = "Ambi";
-
-    const loadingText =
-      document.createElement("div");
-
-      loadingText.textContent = "Thinking...";
-
-      loadingMessage.appendChild(loadingLabel);
-      loadingMessage.appendChild(loadingText);
-
-      chat.appendChild(loadingMessage);
-
+    const loadingMessage = appendMessage(chat, "Ambi", "Thinking...");
 
     try {
 
-      const response =
-        await fetch(
-          "https://qabvpdmdikjqdzeogrcz.supabase.co/functions/v1/chat-with-ambi",
-          {
-            method: "POST",
+      const response = await fetch(
+        "https://qabvpdmdikjqdzeogrcz.supabase.co/functions/v1/chat-with-ambi",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "apikey": "sb_publishable_bySPn4HxH44yhY11-3H4hQ_2yMEh5FN"
+          },
+          body: JSON.stringify({
+            message: question,
+            business: business,
+            history: conversationHistory
+          })
+        }
+      );
 
-            headers: {
-              "Content-Type": "application/json",
-              "apikey":
-                "sb_publishable_bySPn4HxH44yhY11-3H4hQ_2yMEh5FN"
-            },
-
-            body: JSON.stringify({
-              message: question,
-              business: business
-            })
-          }
-        );
-
-
-      const data =
-        await response.json();
-
+      const data = await response.json();
 
       loadingMessage.remove();
 
-
       if (!data.success) {
-
-        throw new Error(
-          data.error ||
-          "Ambi could not answer."
-        );
+        throw new Error(data.error || "Ambi could not answer.");
       }
 
+      conversationHistory.push({ role: "assistant", content: data.reply });
 
-      const ambiMessage =
-        document.createElement("div");
+      if (conversationHistory.length > MAX_HISTORY) {
+        conversationHistory = conversationHistory.slice(-MAX_HISTORY);
+      }
 
-      ambiMessage.className = "message";
-
-      const ambiLabel = document.createElement("strong");
-      ambiLabel.textContent = "Ambi";
-
-      const ambiText = document.createElement("div");
-      ambiText.textContent = data.reply;
-
-      ambiMessage.appendChild(ambiLabel);
-      ambiMessage.appendChild(ambiText);
-
-      chat.appendChild(ambiMessage);
-
+      appendMessage(chat, "Ambi", data.reply);
 
     } catch (error) {
 
       loadingMessage.remove();
-
-      const errorMessage =
-        document.createElement("div");
-
-      errorMessage.className = "message";
-
-      const errorLabel = document.createElement("strong");
-      errorLabel.textContent = "Ambi";
-
-      const errorText = document.createElement("div");
-      errorText.textContent = "Error: " + error.message;
-
-      errorMessage.appendChild(errorLabel);
-      errorMessage.appendChild(errorText);
-
-      chat.appendChild(errorMessage);
-
+      appendMessage(chat, "Ambi", "Error: " + error.message);
       console.error(error);
     }
 
-
+    input.disabled = false;
     button.disabled = false;
     button.textContent = "Ask Ambi →";
+    input.focus();
   }
 
-</script>
+  document.getElementById("messageInput").addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+
+  </script>
 </body>
 </html>
