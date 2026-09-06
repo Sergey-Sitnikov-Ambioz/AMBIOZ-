@@ -256,23 +256,29 @@
                   `
 Create a professional reply to this customer message.
 
+message:
+  `
+Write a customer support reply on behalf of this business.
+
 CUSTOMER MESSAGE:
 ${customerMessage}
 
 Rules:
-- Write only the reply that the business can send to the customer.
-- Be natural, polite and professional.
+- Write only the final reply to the customer.
+- Be natural, concise, polite and professional.
+- Do not address the customer using the business name.
+- Use the business name only when it is natural and necessary.
 - Use only information available in the business information.
 - Never invent prices, services, availability, opening hours, policies, guarantees or other facts.
-- If the customer asks something that the business information does not answer, clearly say that Ambi does not currently have that information.
-- Never promise that someone will follow up, contact the customer, check with the team, or respond later unless that capability and information are explicitly provided.
-- Never claim that the business has a team, staff, support department or human representative unless this is explicitly stated in the business information.
-- Do not pretend that you checked external systems or databases.
-- Do not repeat unknown or placeholder-looking business information as if it were meaningful. If a business field appears incomplete or unclear, do not rely on it.
+- If the business information does not answer the customer's question, clearly say that you do not currently have that information.
+- Never promise that someone will check, confirm, contact the customer, follow up, or respond later unless this capability is explicitly provided in the business information.
+- Never invent a team, staff, manager or support department.
+- Do not claim to have checked external systems, databases or the internet.
 - Do not mention that you are an AI.
-- Do not explain your reasoning.
+- Do not apologize unless the customer is actually reporting a problem, mistake or inconvenience.
+- Do not use generic filler.
+- Match the language of the customer's message.
 - Return only the final customer reply.
-- Use the business name naturally. Never address the customer using the business name.
 `,
 
                 business: business
