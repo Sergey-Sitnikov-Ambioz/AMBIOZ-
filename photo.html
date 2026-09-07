@@ -28,7 +28,7 @@
     .back {
       display: inline-block;
       margin-bottom: 28px;
-      color: #555;
+      color: #666;
       text-decoration: none;
       font-size: 14px;
     }
@@ -53,7 +53,7 @@
 
     .card {
       background: #fff;
-      border: 1px solid #e5e5e5;
+      border: 1px solid #e4e4e4;
       border-radius: 18px;
       padding: 24px;
       margin-bottom: 20px;
@@ -63,7 +63,6 @@
       display: flex;
       align-items: center;
       gap: 18px;
-      margin-bottom: 8px;
     }
 
     .avatar {
@@ -116,7 +115,7 @@
     select {
       width: 100%;
       padding: 13px 14px;
-      border: 1px solid #d9d9d9;
+      border: 1px solid #d8d8d8;
       border-radius: 10px;
       background: #fff;
       color: #111;
@@ -145,7 +144,7 @@
     }
 
     button.secondary {
-      background: #f1f1ef;
+      background: #f0f0ee;
       color: #111;
     }
 
@@ -158,7 +157,36 @@
       font-size: 20px;
     }
 
-    .photo-placeholder {
+    .prompt-label {
+      margin-top: 22px;
+    }
+
+    .prompt-box {
+      width: 100%;
+      min-height: 170px;
+      padding: 16px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      background: #fafaf8;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #333;
+      white-space: pre-wrap;
+    }
+
+    .prompt-actions {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .generation-area {
+      display: none;
+      margin-top: 22px;
+    }
+
+    .generation-placeholder {
       width: 100%;
       aspect-ratio: 1 / 1;
       border-radius: 16px;
@@ -173,20 +201,6 @@
       line-height: 1.5;
     }
 
-    .photo-placeholder img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 16px;
-    }
-
-    .result-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
     .note {
       margin-top: 14px;
       color: #888;
@@ -199,7 +213,7 @@
       margin-top: 14px;
       padding: 12px 14px;
       background: #fff1f1;
-      border: 1px solid #f0cccc;
+      border: 1px solid #eccaca;
       border-radius: 10px;
       color: #a33;
       font-size: 14px;
@@ -218,7 +232,7 @@
         padding: 20px;
       }
 
-      .result-actions {
+      .prompt-actions {
         grid-template-columns: 1fr;
       }
     }
@@ -229,13 +243,16 @@
 
   <main class="container">
 
-    <a class="back" href="identity.html">← Back to Identity</a>
+    <a class="back" href="identity.html">
+      ← Back to Identity
+    </a>
 
     <h1>Create with your Ambi</h1>
 
     <p class="subtitle">
       Create a photo with your Ambi.
     </p>
+
 
     <!-- AMBI -->
     <section class="card">
@@ -247,6 +264,7 @@
         </div>
 
         <div>
+
           <div class="ambi-name" id="ambiName">
             Your Ambi
           </div>
@@ -254,6 +272,7 @@
           <div class="ambi-role" id="ambiRole">
             Digital Business Representative
           </div>
+
         </div>
 
       </div>
@@ -272,15 +291,15 @@
 
         <select id="scene">
 
-          <option value="professional-office">
+          <option value="professional office">
             Professional office
           </option>
 
-          <option value="modern-studio">
+          <option value="modern studio">
             Modern studio
           </option>
 
-          <option value="creative-workspace">
+          <option value="creative workspace">
             Creative workspace
           </option>
 
@@ -288,7 +307,7 @@
             Outdoor
           </option>
 
-          <option value="neutral-background">
+          <option value="neutral background">
             Neutral background
           </option>
 
@@ -400,34 +419,52 @@
         Your Photo
       </h2>
 
-      <div class="photo-placeholder" id="photoArea">
-
-        Photo generation will appear here.
-
+      <div class="prompt-label">
+        <label>
+          Generation prompt
+        </label>
       </div>
 
-      <div class="result-actions">
+      <div class="prompt-box" id="promptBox"></div>
+
+
+      <div class="prompt-actions">
 
         <button
           type="button"
           class="secondary"
-          onclick="createAnother()"
+          onclick="copyPrompt()"
         >
-          Create another
+          Copy Prompt
         </button>
 
         <button
           type="button"
-          onclick="useForContent()"
+          onclick="generateImage()"
         >
-          Use for content
+          Generate Image →
         </button>
 
       </div>
 
+
+      <!-- IMAGE GENERATION AREA -->
+      <div class="generation-area" id="generationArea">
+
+        <div
+          class="generation-placeholder"
+          id="generationPlaceholder"
+        >
+          Image generation will be connected here.
+        </div>
+
+      </div>
+
+
       <div class="note">
-        Photo generation is prepared as a separate module.
-        The current MVP stores your selected creative direction.
+        Ambioz uses your saved Identity together with the selected
+        scene, pose, expression and format to create a consistent
+        visual representation of your Ambi.
       </div>
 
     </section>
@@ -437,22 +474,27 @@
 
   <script>
 
+    /*
+      Load saved Ambi Identity
+    */
+
     const identity =
-      JSON.parse(localStorage.getItem("ambiIdentity") || "null");
+      JSON.parse(
+        localStorage.getItem("ambiIdentity") || "null"
+      );
 
 
     /*
-      Load saved Ambi Identity
+      Load Ambi
     */
 
     function loadIdentity() {
 
       if (!identity) {
 
-        document.getElementById("error").style.display = "block";
-
-        document.getElementById("error").textContent =
-          "No Ambi Identity found. Please create your Ambi first.";
+        showError(
+          "No Ambi Identity found. Please create your Ambi first."
+        );
 
         return;
       }
@@ -462,19 +504,19 @@
         identity.name || "Your Ambi";
 
       const role =
-        identity.role || "Digital Business Representative";
+        identity.role ||
+        "Digital Business Representative";
 
 
-      document.getElementById("ambiName").textContent =
-        name;
+      document.getElementById("ambiName")
+        .textContent = name;
 
-      document.getElementById("ambiRole").textContent =
-        role;
+      document.getElementById("ambiRole")
+        .textContent = role;
 
 
       /*
-        For now we use the existing prototype avatar
-        if it exists in the repository.
+        Load prototype avatar
       */
 
       const avatar =
@@ -486,6 +528,7 @@
       img.src = "ambi-avatar.png";
 
       img.alt = name;
+
 
       img.onload = function() {
 
@@ -499,10 +542,89 @@
 
 
     /*
-      Create Photo
+      Build visual identity description
     */
 
-    function createPhoto() {
+    function buildIdentityDescription() {
+
+      if (!identity) {
+        return "";
+      }
+
+
+      const parts = [];
+
+
+      if (identity.gender) {
+
+        parts.push(
+          `${identity.gender} digital business representative`
+        );
+
+      } else {
+
+        parts.push(
+          "digital business representative"
+        );
+
+      }
+
+
+      if (identity.name) {
+
+        parts.push(
+          `named ${identity.name}`
+        );
+
+      }
+
+
+      if (identity.role) {
+
+        parts.push(
+          `with the role of ${identity.role}`
+        );
+
+      }
+
+
+      if (identity.personality) {
+
+        parts.push(
+          `with a ${identity.personality} personality`
+        );
+
+      }
+
+
+      if (identity.appearance) {
+
+        parts.push(
+          `${identity.appearance} appearance`
+        );
+
+      }
+
+
+      if (identity.style) {
+
+        parts.push(
+          `${identity.style} visual style`
+        );
+
+      }
+
+
+      return parts.join(", ");
+
+    }
+
+
+    /*
+      Create generation prompt
+    */
+
+    function buildPrompt() {
 
       const scene =
         document.getElementById("scene").value;
@@ -517,6 +639,70 @@
         document.getElementById("format").value;
 
 
+      const identityDescription =
+        buildIdentityDescription();
+
+
+      const prompt =
+        `Create a high-quality professional photo of ${identityDescription}. ` +
+
+        `The Ambi should have a consistent visual identity and recognizable appearance. ` +
+
+        `Scene: ${scene}. ` +
+
+        `Pose: ${pose}. ` +
+
+        `Facial expression: ${expression}. ` +
+
+        `Composition: ${format}. ` +
+
+        `Natural realistic lighting, realistic human proportions, ` +
+
+        `professional photography, clean composition, ` +
+
+        `authentic business environment, high visual quality. ` +
+
+        `Do not add text, logos, watermarks, captions or UI elements.`;
+
+
+      return prompt;
+
+    }
+
+
+    /*
+      Create Photo
+    */
+
+    function createPhoto() {
+
+      if (!identity) {
+
+        showError(
+          "No Ambi Identity found. Please create your Ambi first."
+        );
+
+        return;
+      }
+
+
+      const scene =
+        document.getElementById("scene").value;
+
+      const pose =
+        document.getElementById("pose").value;
+
+      const expression =
+        document.getElementById("expression").value;
+
+      const format =
+        document.getElementById("format").value;
+
+
+      const prompt =
+        buildPrompt();
+
+
       const photoRequest = {
 
         identity: identity,
@@ -527,15 +713,15 @@
 
         expression: expression,
 
-        format: format
+        format: format,
+
+        prompt: prompt,
+
+        createdAt:
+          new Date().toISOString()
 
       };
 
-
-      /*
-        Save the creative direction.
-        A real image generation API will use this object later.
-      */
 
       localStorage.setItem(
         "ambiPhotoRequest",
@@ -543,66 +729,120 @@
       );
 
 
-      const result =
-        document.getElementById("result");
-
-      const photoArea =
-        document.getElementById("photoArea");
+      document.getElementById("promptBox")
+        .textContent = prompt;
 
 
-      result.style.display = "block";
+      document.getElementById("result")
+        .style.display = "block";
 
 
-      photoArea.innerHTML = `
+      document.getElementById("generationArea")
+        .style.display = "none";
+
+
+      document.getElementById("result")
+        .scrollIntoView({
+          behavior: "smooth"
+        });
+
+    }
+
+
+    /*
+      Copy prompt
+    */
+
+    async function copyPrompt() {
+
+      const prompt =
+        document.getElementById("promptBox")
+          .textContent;
+
+
+      try {
+
+        await navigator.clipboard.writeText(prompt);
+
+        const button =
+          event.currentTarget;
+
+        const original =
+          button.textContent;
+
+        button.textContent =
+          "Copied ✓";
+
+
+        setTimeout(function() {
+
+          button.textContent =
+            original;
+
+        }, 1500);
+
+      } catch (error) {
+
+        showError(
+          "The prompt could not be copied automatically."
+        );
+
+      }
+
+    }
+
+
+    /*
+      Temporary image generation stage
+    */
+
+    function generateImage() {
+
+      const generationArea =
+        document.getElementById("generationArea");
+
+      const placeholder =
+        document.getElementById(
+          "generationPlaceholder"
+        );
+
+
+      generationArea.style.display =
+        "block";
+
+
+      placeholder.innerHTML = `
         <div>
-          <strong>Photo ready to generate</strong>
+          <strong>Image generator ready</strong>
           <br><br>
-          Scene: ${formatLabel(scene)}
-          <br>
-          Pose: ${formatLabel(pose)}
-          <br>
-          Expression: ${formatLabel(expression)}
-          <br>
-          Format: ${formatLabel(format)}
+          Your Ambi Identity and photo settings
+          have been converted into a generation prompt.
+          <br><br>
+          A real image generation provider
+          will be connected to this button next.
         </div>
       `;
 
 
-      result.scrollIntoView({
+      generationArea.scrollIntoView({
         behavior: "smooth"
       });
 
     }
 
 
-    function formatLabel(value) {
+    /*
+      Error
+    */
 
-      return value
-        .replaceAll("-", " ")
-        .replace(/\b\w/g, letter =>
-          letter.toUpperCase()
-        );
+    function showError(message) {
 
-    }
+      const error =
+        document.getElementById("error");
 
+      error.textContent = message;
 
-    function createAnother() {
-
-      document.getElementById("result")
-        .style.display = "none";
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
-    }
-
-
-    function useForContent() {
-
-      window.location.href =
-        "create-content.html";
+      error.style.display = "block";
 
     }
 
