@@ -7,53 +7,7 @@
   <title>Customer Reply — AMBIOZ</title>
 
   <style>
-    * {const modeInstruction =
-  mode === "customer_reply"
-    ? `
-CUSTOMER REPLY MODE
-
-The user's message is a message received from a customer.
-
-Write ONLY the final reply that this business can truthfully send to that customer.
-
-Rules:
-- Be natural, concise, polite and professional.
-- Match the customer's language.
-- Never use or mention the business name.
-- Use only facts contained in BUSINESS INFORMATION.
-- Never invent services, products, prices, availability, opening hours, policies, guarantees or contact details.
-- If the business information does not answer the customer's question, clearly say that you do not currently have that information.
-- Never say that you will check with a team.
-- Never say that someone will contact the customer.
-- Never say that someone will get back to the customer.
-- Never ask for contact details unless this is explicitly supported by the business information.
-- Never invent a team, employee, manager or support department.
-- Never claim to have checked the internet, databases or external systems.
-- Do not mention AI.
-- Do not explain your reasoning.
-- Return ONLY the final customer reply.
-`
-    : mode === "product_description"
-    ? `
-PRODUCT DESCRIPTION MODE
-
-Create ONLY the final product or service description requested by the user.
-
-Rules:
-- Use only information provided in BUSINESS INFORMATION and the user's product information.
-- Do not invent features, benefits, prices, specifications, guarantees, availability or other facts.
-- Do not invent information about the business.
-- Do not mention the business name unless the user explicitly asks for it.
-- Do not simply repeat the user's input.
-- Rewrite the provided information into natural, clear and professional customer-facing copy.
-- Focus on what the product or service is and what the customer can expect from the information provided.
-- Keep it concise.
-- Do not use markdown.
-- Do not mention AI.
-- Do not explain your reasoning.
-- Return ONLY the final description.
-`
-    : "";
+    * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -249,94 +203,110 @@ Rules:
 
   </main>
 
- <script>
+  <script>
 
-let business = {};
+    let business = {};
 
-const savedBusiness = localStorage.getItem("ambiBusiness");
+    const savedBusiness =
+      localStorage.getItem("ambiBusiness");
 
-if (savedBusiness) {
-  try {
-    business = JSON.parse(savedBusiness);
-  } catch (error) {
-    console.error("Could not read business data:", error);
-  }
-}
-
-async function createReply() {
-
-  const input = document.getElementById("customerMessage");
-  const button = document.getElementById("replyButton");
-  const resultSection = document.getElementById("resultSection");
-  const result = document.getElementById("result");
-
-  const customerMessage = input.value.trim();
-
-  if (!customerMessage) {
-    result.textContent = "Please enter a customer message.";
-    resultSection.classList.remove("hidden");
-    return;
-  }
-
-  input.disabled = true;
-  button.disabled = true;
-  button.textContent = "Ambi is thinking...";
-
-  resultSection.classList.remove("hidden");
-  result.textContent = "Thinking...";
-
-  try {
-
-    const response = await fetch(
-      "https://qabvpdmdikjqdzeogrcz.supabase.co/functions/v1/chat-with-ambi",
-      {
-        method: "POST",
-
-        headers: {
-          "Content-Type": "application/json",
-          "apikey": "sb_publishable_bySPn4HxH44yhY11-3H4hQ_2yMEh5FN"
-        },
-
-        body: JSON.stringify({
-          mode: "product_description",
-          message: `
-        PRODUCT OR SERVICE:
-        ${name}
-
-        BASIC INFORMATION:
-        ${info}
-        `,
-          business: business
-        })
+    if (savedBusiness) {
+      try {
+        business = JSON.parse(savedBusiness);
+      } catch (error) {
+        console.error("Could not read business data:", error);
       }
-    );
-
-    const data = await response.json();
-
-    if (!data.success) {
-      throw new Error(
-        data.error || "Ambi could not create the reply."
-      );
     }
 
-    result.textContent = data.reply;
+    async function createReply() {
 
-  } catch (error) {
+      const input =
+        document.getElementById("customerMessage");
 
-    console.error("Customer reply error:", error);
+      const button =
+        document.getElementById("replyButton");
 
-    result.textContent =
-      "Error: " + error.message;
+      const resultSection =
+        document.getElementById("resultSection");
 
-  } finally {
+      const result =
+        document.getElementById("result");
 
-    input.disabled = false;
-    button.disabled = false;
-    button.textContent = "Create reply →";
+      const customerMessage =
+        input.value.trim();
 
-  }
-}
+      if (!customerMessage) {
+        result.textContent =
+          "Please enter a customer message.";
 
-</script>
+        resultSection.classList.remove("hidden");
+
+        return;
+      }
+
+      input.disabled = true;
+      button.disabled = true;
+      button.textContent = "Ambi is thinking...";
+
+      resultSection.classList.remove("hidden");
+      result.textContent = "Thinking...";
+
+      try {
+
+        const response =
+          await fetch(
+            "https://qabvpdmdikjqdzeogrcz.supabase.co/functions/v1/chat-with-ambi",
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type": "application/json",
+                "apikey":
+                  "sb_publishable_bySPn4HxH44yhY11-3H4hQ_2yMEh5FN"
+              },
+
+              body: JSON.stringify({
+                mode: "customer_reply",
+                message: customerMessage,
+                business: business
+              })
+            }
+          );
+
+        const data =
+          await response.json();
+
+        if (!data.success) {
+          throw new Error(
+            data.error ||
+            "Ambi could not create the reply."
+          );
+        }
+
+        result.textContent =
+          data.reply;
+
+      } catch (error) {
+
+        console.error(
+          "Customer reply error:",
+          error
+        );
+
+        result.textContent =
+          "Error: " + error.message;
+
+      } finally {
+
+        input.disabled = false;
+        button.disabled = false;
+        button.textContent =
+          "Create reply →";
+
+      }
+    }
+
+  </script>
+
 </body>
 </html>
