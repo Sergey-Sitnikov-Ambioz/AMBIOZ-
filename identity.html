@@ -295,64 +295,66 @@
 
       <div id="error" class="error"></div>
 
-      <div id="result" class="result">
+<div id="result" class="result">
 
-        <h2 id="resultName"></h2>
+  <div class="eyebrow">YOUR AMBI</div>
 
-        <p class="result-intro">
-          Your Ambi identity is ready.
-        </p>
+  <h2 id="resultName"></h2>
 
-        <div class="identity">
+  <p class="result-intro">
+    Your digital business representative is ready.
+  </p>
 
-          <div class="identity-row">
-            <span class="identity-label">Role</span>
-            <span id="resultRole" class="identity-value"></span>
-          </div>
+  <div class="identity">
 
-          <div class="identity-row">
-            <span class="identity-label">Personality</span>
-            <span id="resultPersonality" class="identity-value"></span>
-          </div>
+    <div class="identity-row">
+      <span class="identity-label">Role</span>
+      <span id="resultRole" class="identity-value"></span>
+    </div>
 
-          <div class="identity-row">
-            <span class="identity-label">Language</span>
-            <span id="resultLanguage" class="identity-value"></span>
-          </div>
+    <div class="identity-row">
+      <span class="identity-label">Personality</span>
+      <span id="resultPersonality" class="identity-value"></span>
+    </div>
 
-          <div class="identity-row">
-            <span class="identity-label">Appearance</span>
-            <span id="resultAppearance" class="identity-value"></span>
-          </div>
+    <div class="identity-row">
+      <span class="identity-label">Language</span>
+      <span id="resultLanguage" class="identity-value"></span>
+    </div>
 
-          <div class="identity-row">
-            <span class="identity-label">Style</span>
-            <span id="resultStyle" class="identity-value"></span>
-          </div>
+    <div class="identity-row">
+      <span class="identity-label">Appearance</span>
+      <span id="resultAppearance" class="identity-value"></span>
+    </div>
 
-        </div>
+    <div class="identity-row">
+      <span class="identity-label">Style</span>
+      <span id="resultStyle" class="identity-value"></span>
+    </div>
 
-        <div class="actions">
+  </div>
 
-          <button
-            type="button"
-            onclick="window.location.href='ambi.html'"
-            class="secondary"
-          >
-            Talk to Ambi
-          </button>
+  <div class="actions">
 
-          <button
-            type="button"
-            onclick="window.location.href='create-content.html'"
-            class="secondary"
-          >
-            Create Content
-          </button>
+    <button
+      type="button"
+      onclick="window.location.href='ambi.html'"
+      class="secondary"
+    >
+      Talk to Ambi
+    </button>
 
-        </div>
+    <button
+      type="button"
+      onclick="window.location.href='create-content.html'"
+      class="secondary"
+    >
+      Create Content
+    </button>
 
-      </div>
+  </div>
+
+</div>
 
     </section>
 
@@ -379,12 +381,15 @@
         style: document.getElementById("style").value
       };
 
-      if (!identity.name) {
+      if (
+        !identity.name ||
+        identity.name.toLowerCase() === "name" ||
+        identity.name.toLowerCase() === "имя"
+      ) {
         error.textContent = "Please enter a name for your Ambi.";
         error.style.display = "block";
-        return;
+      return;
       }
-
       localStorage.setItem(
         "ambiIdentity",
         JSON.stringify(identity)
