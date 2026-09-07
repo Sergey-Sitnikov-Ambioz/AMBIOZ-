@@ -4,243 +4,374 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Business Introduction — AMBIOZ</title>
+  <title>Ambioz — Business Introduction</title>
 
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f7f7f7;
-      color: #111111;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+      background: #f7f7f5;
+      color: #111;
     }
 
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid #eeeeee;
-      padding: 20px 7%;
-    }
-
-    .logo {
-      font-size: 21px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      color: inherit;
-      text-decoration: none;
-    }
-
-    main {
-      max-width: 900px;
+    .page {
+      max-width: 760px;
       margin: 0 auto;
-      padding: 45px 6% 70px;
+      padding: 40px 20px 70px;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 45px;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 700;
     }
 
     .back {
-      display: inline-block;
-      color: #777777;
+      color: #111;
       text-decoration: none;
       font-size: 14px;
-      margin-bottom: 35px;
-    }
-
-    .section {
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 30px;
-      margin-bottom: 25px;
-      border: 1px solid #e8e8e8;
     }
 
     h1 {
-      font-size: 42px;
-      letter-spacing: -2px;
-      margin-bottom: 10px;
+      font-size: 38px;
+      letter-spacing: -1.5px;
+      margin: 0 0 10px;
     }
 
-    h2 {
-      font-size: 22px;
-      margin-bottom: 8px;
-    }
-
-    .intro {
-      color: #777777;
-      font-size: 15px;
+    .subtitle {
+      color: #666;
       line-height: 1.5;
-      margin-bottom: 28px;
+      margin-bottom: 30px;
     }
 
-    label {
-      display: block;
-      font-size: 12px;
-      font-weight: 700;
-      color: #888888;
-      letter-spacing: 1px;
-      margin-bottom: 8px;
+    .usage {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .usage strong {
+      font-size: 16px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 18px;
+      padding: 24px;
     }
 
     textarea {
       width: 100%;
-      min-height: 180px;
-      padding: 15px;
-      border: 1px solid #dddddd;
-      border-radius: 10px;
-      font-family: inherit;
-      font-size: 16px;
-      line-height: 1.5;
+      min-height: 220px;
       resize: vertical;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      padding: 15px;
+      font: inherit;
+      font-size: 15px;
+      line-height: 1.5;
       outline: none;
     }
 
     textarea:focus {
-      border-color: #999999;
-    }
-
-    textarea:disabled {
-      opacity: 0.6;
+      border-color: #111;
     }
 
     button {
       width: 100%;
-      margin-top: 12px;
-      padding: 16px;
-      border: none;
-      border-radius: 10px;
-      background: #111111;
-      color: #ffffff;
-      font-size: 16px;
+      margin-top: 15px;
+      border: 0;
+      border-radius: 12px;
+      padding: 15px;
+      background: #111;
+      color: white;
+      font-size: 15px;
       font-weight: 600;
       cursor: pointer;
     }
 
     button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
+      opacity: 0.5;
+      cursor: default;
     }
 
     .result {
-      min-height: 140px;
-      padding: 18px;
-      background: #f7f7f7;
+      margin-top: 25px;
+      padding: 20px;
+      background: #f7f7f5;
       border-radius: 14px;
-      border: 1px solid #eeeeee;
       white-space: pre-wrap;
       line-height: 1.6;
-      font-size: 15px;
-    }
-
-    .hidden {
       display: none;
     }
 
-    @media (max-width: 600px) {
-      main {
-        padding-top: 30px;
-      }
+    .error {
+      margin-top: 15px;
+      padding: 14px;
+      border-radius: 12px;
+      background: #fff0f0;
+      color: #a00000;
+      display: none;
+      line-height: 1.5;
+    }
 
-      .section {
-        padding: 24px;
-      }
+    .upgrade {
+      margin-top: 20px;
+      padding: 20px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      display: none;
+    }
 
-      h1 {
-        font-size: 36px;
-      }
+    .upgrade a {
+      display: inline-block;
+      margin-top: 12px;
+      color: #111;
+      font-weight: 600;
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <a href="index.html" class="logo">AMBIOZ</a>
-  </header>
+  <div class="page">
 
-  <main>
+    <div class="top">
 
-    <a class="back" href="ambi.html">
-      ← Back to Ambi
-    </a>
+      <div class="brand">
+        AMBIOZ
+      </div>
 
-    <section class="section">
+      <a
+        class="back"
+        href="ambi.html">
+        ← Back to Ambi
+      </a>
 
-      <h1>Business Introduction</h1>
+    </div>
 
-      <p class="intro">
-        Give Ambi your business information and get a clear,
-        professional introduction ready to use.
-      </p>
 
-      <label for="extraInfo">
-        ADDITIONAL INFORMATION
-      </label>
+    <h1>
+      Business Introduction
+    </h1>
+
+    <div class="subtitle">
+      Create a clear introduction to your business with your Ambi.
+    </div>
+
+
+    <div class="usage">
+
+      <strong>
+        <span id="remaining">0</span>
+      </strong>
+
+      content generations remaining this month
+
+    </div>
+
+
+    <div class="card">
 
       <textarea
-        id="extraInfo"
-        maxlength="2000"
-        placeholder="Add anything you want Ambi to include..."
-      ></textarea>
+        id="instruction"
+        placeholder="What should the introduction focus on?
 
-      <button id="createButton" onclick="createIntroduction()">
-        Create introduction →
+Example:
+Introduce our web development studio to small businesses and explain how we can help them build a professional website."></textarea>
+
+
+      <button
+        id="generateButton"
+        onclick="generateContent()">
+
+        Generate Introduction
+
       </button>
 
-    </section>
 
-    <section class="section hidden" id="resultSection">
+      <div
+        class="error"
+        id="error">
+      </div>
 
-      <h2>Ambi's introduction</h2>
 
-      <p class="intro">
-        Ready to use.
+      <div
+        class="result"
+        id="result">
+      </div>
+
+    </div>
+
+
+    <div
+      class="upgrade"
+      id="upgrade">
+
+      <strong>
+        You've reached your Free plan content limit.
+      </strong>
+
+      <p>
+        Upgrade your plan to continue creating AI content with Ambi.
       </p>
 
-      <div class="result" id="result"></div>
+      <a href="plans.html">
+        View plans →
+      </a>
 
-    </section>
+    </div>
 
-  </main>
+  </div>
+
+
+  <script src="plan.js"></script>
 
   <script>
 
-    let business = {};
+    /*
+     * ================================
+     * BUSINESS DATA
+     * ================================
+     */
 
-    const savedBusiness =
-      localStorage.getItem("ambiBusiness");
+    const business =
+      JSON.parse(
+        localStorage.getItem("ambiBusiness") || "null"
+      );
 
-    if (savedBusiness) {
-      try {
-        business = JSON.parse(savedBusiness);
-      } catch (error) {
-        console.error("Could not read business data:", error);
+
+    /*
+     * ================================
+     * USAGE
+     * ================================
+     */
+
+    function updateUsage() {
+
+      const remaining =
+        getRemainingGenerations("content");
+
+      document
+        .getElementById("remaining")
+        .textContent = remaining;
+
+
+      if (remaining <= 0) {
+
+        document
+          .getElementById("generateButton")
+          .disabled = true;
+
+        document
+          .getElementById("generateButton")
+          .textContent =
+          "Content limit reached";
+
+        document
+          .getElementById("upgrade")
+          .style.display = "block";
       }
     }
 
-    async function createIntroduction() {
 
-      const input =
-        document.getElementById("extraInfo");
+    /*
+     * ================================
+     * GENERATION
+     * ================================
+     */
 
-      const button =
-        document.getElementById("createButton");
+    async function generateContent() {
 
-      const resultSection =
-        document.getElementById("resultSection");
+      const errorElement =
+        document.getElementById("error");
 
-      const result =
+      const resultElement =
         document.getElementById("result");
 
-      const extraInfo =
-        input.value.trim();
+      const button =
+        document.getElementById("generateButton");
 
-      input.disabled = true;
+
+      errorElement.style.display = "none";
+
+
+      /*
+       * Check plan limit
+       */
+
+      if (!canGenerate("content")) {
+
+        document
+          .getElementById("upgrade")
+          .style.display = "block";
+
+        updateUsage();
+
+        return;
+      }
+
+
+      /*
+       * Check business
+       */
+
+      if (!business) {
+
+        errorElement.textContent =
+          "Business information is missing. Please create your Ambi first.";
+
+        errorElement.style.display =
+          "block";
+
+        return;
+      }
+
+
+      const instruction =
+        document
+          .getElementById("instruction")
+          .value
+          .trim();
+
+
+      if (!instruction) {
+
+        errorElement.textContent =
+          "Please describe what the introduction should focus on.";
+
+        errorElement.style.display =
+          "block";
+
+        return;
+      }
+
+
+      /*
+       * Loading
+       */
+
       button.disabled = true;
-      button.textContent = "Ambi is thinking...";
 
-      resultSection.classList.remove("hidden");
-      result.textContent = "Thinking...";
+      button.textContent =
+        "Creating...";
+
 
       try {
 
@@ -251,65 +382,114 @@
               method: "POST",
 
               headers: {
-                "Content-Type": "application/json",
-                "apikey":
-                  "sb_publishable_bySPn4HxH44yhY11-3H4hQ_2yMEh5FN"
+                "Content-Type":
+                  "application/json"
               },
 
               body: JSON.stringify({
 
-                mode: "business_introduction",
-
                 message:
-                  `
-Create a professional introduction for this business.
+                  `Create a professional business introduction.
 
-ADDITIONAL INFORMATION:
-${extraInfo || "None"}
+Business name:
+${business.name}
 
-Use the business information provided to you.
+Business description:
+${business.description || ""}
 
-Return only the final introduction.
-`,
+Services:
+${business.services || ""}
 
-                business: business
+Customers:
+${business.customers || ""}
 
+Language:
+${business.language || "English"}
+
+User instruction:
+${instruction}
+
+Write only the finished introduction.`
               })
             }
           );
 
+
         const data =
           await response.json();
 
-        if (!data.success) {
+
+        if (!response.ok) {
+
           throw new Error(
             data.error ||
-            "Ambi could not create the introduction."
+            "Generation failed."
           );
         }
 
-        result.textContent =
-          data.reply;
+
+        const text =
+          data.reply ||
+          data.output_text ||
+          data.text;
+
+
+        if (!text) {
+
+          throw new Error(
+            "The AI returned an empty response."
+          );
+        }
+
+
+        /*
+         * Count generation
+         *
+         * We only consume the generation
+         * after successful AI output.
+         */
+
+        useGeneration("content");
+
+
+        resultElement.textContent =
+          text;
+
+        resultElement.style.display =
+          "block";
+
+
+        updateUsage();
 
       } catch (error) {
 
-        console.error(
-          "Business introduction error:",
-          error
-        );
+        errorElement.textContent =
+          error.message ||
+          "Something went wrong.";
 
-        result.textContent =
-          "Error: " + error.message;
+        errorElement.style.display =
+          "block";
 
       } finally {
 
-        input.disabled = false;
-        button.disabled = false;
-        button.textContent =
-          "Create introduction →";
+        if (
+          canGenerate("content")
+        ) {
 
+          button.disabled = false;
+
+          button.textContent =
+            "Generate Introduction";
+        }
       }
     }
+
+
+    /*
+     * Initial state
+     */
+
+    updateUsage();
 
   </script>
 
