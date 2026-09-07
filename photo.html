@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Photo Studio — Ambioz</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+      background: #f7f7f5;
+      color: #111;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 28px;
+      color: #555;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .back:hover {
+      color: #111;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 32px;
+      line-height: 1.1;
+      letter-spacing: -0.8px;
+    }
+
+    .subtitle {
+      margin: 10px 0 30px;
+      color: #666;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .ambi-header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 8px;
+    }
+
+    .avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #eee;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 28px;
+      font-weight: 600;
+      color: #777;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .ambi-name {
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .ambi-role {
+      margin-top: 4px;
+      color: #777;
+      font-size: 14px;
+    }
+
+    .field {
+      margin-bottom: 22px;
+    }
+
+    .field:last-child {
+      margin-bottom: 0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    select {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid #d9d9d9;
+      border-radius: 10px;
+      background: #fff;
+      color: #111;
+      font-size: 15px;
+      outline: none;
+    }
+
+    select:focus {
+      border-color: #111;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px 18px;
+      border: none;
+      border-radius: 11px;
+      background: #111;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    button.secondary {
+      background: #f1f1ef;
+      color: #111;
+    }
+
+    .result {
+      display: none;
+    }
+
+    .result h2 {
+      margin: 0 0 16px;
+      font-size: 20px;
+    }
+
+    .photo-placeholder {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 16px;
+      background: #f0f0ee;
+      border: 1px dashed #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px;
+      color: #777;
+      line-height: 1.5;
+    }
+
+    .photo-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+
+    .result-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .note {
+      margin-top: 14px;
+      color: #888;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .error {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 14px;
+      background: #fff1f1;
+      border: 1px solid #f0cccc;
+      border-radius: 10px;
+      color: #a33;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 24px 16px 50px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .result-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <a class="back" href="identity.html">← Back to Identity</a>
+
+    <h1>Create with your Ambi</h1>
+
+    <p class="subtitle">
+      Create a photo with your Ambi.
+    </p>
+
+    <!-- AMBI -->
+    <section class="card">
+
+      <div class="ambi-header">
+
+        <div class="avatar" id="avatar">
+          A
+        </div>
+
+        <div>
+          <div class="ambi-name" id="ambiName">
+            Your Ambi
+          </div>
+
+          <div class="ambi-role" id="ambiRole">
+            Digital Business Representative
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PHOTO SETTINGS -->
+    <section class="card">
+
+      <div class="field">
+
+        <label for="scene">
+          Scene
+        </label>
+
+        <select id="scene">
+
+          <option value="professional-office">
+            Professional office
+          </option>
+
+          <option value="modern-studio">
+            Modern studio
+          </option>
+
+          <option value="creative-workspace">
+            Creative workspace
+          </option>
+
+          <option value="outdoor">
+            Outdoor
+          </option>
+
+          <option value="neutral-background">
+            Neutral background
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="pose">
+          Pose
+        </label>
+
+        <select id="pose">
+
+          <option value="standing">
+            Standing
+          </option>
+
+          <option value="sitting">
+            Sitting
+          </option>
+
+          <option value="portrait">
+            Portrait
+          </option>
+
+          <option value="walking">
+            Walking
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="expression">
+          Expression
+        </label>
+
+        <select id="expression">
+
+          <option value="friendly">
+            Friendly
+          </option>
+
+          <option value="confident">
+            Confident
+          </option>
+
+          <option value="professional">
+            Professional
+          </option>
+
+          <option value="warm">
+            Warm
+          </option>
+
+          <option value="neutral">
+            Neutral
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="format">
+          Format
+        </label>
+
+        <select id="format">
+
+          <option value="square">
+            Square
+          </option>
+
+          <option value="portrait">
+            Portrait
+          </option>
+
+          <option value="landscape">
+            Landscape
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <button type="button" onclick="createPhoto()">
+        Create Photo →
+      </button>
+
+      <div class="error" id="error"></div>
+
+    </section>
+
+
+    <!-- RESULT -->
+    <section class="card result" id="result">
+
+      <h2>
+        Your Photo
+      </h2>
+
+      <div class="photo-placeholder" id="photoArea">
+
+        Photo generation will appear here.
+
+      </div>
+
+      <div class="result-actions">
+
+        <button
+          type="button"
+          class="secondary"
+          onclick="createAnother()"
+        >
+          Create another
+        </button>
+
+        <button
+          type="button"
+          onclick="useForContent()"
+        >
+          Use for content
+        </button>
+
+      </div>
+
+      <div class="note">
+        Photo generation is prepared as a separate module.
+        The current MVP stores your selected creative direction.
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+    const identity =
+      JSON.parse(localStorage.getItem("ambiIdentity") || "null");
+
+
+    /*
+      Load saved Ambi Identity
+    */
+
+    function loadIdentity() {
+
+      if (!identity) {
+
+        document.getElementById("error").style.display = "block";
+
+        document.getElementById("error").textContent =
+          "No Ambi Identity found. Please create your Ambi first.";
+
+        return;
+      }
+
+
+      const name =
+        identity.name || "Your Ambi";
+
+      const role =
+        identity.role || "Digital Business Representative";
+
+
+      document.getElementById("ambiName").textContent =
+        name;
+
+      document.getElementById("ambiRole").textContent =
+        role;
+
+
+      /*
+        For now we use the existing prototype avatar
+        if it exists in the repository.
+      */
+
+      const avatar =
+        document.getElementById("avatar");
+
+      const img =
+        document.createElement("img");
+
+      img.src = "ambi-avatar.png";
+
+      img.alt = name;
+
+      img.onload = function() {
+
+        avatar.innerHTML = "";
+
+        avatar.appendChild(img);
+
+      };
+
+    }
+
+
+    /*
+      Create Photo
+    */
+
+    function createPhoto() {
+
+      const scene =
+        document.getElementById("scene").value;
+
+      const pose =
+        document.getElementById("pose").value;
+
+      const expression =
+        document.getElementById("expression").value;
+
+      const format =
+        document.getElementById("format").value;
+
+
+      const photoRequest = {
+
+        identity: identity,
+
+        scene: scene,
+
+        pose: pose,
+
+        expression: expression,
+
+        format: format
+
+      };
+
+
+      /*
+        Save the creative direction.
+        A real image generation API will use this object later.
+      */
+
+      localStorage.setItem(
+        "ambiPhotoRequest",
+        JSON.stringify(photoRequest)
+      );
+
+
+      const result =
+        document.getElementById("result");
+
+      const photoArea =
+        document.getElementById("photoArea");
+
+
+      result.style.display = "block";
+
+
+      photoArea.innerHTML = `
+        <div>
+          <strong>Photo ready to generate</strong>
+          <br><br>
+          Scene: ${formatLabel(scene)}
+          <br>
+          Pose: ${formatLabel(pose)}
+          <br>
+          Expression: ${formatLabel(expression)}
+          <br>
+          Format: ${formatLabel(format)}
+        </div>
+      `;
+
+
+      result.scrollIntoView({
+        behavior: "smooth"
+      });
+
+    }
+
+
+    function formatLabel(value) {
+
+      return value
+        .replaceAll("-", " ")
+        .replace(/\b\w/g, letter =>
+          letter.toUpperCase()
+        );
+
+    }
+
+
+    function createAnother() {
+
+      document.getElementById("result")
+        .style.display = "none";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    function useForContent() {
+
+      window.location.href =
+        "create-content.html";
+
+    }
+
+
+    loadIdentity();
+
+  </script>
+
+</body>
+</html>
