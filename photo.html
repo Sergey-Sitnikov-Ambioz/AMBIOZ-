@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Photo Studio — Ambioz</title>
+  <title>Ambioz — Create Photo</title>
 
   <style>
     * {
@@ -13,121 +13,143 @@
 
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Helvetica, Arial, sans-serif;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
       background: #f7f7f5;
       color: #111;
     }
 
-    .container {
-      max-width: 760px;
+    .page {
+      max-width: 820px;
       margin: 0 auto;
-      padding: 32px 20px 60px;
+      padding: 40px 20px 70px;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 45px;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 700;
     }
 
     .back {
-      display: inline-block;
-      margin-bottom: 28px;
-      color: #666;
+      color: #111;
       text-decoration: none;
       font-size: 14px;
     }
 
     h1 {
-      margin: 0;
-      font-size: 32px;
-      line-height: 1.1;
-      letter-spacing: -0.8px;
+      margin: 0 0 10px;
+      font-size: 40px;
+      letter-spacing: -1.5px;
     }
 
-    .subtitle {
-      margin: 10px 0 30px;
+    .intro {
+      margin: 0 0 30px;
       color: #666;
-      font-size: 16px;
       line-height: 1.5;
     }
 
     .card {
       background: #fff;
-      border: 1px solid #e4e4e4;
-      border-radius: 18px;
-      padding: 24px;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      padding: 25px;
       margin-bottom: 20px;
     }
 
-    .ambi-header {
+    .identity {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 15px;
+      margin-bottom: 25px;
     }
 
     .avatar {
-      width: 72px;
-      height: 72px;
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
-      background: #eee;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 28px;
-      font-weight: 600;
-      color: #777;
-    }
-
-    .avatar img {
-      width: 100%;
-      height: 100%;
       object-fit: cover;
+      background: #eee;
     }
 
-    .ambi-name {
-      font-size: 22px;
-      font-weight: 600;
+    .identity-name {
+      font-size: 18px;
+      font-weight: 700;
     }
 
-    .ambi-role {
+    .identity-role {
       margin-top: 4px;
       color: #777;
       font-size: 14px;
+    }
+
+    .usage {
+      padding: 15px 17px;
+      margin-bottom: 25px;
+      border-radius: 12px;
+      background: #f7f7f5;
+      font-size: 14px;
+    }
+
+    .usage strong {
+      font-size: 17px;
     }
 
     .field {
       margin-bottom: 22px;
     }
 
-    .field:last-child {
-      margin-bottom: 0;
-    }
-
     label {
       display: block;
       margin-bottom: 8px;
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 12px;
+      font-weight: 700;
+      color: #777;
+      letter-spacing: 1px;
     }
 
-    select {
+    select,
+    textarea {
       width: 100%;
       padding: 13px 14px;
-      border: 1px solid #d8d8d8;
+      border: 1px solid #ccc;
       border-radius: 10px;
       background: #fff;
       color: #111;
-      font-size: 15px;
-      outline: none;
+      font: inherit;
     }
 
-    select:focus {
-      border-color: #111;
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .appearance-note {
+      padding: 15px;
+      background: #f7f7f5;
+      border-radius: 12px;
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
     }
 
     button {
       width: 100%;
-      padding: 15px 18px;
-      border: none;
-      border-radius: 11px;
+      padding: 15px;
+      border: 0;
+      border-radius: 12px;
       background: #111;
       color: #fff;
       font-size: 15px;
@@ -135,150 +157,114 @@
       cursor: pointer;
     }
 
-    button:hover {
-      opacity: 0.9;
+    button:disabled {
+      opacity: .5;
+      cursor: default;
     }
 
-    button.secondary {
-      background: #f0f0ee;
+    .upgrade {
+      display: none;
+      margin-top: 18px;
+      padding: 18px;
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      line-height: 1.5;
+    }
+
+    .upgrade a {
+      display: inline-block;
+      margin-top: 10px;
       color: #111;
+      font-weight: 600;
+      text-decoration: none;
     }
 
     .result {
       display: none;
+      margin-top: 20px;
     }
 
-    .result h2 {
-      margin: 0 0 16px;
-      font-size: 20px;
-    }
-
-    .prompt-label {
-      margin-top: 22px;
+    .result img {
+      display: block;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      border-radius: 18px;
     }
 
     .prompt-box {
-      width: 100%;
-      min-height: 190px;
-      padding: 16px;
-      border: 1px solid #ddd;
+      margin-top: 20px;
+      padding: 15px;
+      background: #f7f7f5;
       border-radius: 12px;
-      background: #fafaf8;
-      font-size: 14px;
-      line-height: 1.6;
-      color: #333;
       white-space: pre-wrap;
-    }
-
-    .prompt-actions {
-      margin-top: 12px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .generation-area {
-      display: none;
-      margin-top: 22px;
-    }
-
-    .generation-placeholder {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      border-radius: 16px;
-      background: #f0f0ee;
-      border: 1px dashed #ccc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 30px;
-      color: #777;
-      line-height: 1.5;
-    }
-
-    .note {
-      margin-top: 14px;
-      color: #888;
+      color: #555;
       font-size: 13px;
       line-height: 1.5;
-    }
-
-    .auto-note {
-      margin-top: 14px;
-      padding: 12px 14px;
-      border-radius: 10px;
-      background: #f5f5f3;
-      color: #666;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .error {
-      display: none;
-      margin-top: 14px;
-      padding: 12px 14px;
-      background: #fff1f1;
-      border: 1px solid #eccaca;
-      border-radius: 10px;
-      color: #a33;
-      font-size: 14px;
     }
 
     @media (max-width: 600px) {
-
-      .container {
-        padding: 24px 16px 50px;
-      }
-
       h1 {
-        font-size: 28px;
+        font-size: 34px;
       }
 
       .card {
         padding: 20px;
       }
-
-      .prompt-actions {
-        grid-template-columns: 1fr;
-      }
-
     }
   </style>
 </head>
 
+
 <body>
 
-  <main class="container">
+  <div class="page">
 
-    <a class="back" href="identity.html">
-      ← Back to Identity
-    </a>
+    <div class="top">
 
-    <h1>Create with your Ambi</h1>
+      <div class="brand">
+        AMBIOZ
+      </div>
 
-    <p class="subtitle">
-      Create a photo with your Ambi.
+      <a
+        class="back"
+        href="identity.html">
+        ← Back to Ambi
+      </a>
+
+    </div>
+
+
+    <h1>
+      Create Ambi Photo
+    </h1>
+
+    <p class="intro">
+      Create a professional image of your digital business representative.
     </p>
 
 
-    <!-- AMBI -->
+    <div class="card">
 
-    <section class="card">
+      <div class="identity">
 
-      <div class="ambi-header">
-
-        <div class="avatar" id="avatar">
-          A
-        </div>
+        <img
+          id="avatar"
+          class="avatar"
+          src="ambi-avatar.png"
+          alt="Ambi">
 
         <div>
 
-          <div class="ambi-name" id="ambiName">
-            Your Ambi
+          <div
+            id="ambiName"
+            class="identity-name">
+            Ambi
           </div>
 
-          <div class="ambi-role" id="ambiRole">
+          <div
+            id="ambiRole"
+            class="identity-role">
             Digital Business Representative
           </div>
 
@@ -286,17 +272,262 @@
 
       </div>
 
-    </section>
+
+      <!-- PHOTO USAGE -->
+
+      <div class="usage">
+
+        <strong id="photoRemaining">
+          0
+        </strong>
+
+        photo generations remaining this month
+
+      </div>
 
 
-    <!-- PHOTO SETTINGS -->
+      <!-- FREE AUTOMATIC APPEARANCE -->
 
-    <section class="card">
+      <div
+        id="automaticAppearance"
+        class="appearance-note"
+        style="display:none;">
+
+        <strong>
+          Automatic appearance
+        </strong>
+
+        <br><br>
+
+        Your Free plan lets Ambioz choose
+        a natural appearance for your Ambi automatically.
+
+      </div>
+
+
+      <!-- PAID APPEARANCE -->
+
+      <div
+        id="customAppearance"
+        style="display:none;">
+
+        <div class="field">
+
+          <label for="ageRange">
+            AGE
+          </label>
+
+          <select id="ageRange">
+
+            <option value="auto">
+              Let Ambioz decide
+            </option>
+
+            <option value="20s">
+              20s
+            </option>
+
+            <option value="30s">
+              30s
+            </option>
+
+            <option value="40s">
+              40s
+            </option>
+
+            <option value="50s">
+              50s
+            </option>
+
+            <option value="60s">
+              60s
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="skinTone">
+            SKIN TONE
+          </label>
+
+          <select id="skinTone">
+
+            <option value="auto">
+              Let Ambioz decide
+            </option>
+
+            <option value="fair">
+              Fair
+            </option>
+
+            <option value="light">
+              Light
+            </option>
+
+            <option value="medium">
+              Medium
+            </option>
+
+            <option value="tan">
+              Tan
+            </option>
+
+            <option value="deep">
+              Deep
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="hairColor">
+            HAIR COLOR
+          </label>
+
+          <select id="hairColor">
+
+            <option value="auto">
+              Let Ambioz decide
+            </option>
+
+            <option value="black">
+              Black
+            </option>
+
+            <option value="dark brown">
+              Dark brown
+            </option>
+
+            <option value="brown">
+              Brown
+            </option>
+
+            <option value="light brown">
+              Light brown
+            </option>
+
+            <option value="blonde">
+              Blonde
+            </option>
+
+            <option value="red">
+              Red
+            </option>
+
+            <option value="gray">
+              Gray
+            </option>
+
+            <option value="white">
+              White
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="hairStyle">
+            HAIR STYLE
+          </label>
+
+          <select id="hairStyle">
+
+            <option value="auto">
+              Let Ambioz decide
+            </option>
+
+            <option value="long straight hair">
+              Long straight hair
+            </option>
+
+            <option value="long wavy hair">
+              Long wavy hair
+            </option>
+
+            <option value="shoulder-length hair">
+              Shoulder-length hair
+            </option>
+
+            <option value="short hair">
+              Short hair
+            </option>
+
+            <option value="short textured hair">
+              Short textured hair
+            </option>
+
+            <option value="curly hair">
+              Curly hair
+            </option>
+
+            <option value="natural hairstyle">
+              Natural hairstyle
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="eyeColor">
+            EYE COLOR
+          </label>
+
+          <select id="eyeColor">
+
+            <option value="auto">
+              Let Ambioz decide
+            </option>
+
+            <option value="brown">
+              Brown
+            </option>
+
+            <option value="dark brown">
+              Dark brown
+            </option>
+
+            <option value="hazel">
+              Hazel
+            </option>
+
+            <option value="green">
+              Green
+            </option>
+
+            <option value="blue">
+              Blue
+            </option>
+
+            <option value="gray">
+              Gray
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <!-- SCENE -->
 
       <div class="field">
 
         <label for="scene">
-          Scene
+          SCENE
         </label>
 
         <select id="scene">
@@ -326,13 +557,19 @@
       </div>
 
 
+      <!-- POSE -->
+
       <div class="field">
 
         <label for="pose">
-          Pose
+          POSE
         </label>
 
         <select id="pose">
+
+          <option value="portrait">
+            Portrait
+          </option>
 
           <option value="standing">
             Standing
@@ -340,10 +577,6 @@
 
           <option value="sitting">
             Sitting
-          </option>
-
-          <option value="portrait">
-            Portrait
           </option>
 
           <option value="walking">
@@ -355,10 +588,12 @@
       </div>
 
 
+      <!-- EXPRESSION -->
+
       <div class="field">
 
         <label for="expression">
-          Expression
+          EXPRESSION
         </label>
 
         <select id="expression">
@@ -388,10 +623,12 @@
       </div>
 
 
+      <!-- FORMAT -->
+
       <div class="field">
 
         <label for="format">
-          Format
+          FORMAT
         </label>
 
         <select id="format">
@@ -414,501 +651,195 @@
 
 
       <button
-        type="button"
-        onclick="createPhoto()"
-      >
-        Create Photo →
+        id="generateButton"
+        onclick="generatePhoto()">
+
+        Generate Photo →
+
       </button>
 
-      <div class="error" id="error"></div>
 
-    </section>
-
-
-    <!-- RESULT -->
-
-    <section class="card result" id="result">
-
-      <h2>
-        Your Photo
-      </h2>
-
-
-      <div class="prompt-label">
-
-        <label>
-          Generation prompt
-        </label>
-
-      </div>
-
+      <!-- UPGRADE -->
 
       <div
-        class="prompt-box"
-        id="promptBox"
-      ></div>
+        id="upgrade"
+        class="upgrade">
 
+        <strong>
+          You've reached your photo generation limit.
+        </strong>
+
+        <br>
+
+        Upgrade your plan to create more Ambi photos.
+
+        <br>
+
+        <a href="plans.html">
+          View plans →
+        </a>
+
+      </div>
+
+
+      <!-- RESULT -->
 
       <div
-        class="auto-note"
-        id="autoNote"
-      ></div>
-
-
-      <div class="prompt-actions">
-
-        <button
-          type="button"
-          class="secondary"
-          onclick="copyPrompt()"
-        >
-          Copy Prompt
-        </button>
-
-        <button
-          type="button"
-          onclick="generateImage()"
-        >
-          Generate Image →
-        </button>
+        id="result"
+        class="result">
 
       </div>
 
+    </div>
 
-      <div
-        class="generation-area"
-        id="generationArea"
-      >
-
-        <div
-          class="generation-placeholder"
-          id="generationPlaceholder"
-        >
-          Image generation will be connected here.
-        </div>
-
-      </div>
+  </div>
 
 
-      <div class="note">
-        Ambioz uses your Identity and selected photo settings
-        to create a consistent visual direction for your Ambi.
-      </div>
-
-    </section>
-
-  </main>
+  <script src="plan.js"></script>
 
 
   <script>
 
+    /*
+     * ================================
+     * IDENTITY
+     * ================================
+     */
+
     const identity =
       JSON.parse(
-        localStorage.getItem("ambiIdentity") || "null"
+        localStorage.getItem(
+          "ambiIdentity"
+        ) || "null"
       );
 
 
     /*
-      Load Identity
-    */
+     * ================================
+     * DISPLAY IDENTITY
+     * ================================
+     */
 
-    function loadIdentity() {
+    if (identity) {
 
-      if (!identity) {
+      if (identity.name) {
 
-        showError(
-          "No Ambi Identity found. Please create your Ambi first."
-        );
+        document
+          .getElementById("ambiName")
+          .textContent =
+            identity.name;
 
-        return;
       }
 
 
-      document.getElementById("ambiName")
-        .textContent =
-          identity.name || "Your Ambi";
+      if (identity.role) {
 
+        document
+          .getElementById("ambiRole")
+          .textContent =
+            identity.role;
 
-      document.getElementById("ambiRole")
-        .textContent =
-          identity.role ||
-          "Digital Business Representative";
-
-
-      const avatar =
-        document.getElementById("avatar");
-
-
-      const img =
-        document.createElement("img");
-
-
-      img.src =
-        "ambi-avatar.png";
-
-
-      img.alt =
-        identity.name || "Ambi";
-
-
-      img.onload = function() {
-
-        avatar.innerHTML = "";
-
-        avatar.appendChild(img);
-
-      };
+      }
 
     }
 
 
     /*
-      Build only explicitly selected
-      visual characteristics.
-    */
+     * ================================
+     * PLAN
+     * ================================
+     */
 
-    function buildVisualDescription() {
-
-      if (!identity) {
-        return "";
-      }
-
-
-      const parts = [];
-
-
-      if (identity.gender) {
-
-        parts.push(
-          `${identity.gender.toLowerCase()}`
-        );
-
-      }
-
-
-      if (identity.ageRange) {
-
-        parts.push(
-          `in their ${identity.ageRange}`
-        );
-
-      }
-
-
-      if (identity.skinTone) {
-
-        parts.push(
-          `${identity.skinTone} skin`
-        );
-
-      }
-
-
-      if (identity.hairColor) {
-
-        parts.push(
-          `${identity.hairColor} hair`
-        );
-
-      }
-
-
-      if (identity.hairStyle) {
-
-        parts.push(
-          identity.hairStyle
-        );
-
-      }
-
-
-      if (identity.eyeColor) {
-
-        parts.push(
-          `${identity.eyeColor} eyes`
-        );
-
-      }
-
-
-      if (parts.length === 0) {
-
-        return "a professional person with a natural, attractive appearance";
-
-      }
-
-
-      return (
-        "a professional person with " +
-        parts.join(", ")
-      );
-
-    }
+    const plan =
+      getAmbiozPlanConfig();
 
 
     /*
-      Build prompt
-    */
-
-    function buildPrompt() {
-
-      const scene =
-        document.getElementById("scene").value;
-
-      const pose =
-        document.getElementById("pose").value;
-
-      const expression =
-        document.getElementById("expression").value;
-
-      const format =
-        document.getElementById("format").value;
-
-
-      const visualDescription =
-        buildVisualDescription();
-
-
-      let prompt =
-        `Create a photorealistic professional business photo of ${visualDescription}. `;
-
-
-      if (identity && identity.name) {
-
-        prompt +=
-          `The character is named ${identity.name}. `;
-
-      }
-
-
-      if (identity && identity.style) {
-
-        prompt +=
-          `Visual style: ${identity.style}. `;
-
-      }
-
-
-      prompt +=
-        `Scene: ${scene}. ` +
-
-        `Pose: ${pose}. ` +
-
-        `Expression: ${expression}. ` +
-
-        `Composition: ${format}. ` +
-
-        `Natural realistic lighting, realistic skin texture, ` +
-
-        `realistic human proportions, natural hands, ` +
-
-        `professional photography, clean composition, ` +
-
-        `premium business environment. ` +
-
-        `The character must have a natural unobstructed head, ` +
-
-        `hair and ears. ` +
-
-        `No headphones, no headset, no microphone, ` +
-
-        `no earbuds, no earpiece, no wires, ` +
-
-        `no communication equipment, no call-center equipment, ` +
-
-        `no telephone equipment, no text, no logos, ` +
-
-        `no watermark, no UI elements.`;
-
-
-      return prompt;
-
-    }
-
-
-    /*
-      Show which parameters were automatic.
-    */
-
-    function updateAutoNote() {
-
-      if (!identity) {
-        return;
-      }
-
-
-      const automatic = [];
-
-
-      if (!identity.gender) {
-        automatic.push("gender");
-      }
-
-      if (!identity.ageRange) {
-        automatic.push("age");
-      }
-
-      if (!identity.skinTone) {
-        automatic.push("skin tone");
-      }
-
-      if (!identity.hairColor) {
-        automatic.push("hair color");
-      }
-
-      if (!identity.hairStyle) {
-        automatic.push("hair style");
-      }
-
-      if (!identity.eyeColor) {
-        automatic.push("eye color");
-      }
-
-
-      const note =
-        document.getElementById("autoNote");
-
-
-      if (automatic.length === 0) {
-
-        note.style.display = "none";
-
-        return;
-
-      }
-
-
-      note.style.display = "block";
-
-
-      note.textContent =
-        "Ambioz will choose " +
-        automatic.join(", ") +
-        " automatically.";
-
-    }
-
-
-    /*
-      Create Photo
-    */
-
-    function createPhoto() {
-
-      if (!identity) {
-
-        showError(
-          "No Ambi Identity found. Please create your Ambi first."
-        );
-
-        return;
-
-      }
-
-
-      const prompt =
-        buildPrompt();
-
-
-      const request = {
-
-        identity: identity,
-
-        scene:
-          document.getElementById("scene").value,
-
-        pose:
-          document.getElementById("pose").value,
-
-        expression:
-          document.getElementById("expression").value,
-
-        format:
-          document.getElementById("format").value,
-
-        prompt:
-          prompt,
-
-        createdAt:
-          new Date().toISOString()
-
-      };
-
-
-      localStorage.setItem(
-        "ambiPhotoRequest",
-        JSON.stringify(request)
-      );
-
-
-      document.getElementById("promptBox")
-        .textContent =
-          prompt;
-
-
-      updateAutoNote();
-
-
-      document.getElementById("result")
+     * ================================
+     * APPEARANCE ACCESS
+     * ================================
+     */
+
+    if (
+      plan.appearanceCustomization
+    ) {
+
+      document
+        .getElementById(
+          "customAppearance"
+        )
         .style.display =
           "block";
 
+    } else {
 
-      document.getElementById("generationArea")
+      document
+        .getElementById(
+          "automaticAppearance"
+        )
         .style.display =
-          "none";
-
-
-      document.getElementById("result")
-        .scrollIntoView({
-          behavior: "smooth"
-        });
+          "block";
 
     }
 
 
     /*
-      Copy
-    */
+     * ================================
+     * PHOTO USAGE
+     * ================================
+     */
 
-    async function copyPrompt() {
+    function updatePhotoUsage() {
 
-      const prompt =
-        document.getElementById("promptBox")
-          .textContent;
+      const remaining =
+        getRemainingGenerations(
+          "photo"
+        );
 
 
-      try {
+      document
+        .getElementById(
+          "photoRemaining"
+        )
+        .textContent =
+          remaining;
 
-        await navigator.clipboard
-          .writeText(prompt);
 
-        const button =
-          document.querySelector(
-            ".prompt-actions button"
+      const button =
+        document
+          .getElementById(
+            "generateButton"
           );
 
 
-        const original =
-          button.textContent;
+      const upgrade =
+        document
+          .getElementById(
+            "upgrade"
+          );
 
+
+      if (remaining <= 0) {
+
+        button.disabled =
+          true;
 
         button.textContent =
-          "Copied ✓";
+          "Photo limit reached";
 
+        upgrade.style.display =
+          "block";
 
-        setTimeout(function() {
+      } else {
 
-          button.textContent =
-            original;
+        button.disabled =
+          false;
 
-        }, 1500);
+        button.textContent =
+          "Generate Photo →";
 
-      } catch (error) {
-
-        showError(
-          "The prompt could not be copied automatically."
-        );
+        upgrade.style.display =
+          "none";
 
       }
 
@@ -916,64 +847,344 @@
 
 
     /*
-      Temporary generation stage
-    */
+     * ================================
+     * BUILD PROMPT
+     * ================================
+     */
 
-    function generateImage() {
+    function buildPhotoPrompt() {
 
-      const area =
-        document.getElementById(
-          "generationArea"
-        );
-
-
-      const placeholder =
-        document.getElementById(
-          "generationPlaceholder"
-        );
+      let appearance = "";
 
 
-      area.style.display =
+      /*
+       * Free:
+       * automatic appearance
+       */
+
+      if (
+        !plan.appearanceCustomization
+      ) {
+
+        appearance =
+          "Ambioz should choose a natural, professional and visually consistent appearance automatically.";
+
+      }
+
+
+      /*
+       * Paid:
+       * use selected parameters
+       */
+
+      else {
+
+        const age =
+          document
+            .getElementById(
+              "ageRange"
+            )
+            .value;
+
+        const skin =
+          document
+            .getElementById(
+              "skinTone"
+            )
+            .value;
+
+        const hairColor =
+          document
+            .getElementById(
+              "hairColor"
+            )
+            .value;
+
+        const hairStyle =
+          document
+            .getElementById(
+              "hairStyle"
+            )
+            .value;
+
+        const eyes =
+          document
+            .getElementById(
+              "eyeColor"
+            )
+            .value;
+
+
+        const details = [];
+
+
+        if (
+          age !== "auto"
+        ) {
+          details.push(
+            `age range: ${age}`
+          );
+        }
+
+
+        if (
+          skin !== "auto"
+        ) {
+          details.push(
+            `skin tone: ${skin}`
+          );
+        }
+
+
+        if (
+          hairColor !== "auto"
+        ) {
+          details.push(
+            `hair color: ${hairColor}`
+          );
+        }
+
+
+        if (
+          hairStyle !== "auto"
+        ) {
+          details.push(
+            `hair style: ${hairStyle}`
+          );
+        }
+
+
+        if (
+          eyes !== "auto"
+        ) {
+          details.push(
+            `eye color: ${eyes}`
+          );
+        }
+
+
+        if (
+          details.length
+        ) {
+
+          appearance =
+            details.join(", ");
+
+        } else {
+
+          appearance =
+            "Ambioz should choose the unspecified appearance details naturally.";
+
+        }
+
+      }
+
+
+      const scene =
+        document
+          .getElementById(
+            "scene"
+          )
+          .value;
+
+
+      const pose =
+        document
+          .getElementById(
+            "pose"
+          )
+          .value;
+
+
+      const expression =
+        document
+          .getElementById(
+            "expression"
+          )
+          .value;
+
+
+      const format =
+        document
+          .getElementById(
+            "format"
+          )
+          .value;
+
+
+      const name =
+        identity?.name ||
+        "Ambi";
+
+
+      const role =
+        identity?.role ||
+        "Digital Business Representative";
+
+
+      return `
+Create a professional image of an AI digital business representative.
+
+Representative name:
+${name}
+
+Role:
+${role}
+
+Appearance:
+${appearance}
+
+Scene:
+${scene}
+
+Pose:
+${pose}
+
+Expression:
+${expression}
+
+Image format:
+${format}
+
+Important:
+- The person should look like a professional business representative.
+- Natural realistic human appearance.
+- No headset.
+- No earphones.
+- No visible microphone.
+- No telephone operator equipment.
+- No text overlays.
+- No logos.
+- No watermark.
+- Clean professional composition.
+- The person should be the visual representative of a modern business.
+      `.trim();
+
+    }
+
+
+    /*
+     * ================================
+     * GENERATE PHOTO
+     * ================================
+     */
+
+    async function generatePhoto() {
+
+      const button =
+        document
+          .getElementById(
+            "generateButton"
+          );
+
+
+      const result =
+        document
+          .getElementById(
+            "result"
+          );
+
+
+      const upgrade =
+        document
+          .getElementById(
+            "upgrade"
+          );
+
+
+      /*
+       * Check limit
+       */
+
+      if (
+        !canGenerate("photo")
+      ) {
+
+        upgrade.style.display =
+          "block";
+
+        updatePhotoUsage();
+
+        return;
+
+      }
+
+
+      /*
+       * Build request
+       */
+
+      const prompt =
+        buildPhotoPrompt();
+
+
+      /*
+       * Store request
+       *
+       * This allows us to connect
+       * the real image provider next.
+       */
+
+      localStorage.setItem(
+        "ambiPhotoRequest",
+        JSON.stringify({
+          prompt: prompt,
+          plan: getAmbiozPlan(),
+          createdAt:
+            new Date().toISOString()
+        })
+      );
+
+
+      /*
+       * V0.1 placeholder
+       */
+
+      button.disabled =
+        true;
+
+      button.textContent =
+        "Preparing photo...";
+
+
+      result.style.display =
         "block";
 
 
-      placeholder.innerHTML = `
-        <div>
-          <strong>Image generator ready</strong>
-          <br><br>
-          Ambioz has prepared the visual identity
-          and photo direction.
-          <br><br>
-          A real image generation provider
-          will be connected here next.
+      result.innerHTML = `
+        <div class="prompt-box">
+          Photo generation request prepared.
+
+          The image generation engine will be connected next.
+
+          Your request has been saved and is ready for the image provider.
         </div>
       `;
 
 
-      area.scrollIntoView({
-        behavior: "smooth"
-      });
+      /*
+       * IMPORTANT:
+       *
+       * Do NOT consume a photo generation
+       * here because no image was actually generated.
+       */
+
+      button.disabled =
+        false;
+
+      button.textContent =
+        "Generate Photo →";
 
     }
 
 
-    function showError(message) {
+    /*
+     * ================================
+     * INITIAL STATE
+     * ================================
+     */
 
-      const error =
-        document.getElementById("error");
-
-
-      error.textContent =
-        message;
-
-
-      error.style.display =
-        "block";
-
-    }
-
-
-    loadIdentity();
+    updatePhotoUsage();
 
   </script>
 
