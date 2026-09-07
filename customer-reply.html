@@ -173,6 +173,19 @@
         based on your business information.
       </p>
 
+      <div
+        style="
+        margin-bottom: 22px;
+        padding: 14px 16px;
+        background: #f7f7f7;
+        border-radius: 12px;
+        font-size: 14px;
+      "
+      >
+      <strong id="contentRemaining">0</strong>
+        content generations remaining this month
+      </div>
+
       <label for="customerMessage">
         CUSTOMER MESSAGE
       </label>
@@ -203,6 +216,8 @@
 
   </main>
 
+  <script src="plan.js"></script>
+
   <script>
 
     let business = {};
@@ -217,6 +232,40 @@
         console.error("Could not read business data:", error);
       }
     }
+
+    function updateContentUsage() {
+
+  const remaining =
+    getRemainingGenerations("content");
+
+  const element =
+    document.getElementById(
+      "contentRemaining"
+    );
+
+  if (element) {
+    element.textContent =
+      remaining;
+  }
+
+
+  const button =
+    document.getElementById(
+      "replyButton"
+    );
+
+
+  if (
+    remaining <= 0 &&
+    button
+  ) {
+
+    button.disabled = true;
+
+    button.textContent =
+      "Content limit reached";
+  }
+}
 
     async function createReply() {
 
@@ -234,6 +283,18 @@
 
       const customerMessage =
         input.value.trim();
+
+      if (!canGenerate("content")) {
+
+        resultSection.classList.remove(
+          "hidden"
+      );
+
+        result.textContent =
+          "You've reached your Free plan content limit. Upgrade your plan to continue creating AI content.";
+
+        return;
+      }
 
       if (!customerMessage) {
         result.textContent =
@@ -286,6 +347,10 @@
         result.textContent =
           data.reply;
 
+        useGeneration("content");
+
+        updateContentUsage();
+
       } catch (error) {
 
         console.error(
@@ -305,6 +370,7 @@
 
       }
     }
+    updateContentUsage();
 
   </script>
 
