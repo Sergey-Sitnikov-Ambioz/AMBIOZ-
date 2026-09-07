@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Ambioz — Create Photo</title>
 
+
   <style>
+
     * {
       box-sizing: border-box;
     }
 
+
     body {
       margin: 0;
+
       font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -21,204 +31,361 @@
         Helvetica,
         Arial,
         sans-serif;
+
       background: #f7f7f5;
       color: #111;
     }
 
+
     .page {
       max-width: 820px;
+
       margin: 0 auto;
-      padding: 40px 20px 70px;
+
+      padding:
+        40px 20px 70px;
     }
+
 
     .top {
       display: flex;
-      justify-content: space-between;
+
+      justify-content:
+        space-between;
+
       align-items: center;
+
       margin-bottom: 45px;
     }
+
 
     .brand {
       font-size: 20px;
       font-weight: 700;
     }
 
+
     .back {
       color: #111;
+
       text-decoration: none;
+
       font-size: 14px;
     }
 
+
     h1 {
       margin: 0 0 10px;
+
       font-size: 40px;
+
       letter-spacing: -1.5px;
     }
 
+
     .intro {
       margin: 0 0 30px;
+
       color: #666;
+
       line-height: 1.5;
     }
 
+
     .card {
       background: #fff;
+
       border: 1px solid #ddd;
+
       border-radius: 20px;
+
       padding: 25px;
+
       margin-bottom: 20px;
     }
 
+
     .identity {
       display: flex;
+
       align-items: center;
+
       gap: 15px;
+
       margin-bottom: 25px;
     }
+
 
     .avatar {
       width: 64px;
       height: 64px;
+
       border-radius: 50%;
+
       object-fit: cover;
+
       background: #eee;
     }
 
+
     .identity-name {
       font-size: 18px;
+
       font-weight: 700;
     }
 
+
     .identity-role {
       margin-top: 4px;
+
       color: #777;
+
       font-size: 14px;
     }
 
+
     .usage {
       padding: 15px 17px;
+
       margin-bottom: 25px;
+
       border-radius: 12px;
+
       background: #f7f7f5;
+
       font-size: 14px;
     }
+
 
     .usage strong {
       font-size: 17px;
     }
 
+
     .field {
       margin-bottom: 22px;
     }
 
+
     label {
       display: block;
+
       margin-bottom: 8px;
+
       font-size: 12px;
+
       font-weight: 700;
+
       color: #777;
+
       letter-spacing: 1px;
     }
 
-    select,
-    textarea {
+
+    select {
       width: 100%;
+
       padding: 13px 14px;
+
       border: 1px solid #ccc;
+
       border-radius: 10px;
+
       background: #fff;
+
       color: #111;
+
       font: inherit;
     }
 
-    textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
 
     .appearance-note {
       padding: 15px;
+
+      margin-bottom: 25px;
+
       background: #f7f7f5;
+
       border-radius: 12px;
+
       color: #666;
+
       font-size: 14px;
+
       line-height: 1.5;
     }
+
 
     button {
       width: 100%;
+
       padding: 15px;
+
       border: 0;
+
       border-radius: 12px;
+
       background: #111;
+
       color: #fff;
+
       font-size: 15px;
+
       font-weight: 600;
+
       cursor: pointer;
     }
 
+
     button:disabled {
       opacity: .5;
+
       cursor: default;
     }
 
+
     .upgrade {
       display: none;
+
       margin-top: 18px;
+
       padding: 18px;
+
       border: 1px solid #ddd;
+
       border-radius: 14px;
+
       line-height: 1.5;
     }
+
 
     .upgrade a {
       display: inline-block;
+
       margin-top: 10px;
+
       color: #111;
+
       font-weight: 600;
+
       text-decoration: none;
     }
 
-    .result {
+
+    .status {
       display: none;
-      margin-top: 20px;
-    }
 
-    .result img {
-      display: block;
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
-      border-radius: 18px;
-    }
-
-    .prompt-box {
       margin-top: 20px;
+
       padding: 15px;
+
       background: #f7f7f5;
+
       border-radius: 12px;
-      white-space: pre-wrap;
+
       color: #555;
-      font-size: 13px;
+
       line-height: 1.5;
     }
 
+
+    .error {
+      display: none;
+
+      margin-top: 20px;
+
+      padding: 15px;
+
+      background: #fff0f0;
+
+      border-radius: 12px;
+
+      color: #a00000;
+
+      line-height: 1.5;
+    }
+
+
+    .result {
+      display: none;
+
+      margin-top: 25px;
+
+      text-align: center;
+    }
+
+
+    .result img {
+      display: block;
+
+      width: 100%;
+
+      max-width: 700px;
+
+      margin: 0 auto;
+
+      border-radius: 18px;
+    }
+
+
+    .result-actions {
+      display: flex;
+
+      gap: 10px;
+
+      margin-top: 15px;
+    }
+
+
+    .result-actions a {
+      flex: 1;
+
+      padding: 13px;
+
+      border: 1px solid #111;
+
+      border-radius: 10px;
+
+      color: #111;
+
+      text-decoration: none;
+
+      font-size: 14px;
+
+      font-weight: 600;
+    }
+
+
     @media (max-width: 600px) {
+
       h1 {
         font-size: 34px;
       }
 
+
       .card {
         padding: 20px;
       }
+
+
+      .result-actions {
+        flex-direction: column;
+      }
+
     }
+
   </style>
+
 </head>
 
 
 <body>
 
+
   <div class="page">
+
+
+    <!-- HEADER -->
 
     <div class="top">
 
@@ -226,45 +393,59 @@
         AMBIOZ
       </div>
 
+
       <a
         class="back"
-        href="identity.html">
+        href="identity.html"
+      >
         ← Back to Ambi
       </a>
 
     </div>
 
 
+
     <h1>
       Create Ambi Photo
     </h1>
+
 
     <p class="intro">
       Create a professional image of your digital business representative.
     </p>
 
 
+
     <div class="card">
 
+
+      <!-- IDENTITY -->
+
       <div class="identity">
+
 
         <img
           id="avatar"
           class="avatar"
           src="ambi-avatar.png"
-          alt="Ambi">
+          alt="Ambi"
+        >
+
 
         <div>
 
           <div
             id="ambiName"
-            class="identity-name">
+            class="identity-name"
+          >
             Ambi
           </div>
 
+
           <div
             id="ambiRole"
-            class="identity-role">
+            class="identity-role"
+          >
             Digital Business Representative
           </div>
 
@@ -273,7 +454,8 @@
       </div>
 
 
-      <!-- PHOTO USAGE -->
+
+      <!-- USAGE -->
 
       <div class="usage">
 
@@ -286,12 +468,14 @@
       </div>
 
 
-      <!-- FREE AUTOMATIC APPEARANCE -->
+
+      <!-- FREE -->
 
       <div
         id="automaticAppearance"
         class="appearance-note"
-        style="display:none;">
+        style="display:none;"
+      >
 
         <strong>
           Automatic appearance
@@ -300,16 +484,20 @@
         <br><br>
 
         Your Free plan lets Ambioz choose
-        a natural appearance for your Ambi automatically.
+        a natural and professional appearance
+        for your Ambi automatically.
 
       </div>
+
 
 
       <!-- PAID APPEARANCE -->
 
       <div
         id="customAppearance"
-        style="display:none;">
+        style="display:none;"
+      >
+
 
         <div class="field">
 
@@ -348,6 +536,7 @@
         </div>
 
 
+
         <div class="field">
 
           <label for="skinTone">
@@ -383,6 +572,7 @@
           </select>
 
         </div>
+
 
 
         <div class="field">
@@ -434,6 +624,7 @@
         </div>
 
 
+
         <div class="field">
 
           <label for="hairStyle">
@@ -479,6 +670,7 @@
         </div>
 
 
+
         <div class="field">
 
           <label for="eyeColor">
@@ -522,6 +714,7 @@
       </div>
 
 
+
       <!-- SCENE -->
 
       <div class="field">
@@ -529,6 +722,7 @@
         <label for="scene">
           SCENE
         </label>
+
 
         <select id="scene">
 
@@ -557,6 +751,7 @@
       </div>
 
 
+
       <!-- POSE -->
 
       <div class="field">
@@ -564,6 +759,7 @@
         <label for="pose">
           POSE
         </label>
+
 
         <select id="pose">
 
@@ -588,6 +784,7 @@
       </div>
 
 
+
       <!-- EXPRESSION -->
 
       <div class="field">
@@ -595,6 +792,7 @@
         <label for="expression">
           EXPRESSION
         </label>
+
 
         <select id="expression">
 
@@ -623,6 +821,7 @@
       </div>
 
 
+
       <!-- FORMAT -->
 
       <div class="field">
@@ -630,6 +829,7 @@
         <label for="format">
           FORMAT
         </label>
+
 
         <select id="format">
 
@@ -650,20 +850,44 @@
       </div>
 
 
+
+      <!-- GENERATE -->
+
       <button
         id="generateButton"
-        onclick="generatePhoto()">
-
+        onclick="generatePhoto()"
+      >
         Generate Photo →
-
       </button>
+
+
+
+      <!-- STATUS -->
+
+      <div
+        id="status"
+        class="status"
+      >
+      </div>
+
+
+
+      <!-- ERROR -->
+
+      <div
+        id="error"
+        class="error"
+      >
+      </div>
+
 
 
       <!-- UPGRADE -->
 
       <div
         id="upgrade"
-        class="upgrade">
+        class="upgrade"
+      >
 
         <strong>
           You've reached your photo generation limit.
@@ -682,23 +906,70 @@
       </div>
 
 
+
       <!-- RESULT -->
 
       <div
         id="result"
-        class="result">
+        class="result"
+      >
+
+        <img
+          id="generatedImage"
+          alt="Generated Ambi"
+        >
+
+
+        <div class="result-actions">
+
+          <a
+            id="openImage"
+            href="#"
+            target="_blank"
+          >
+            Open image
+          </a>
+
+        </div>
 
       </div>
+
 
     </div>
 
   </div>
 
 
+
+  <!-- PLAN SYSTEM -->
+
   <script src="plan.js"></script>
 
 
+
+  <!-- GRADIO CLIENT -->
+
+  <script type="module">
+
+    import {
+      Client
+    }
+    from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
+
+
+    /*
+     * Make available to the regular script.
+     */
+
+    window.AmbiozGradioClient =
+      Client;
+
+  </script>
+
+
+
   <script>
+
 
     /*
      * ================================
@@ -716,16 +987,33 @@
 
     /*
      * ================================
+     * BUSINESS
+     * ================================
+     */
+
+    const business =
+      JSON.parse(
+        localStorage.getItem(
+          "ambiBusiness"
+        ) || "null"
+      );
+
+
+    /*
+     * ================================
      * DISPLAY IDENTITY
      * ================================
      */
 
     if (identity) {
 
+
       if (identity.name) {
 
         document
-          .getElementById("ambiName")
+          .getElementById(
+            "ambiName"
+          )
           .textContent =
             identity.name;
 
@@ -735,13 +1023,16 @@
       if (identity.role) {
 
         document
-          .getElementById("ambiRole")
+          .getElementById(
+            "ambiRole"
+          )
           .textContent =
             identity.role;
 
       }
 
     }
+
 
 
     /*
@@ -754,9 +1045,10 @@
       getAmbiozPlanConfig();
 
 
+
     /*
      * ================================
-     * APPEARANCE ACCESS
+     * APPEARANCE
      * ================================
      */
 
@@ -783,9 +1075,10 @@
     }
 
 
+
     /*
      * ================================
-     * PHOTO USAGE
+     * USAGE
      * ================================
      */
 
@@ -819,7 +1112,9 @@
           );
 
 
-      if (remaining <= 0) {
+      if (
+        remaining <= 0
+      ) {
 
         button.disabled =
           true;
@@ -846,6 +1141,210 @@
     }
 
 
+
+    /*
+     * ================================
+     * FORMAT
+     * ================================
+     */
+
+    function getDimensions() {
+
+      const format =
+        document
+          .getElementById(
+            "format"
+          )
+          .value;
+
+
+      if (
+        format === "portrait"
+      ) {
+
+        return {
+          width: 1024,
+          height: 1536
+        };
+
+      }
+
+
+      if (
+        format === "landscape"
+      ) {
+
+        return {
+          width: 1536,
+          height: 1024
+        };
+
+      }
+
+
+      return {
+        width: 1024,
+        height: 1024
+      };
+
+    }
+
+
+
+    /*
+     * ================================
+     * BUILD APPEARANCE
+     * ================================
+     */
+
+    function buildAppearance() {
+
+      /*
+       * FREE
+       */
+
+      if (
+        !plan.appearanceCustomization
+      ) {
+
+        return `
+The appearance is automatically selected by Ambioz.
+
+Create a natural, professional-looking adult person
+with a modern business-presentative appearance.
+
+Do not make the person look like a call-center operator.
+Do not use a headset.
+Do not use earphones.
+Do not use a visible microphone.
+        `.trim();
+
+      }
+
+
+
+      /*
+       * PAID
+       */
+
+      const age =
+        document
+          .getElementById(
+            "ageRange"
+          )
+          .value;
+
+
+      const skin =
+        document
+          .getElementById(
+            "skinTone"
+          )
+          .value;
+
+
+      const hairColor =
+        document
+          .getElementById(
+            "hairColor"
+          )
+          .value;
+
+
+      const hairStyle =
+        document
+          .getElementById(
+            "hairStyle"
+          )
+          .value;
+
+
+      const eyeColor =
+        document
+          .getElementById(
+            "eyeColor"
+          )
+          .value;
+
+
+      const details = [];
+
+
+      if (age !== "auto") {
+
+        details.push(
+          `age range: ${age}`
+        );
+
+      }
+
+
+      if (skin !== "auto") {
+
+        details.push(
+          `skin tone: ${skin}`
+        );
+
+      }
+
+
+      if (hairColor !== "auto") {
+
+        details.push(
+          `hair color: ${hairColor}`
+        );
+
+      }
+
+
+      if (hairStyle !== "auto") {
+
+        details.push(
+          `hair style: ${hairStyle}`
+        );
+
+      }
+
+
+      if (eyeColor !== "auto") {
+
+        details.push(
+          `eye color: ${eyeColor}`
+        );
+
+      }
+
+
+      if (
+        details.length === 0
+      ) {
+
+        return `
+Let Ambioz choose the unspecified
+appearance details naturally.
+
+Professional adult business representative.
+No headset.
+No earphones.
+No visible microphone.
+        `.trim();
+
+      }
+
+
+      return `
+${details.join(", ")}.
+
+Professional adult business representative.
+No headset.
+No earphones.
+No visible microphone.
+      `.trim();
+
+    }
+
+
+
     /*
      * ================================
      * BUILD PROMPT
@@ -854,130 +1353,14 @@
 
     function buildPhotoPrompt() {
 
-      let appearance = "";
+      const name =
+        identity?.name ||
+        "Ambi";
 
 
-      /*
-       * Free:
-       * automatic appearance
-       */
-
-      if (
-        !plan.appearanceCustomization
-      ) {
-
-        appearance =
-          "Ambioz should choose a natural, professional and visually consistent appearance automatically.";
-
-      }
-
-
-      /*
-       * Paid:
-       * use selected parameters
-       */
-
-      else {
-
-        const age =
-          document
-            .getElementById(
-              "ageRange"
-            )
-            .value;
-
-        const skin =
-          document
-            .getElementById(
-              "skinTone"
-            )
-            .value;
-
-        const hairColor =
-          document
-            .getElementById(
-              "hairColor"
-            )
-            .value;
-
-        const hairStyle =
-          document
-            .getElementById(
-              "hairStyle"
-            )
-            .value;
-
-        const eyes =
-          document
-            .getElementById(
-              "eyeColor"
-            )
-            .value;
-
-
-        const details = [];
-
-
-        if (
-          age !== "auto"
-        ) {
-          details.push(
-            `age range: ${age}`
-          );
-        }
-
-
-        if (
-          skin !== "auto"
-        ) {
-          details.push(
-            `skin tone: ${skin}`
-          );
-        }
-
-
-        if (
-          hairColor !== "auto"
-        ) {
-          details.push(
-            `hair color: ${hairColor}`
-          );
-        }
-
-
-        if (
-          hairStyle !== "auto"
-        ) {
-          details.push(
-            `hair style: ${hairStyle}`
-          );
-        }
-
-
-        if (
-          eyes !== "auto"
-        ) {
-          details.push(
-            `eye color: ${eyes}`
-          );
-        }
-
-
-        if (
-          details.length
-        ) {
-
-          appearance =
-            details.join(", ");
-
-        } else {
-
-          appearance =
-            "Ambioz should choose the unspecified appearance details naturally.";
-
-        }
-
-      }
+      const role =
+        identity?.role ||
+        "Digital Business Representative";
 
 
       const scene =
@@ -1004,32 +1387,37 @@
           .value;
 
 
-      const format =
-        document
-          .getElementById(
-            "format"
-          )
-          .value;
+      const appearance =
+        buildAppearance();
 
 
-      const name =
-        identity?.name ||
-        "Ambi";
+      const businessDescription =
+        business?.description ||
+        "";
 
 
-      const role =
-        identity?.role ||
-        "Digital Business Representative";
+      const services =
+        business?.services ||
+        "";
 
 
       return `
-Create a professional image of an AI digital business representative.
+Create a professional photorealistic image
+of an AI digital business representative.
 
-Representative name:
+This person visually represents a real business.
+
+Representative:
 ${name}
 
 Role:
 ${role}
+
+Business:
+${businessDescription}
+
+Services:
+${services}
 
 Appearance:
 ${appearance}
@@ -1040,32 +1428,86 @@ ${scene}
 Pose:
 ${pose}
 
-Expression:
+Facial expression:
 ${expression}
 
-Image format:
-${format}
+Visual direction:
+- photorealistic
+- professional
+- natural human appearance
+- modern business environment
+- realistic skin and facial details
+- natural lighting
+- clean composition
+- premium commercial photography
+- approachable and trustworthy
+- the person is the main subject
 
-Important:
-- The person should look like a professional business representative.
-- Natural realistic human appearance.
-- No headset.
-- No earphones.
-- No visible microphone.
-- No telephone operator equipment.
-- No text overlays.
-- No logos.
-- No watermark.
-- Clean professional composition.
-- The person should be the visual representative of a modern business.
+Strict exclusions:
+- no headset
+- no earphones
+- no microphone
+- no telephone operator equipment
+- no call-center environment
+- no text
+- no captions
+- no logo
+- no watermark
+- no UI
+- no artificial interface elements
       `.trim();
 
     }
 
 
+
     /*
      * ================================
-     * GENERATE PHOTO
+     * WAIT FOR GRADIO CLIENT
+     * ================================
+     */
+
+    async function waitForGradioClient() {
+
+      for (
+        let i = 0;
+        i < 50;
+        i++
+      ) {
+
+        if (
+          window.AmbiozGradioClient
+        ) {
+
+          return (
+            window.AmbiozGradioClient
+          );
+
+        }
+
+
+        await new Promise(
+          resolve =>
+            setTimeout(
+              resolve,
+              100
+            )
+        );
+
+      }
+
+
+      throw new Error(
+        "Image generation engine could not be loaded."
+      );
+
+    }
+
+
+
+    /*
+     * ================================
+     * GENERATE
      * ================================
      */
 
@@ -1078,6 +1520,20 @@ Important:
           );
 
 
+      const status =
+        document
+          .getElementById(
+            "status"
+          );
+
+
+      const error =
+        document
+          .getElementById(
+            "error"
+          );
+
+
       const result =
         document
           .getElementById(
@@ -1085,23 +1541,41 @@ Important:
           );
 
 
-      const upgrade =
+      const generatedImage =
         document
           .getElementById(
-            "upgrade"
+            "generatedImage"
+          );
+
+
+      const openImage =
+        document
+          .getElementById(
+            "openImage"
           );
 
 
       /*
-       * Check limit
+       * Clear previous messages.
+       */
+
+      status.style.display =
+        "none";
+
+      error.style.display =
+        "none";
+
+      result.style.display =
+        "none";
+
+
+      /*
+       * Check limit.
        */
 
       if (
         !canGenerate("photo")
       ) {
-
-        upgrade.style.display =
-          "block";
 
         updatePhotoUsage();
 
@@ -1111,71 +1585,269 @@ Important:
 
 
       /*
-       * Build request
-       */
-
-      const prompt =
-        buildPhotoPrompt();
-
-
-      /*
-       * Store request
-       *
-       * This allows us to connect
-       * the real image provider next.
-       */
-
-      localStorage.setItem(
-        "ambiPhotoRequest",
-        JSON.stringify({
-          prompt: prompt,
-          plan: getAmbiozPlan(),
-          createdAt:
-            new Date().toISOString()
-        })
-      );
-
-
-      /*
-       * V0.1 placeholder
+       * Prepare UI.
        */
 
       button.disabled =
         true;
 
       button.textContent =
-        "Preparing photo...";
+        "Generating...";
 
 
-      result.style.display =
+      status.textContent =
+        "Connecting to the image generator...";
+
+      status.style.display =
         "block";
 
 
-      result.innerHTML = `
-        <div class="prompt-box">
-          Photo generation request prepared.
-
-          The image generation engine will be connected next.
-
-          Your request has been saved and is ready for the image provider.
-        </div>
-      `;
+      try {
 
 
-      /*
-       * IMPORTANT:
-       *
-       * Do NOT consume a photo generation
-       * here because no image was actually generated.
-       */
+        /*
+         * Get Gradio client.
+         */
 
-      button.disabled =
-        false;
+        const Client =
+          await waitForGradioClient();
 
-      button.textContent =
-        "Generate Photo →";
+
+        /*
+         * Connect to public ZeroGPU Space.
+         */
+
+        const app =
+          await Client.connect(
+            "mrfakename/Z-Image-Turbo"
+          );
+
+
+        status.textContent =
+          "Generating your Ambi photo. This may take a moment...";
+
+
+        /*
+         * Prompt.
+         */
+
+        const prompt =
+          buildPhotoPrompt();
+
+
+        /*
+         * Dimensions.
+         */
+
+        const dimensions =
+          getDimensions();
+
+
+        /*
+         * Generate.
+         *
+         * Endpoint:
+         * /generate_image
+         *
+         * Inputs:
+         * prompt
+         * height
+         * width
+         * steps
+         * seed
+         * randomize
+         */
+
+        const response =
+          await app.predict(
+            "/generate_image",
+            [
+              prompt,
+
+              dimensions.height,
+
+              dimensions.width,
+
+              9,
+
+              42,
+
+              true
+            ]
+          );
+
+
+        /*
+         * Validate response.
+         */
+
+        if (
+          !response ||
+          !response.data ||
+          !response.data[0]
+        ) {
+
+          throw new Error(
+            "The image generator returned no image."
+          );
+
+        }
+
+
+        const imageData =
+          response.data[0];
+
+
+        let imageUrl = null;
+
+
+        /*
+         * Gradio normally returns
+         * an object containing url/path.
+         */
+
+        if (
+          typeof imageData ===
+          "string"
+        ) {
+
+          imageUrl =
+            imageData;
+
+        }
+
+
+        if (
+          imageData &&
+          imageData.url
+        ) {
+
+          imageUrl =
+            imageData.url;
+
+        }
+
+
+        if (
+          imageData &&
+          imageData.path &&
+          !imageUrl
+        ) {
+
+          imageUrl =
+            imageData.path;
+
+        }
+
+
+        if (!imageUrl) {
+
+          throw new Error(
+            "The generated image URL could not be read."
+          );
+
+        }
+
+
+        /*
+         * Show image.
+         */
+
+        generatedImage.src =
+          imageUrl;
+
+
+        openImage.href =
+          imageUrl;
+
+
+        result.style.display =
+          "block";
+
+
+        status.textContent =
+          "Photo generated successfully.";
+
+
+        /*
+         * IMPORTANT:
+         *
+         * Consume one generation
+         * ONLY after receiving image.
+         */
+
+        useGeneration(
+          "photo"
+        );
+
+
+        /*
+         * Save result information.
+         */
+
+        localStorage.setItem(
+          "ambiLastPhoto",
+          JSON.stringify({
+            url: imageUrl,
+            prompt: prompt,
+            createdAt:
+              new Date().toISOString()
+          })
+        );
+
+
+        updatePhotoUsage();
+
+
+      } catch (err) {
+
+
+        console.error(
+          "Photo generation error:",
+          err
+        );
+
+
+        status.style.display =
+          "none";
+
+
+        error.textContent =
+          err?.message ||
+          "Photo generation failed. Please try again.";
+
+
+        error.style.display =
+          "block";
+
+
+      } finally {
+
+
+        if (
+          canGenerate("photo")
+        ) {
+
+          button.disabled =
+            false;
+
+          button.textContent =
+            "Generate Photo →";
+
+        } else {
+
+          button.disabled =
+            true;
+
+          button.textContent =
+            "Photo limit reached";
+
+        }
+
+      }
 
     }
+
 
 
     /*
@@ -1188,5 +1860,7 @@ Important:
 
   </script>
 
+
 </body>
+
 </html>
