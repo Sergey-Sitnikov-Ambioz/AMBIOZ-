@@ -99,13 +99,6 @@
       line-height: 1.5;
     }
 
-    .hint {
-      margin-top: 7px;
-      color: #888;
-      font-size: 12px;
-      line-height: 1.4;
-    }
-
     .language-list {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -127,6 +120,51 @@
     .language-item input {
       width: auto;
       margin: 0;
+    }
+
+    .plan-badge {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 7px 11px;
+      border-radius: 20px;
+      background: #f0f0ee;
+      color: #555;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .upgrade-box {
+      padding: 18px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      background: #fafaf8;
+    }
+
+    .upgrade-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+
+    .upgrade-text {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .upgrade-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: auto;
+      padding: 11px 15px;
+      text-decoration: none;
+      border-radius: 9px;
+      background: #111;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
     }
 
     button {
@@ -273,6 +311,7 @@
     }
 
     @media (max-width: 600px) {
+
       .container {
         padding: 24px 16px 50px;
       }
@@ -315,6 +354,25 @@
     </p>
 
 
+    <!-- PLAN -->
+
+    <section class="card">
+
+      <div
+        class="plan-badge"
+        id="planBadge"
+      >
+        Free
+      </div>
+
+      <div
+        id="planDescription"
+        class="section-description"
+      ></div>
+
+    </section>
+
+
     <!-- BASIC IDENTITY -->
 
     <section class="card">
@@ -322,6 +380,7 @@
       <h2 class="section-title">
         Basic Identity
       </h2>
+
 
       <div class="field">
 
@@ -438,7 +497,7 @@
       </h2>
 
       <p class="section-description">
-        Choose the primary language and any additional languages your Ambi can use.
+        Choose the primary language and additional languages your Ambi can use.
       </p>
 
 
@@ -501,7 +560,10 @@
           Additional languages
         </label>
 
-        <div class="language-list">
+        <div
+          class="language-list"
+          id="languageList"
+        >
 
           <label class="language-item">
             <input type="checkbox" value="English">
@@ -557,19 +619,45 @@
 
       </div>
 
+      <div
+        class="upgrade-box"
+        id="languageUpgrade"
+        style="display:none;"
+      >
+
+        <div class="upgrade-title">
+          Additional languages
+        </div>
+
+        <div class="upgrade-text">
+          Additional languages are available on Pro and Business plans.
+        </div>
+
+        <a
+          class="upgrade-button"
+          href="plans.html"
+        >
+          View plans →
+        </a>
+
+      </div>
+
     </section>
 
 
     <!-- VISUAL APPEARANCE -->
 
-    <section class="card">
+    <section
+      class="card"
+      id="visualAppearanceSection"
+    >
 
       <h2 class="section-title">
         Visual Appearance
       </h2>
 
       <p class="section-description">
-        These settings are optional. Leave them on Auto and Ambioz will create a suitable visual identity for your Ambi.
+        Customize how your Ambi looks.
       </p>
 
 
@@ -582,7 +670,7 @@
         <select id="ageRange">
 
           <option value="">
-            Auto — Let Ambioz decide
+            Let Ambioz decide
           </option>
 
           <option value="20s">
@@ -619,7 +707,7 @@
         <select id="skinTone">
 
           <option value="">
-            Auto — Let Ambioz decide
+            Let Ambioz decide
           </option>
 
           <option value="fair">
@@ -656,7 +744,7 @@
         <select id="hairColor">
 
           <option value="">
-            Auto — Let Ambioz decide
+            Let Ambioz decide
           </option>
 
           <option value="black">
@@ -705,7 +793,7 @@
         <select id="hairStyle">
 
           <option value="">
-            Auto — Let Ambioz decide
+            Let Ambioz decide
           </option>
 
           <option value="long straight hair">
@@ -750,7 +838,7 @@
         <select id="eyeColor">
 
           <option value="">
-            Auto — Let Ambioz decide
+            Let Ambioz decide
           </option>
 
           <option value="brown">
@@ -864,14 +952,20 @@
         Create Identity →
       </button>
 
-      <div class="message" id="message"></div>
+      <div
+        class="message"
+        id="message"
+      ></div>
 
     </section>
 
 
     <!-- RESULT -->
 
-    <section class="card result" id="result">
+    <section
+      class="card result"
+      id="result"
+    >
 
       <h2 class="section-title">
         Your Ambi
@@ -880,7 +974,10 @@
 
       <div class="identity-preview">
 
-        <div class="avatar" id="avatar">
+        <div
+          class="avatar"
+          id="avatar"
+        >
           A
         </div>
 
@@ -905,7 +1002,10 @@
       </div>
 
 
-      <div class="tags" id="tags"></div>
+      <div
+        class="tags"
+        id="tags"
+      ></div>
 
 
       <div
@@ -957,6 +1057,11 @@
   </main>
 
 
+  <!-- PLAN CONFIGURATION -->
+
+  <script src="plan.js"></script>
+
+
   <script>
 
     const savedIdentity =
@@ -965,21 +1070,205 @@
       );
 
 
+    const currentPlan =
+      getAmbiozPlan();
+
+
+    const plan =
+      getAmbiozPlanConfig();
+
+
+    /*
+      Configure plan UI
+    */
+
+    function configurePlan() {
+
+      document.getElementById("planBadge")
+        .textContent =
+          plan.name;
+
+
+      const description =
+        document.getElementById(
+          "planDescription"
+        );
+
+
+      if (currentPlan === "free") {
+
+        description.textContent =
+          "Free plan: 1 Ambi, automatic appearance, 1 primary language.";
+
+      }
+
+
+      if (currentPlan === "pro") {
+
+        description.textContent =
+          "Pro plan: up to 2 Ambis, custom appearance, 3 additional languages.";
+
+      }
+
+
+      if (currentPlan === "business") {
+
+        description.textContent =
+          "Business plan: up to 5 Ambis, custom appearance, 5 additional languages.";
+
+      }
+
+
+      /*
+        Appearance customization
+      */
+
+      const appearanceSection =
+        document.getElementById(
+          "visualAppearanceSection"
+        );
+
+
+      if (!plan.appearanceCustomization) {
+
+        appearanceSection.style.display =
+          "none";
+
+      } else {
+
+        appearanceSection.style.display =
+          "block";
+
+      }
+
+
+      /*
+        Additional languages
+      */
+
+      if (
+        plan.additionalLanguages === 0
+      ) {
+
+        document.getElementById(
+          "languageList"
+        ).style.display =
+          "none";
+
+
+        document.getElementById(
+          "languageUpgrade"
+        ).style.display =
+          "block";
+
+      } else {
+
+        document.getElementById(
+          "languageList"
+        ).style.display =
+          "grid";
+
+
+        document.getElementById(
+          "languageUpgrade"
+        ).style.display =
+          "none";
+
+
+        configureLanguageLimit();
+
+      }
+
+    }
+
+
+    /*
+      Limit additional language checkboxes
+    */
+
+    function configureLanguageLimit() {
+
+      const checkboxes =
+        document.querySelectorAll(
+          ".language-item input"
+        );
+
+
+      checkboxes.forEach(function(input) {
+
+        input.addEventListener(
+          "change",
+          function() {
+
+            const selected =
+              document.querySelectorAll(
+                ".language-item input:checked"
+              ).length;
+
+
+            if (
+              selected >
+              plan.additionalLanguages
+            ) {
+
+              input.checked =
+                false;
+
+
+              alert(
+                "Your " +
+                plan.name +
+                " plan allows up to " +
+                plan.additionalLanguages +
+                " additional languages."
+              );
+
+            }
+
+          }
+        );
+
+      });
+
+    }
+
+
+    /*
+      Restore saved Identity
+    */
+
     function restoreIdentity() {
 
       if (!savedIdentity) {
         return;
       }
 
-      setValue("gender", savedIdentity.gender);
-      setValue("name", savedIdentity.name);
-      setValue("role", savedIdentity.role);
-      setValue("personality", savedIdentity.personality);
+
+      setValue(
+        "gender",
+        savedIdentity.gender
+      );
+
+      setValue(
+        "name",
+        savedIdentity.name
+      );
+
+      setValue(
+        "role",
+        savedIdentity.role
+      );
+
+      setValue(
+        "personality",
+        savedIdentity.personality
+      );
 
       setValue(
         "primaryLanguage",
         savedIdentity.primaryLanguage
       );
+
 
       setValue(
         "ageRange",
@@ -1006,6 +1295,7 @@
         savedIdentity.eyeColor
       );
 
+
       setValue(
         "appearance",
         savedIdentity.appearance
@@ -1018,27 +1308,39 @@
 
 
       const additional =
-        savedIdentity.additionalLanguages || [];
+        savedIdentity.additionalLanguages ||
+        [];
 
 
       document
-        .querySelectorAll(".language-item input")
+        .querySelectorAll(
+          ".language-item input"
+        )
         .forEach(function(input) {
 
           input.checked =
-            additional.includes(input.value);
+            additional.includes(
+              input.value
+            );
 
         });
 
 
       if (savedIdentity.name) {
-        showResult(savedIdentity);
+
+        showResult(
+          savedIdentity
+        );
+
       }
 
     }
 
 
-    function setValue(id, value) {
+    function setValue(
+      id,
+      value
+    ) {
 
       if (
         value !== undefined &&
@@ -1048,8 +1350,12 @@
         const element =
           document.getElementById(id);
 
+
         if (element) {
-          element.value = value;
+
+          element.value =
+            value;
+
         }
 
       }
@@ -1057,16 +1363,22 @@
     }
 
 
+    /*
+      Create Identity
+    */
+
     function createIdentity() {
 
       const name =
-        document.getElementById("name")
-          .value.trim();
+        document.getElementById(
+          "name"
+        ).value.trim();
 
 
       const role =
-        document.getElementById("role")
-          .value.trim();
+        document.getElementById(
+          "role"
+        ).value.trim();
 
 
       if (!name) {
@@ -1080,20 +1392,48 @@
       }
 
 
-      const additionalLanguages = [];
+      /*
+        Languages
+      */
+
+      let additionalLanguages = [];
 
 
-      document
-        .querySelectorAll(
-          ".language-item input:checked"
-        )
-        .forEach(function(input) {
+      if (
+        plan.additionalLanguages > 0
+      ) {
 
-          additionalLanguages.push(
-            input.value
+        document
+          .querySelectorAll(
+            ".language-item input:checked"
+          )
+          .forEach(function(input) {
+
+            additionalLanguages.push(
+              input.value
+            );
+
+          });
+
+
+        if (
+          additionalLanguages.length >
+          plan.additionalLanguages
+        ) {
+
+          showMessage(
+            "Your " +
+            plan.name +
+            " plan allows up to " +
+            plan.additionalLanguages +
+            " additional languages."
           );
 
-        });
+          return;
+
+        }
+
+      }
 
 
       const primaryLanguage =
@@ -1109,24 +1449,43 @@
         ]
         .filter(Boolean)
         .filter(
-          (value, index, array) =>
-            array.indexOf(value) === index
+          function(
+            value,
+            index,
+            array
+          ) {
+
+            return (
+              array.indexOf(value) ===
+              index
+            );
+
+          }
         );
 
 
+      /*
+        Identity
+      */
+
       const identity = {
 
-        name: name,
+        name:
+          name,
 
         role:
           role ||
           "Digital Business Representative",
 
         gender:
-          document.getElementById("gender").value,
+          document.getElementById(
+            "gender"
+          ).value,
 
         personality:
-          document.getElementById("personality").value,
+          document.getElementById(
+            "personality"
+          ).value,
 
         primaryLanguage:
           primaryLanguage,
@@ -1138,27 +1497,53 @@
           languages,
 
         appearance:
-          document.getElementById("appearance").value,
+          document.getElementById(
+            "appearance"
+          ).value,
 
         style:
-          document.getElementById("style").value,
-
-        ageRange:
-          document.getElementById("ageRange").value,
-
-        skinTone:
-          document.getElementById("skinTone").value,
-
-        hairColor:
-          document.getElementById("hairColor").value,
-
-        hairStyle:
-          document.getElementById("hairStyle").value,
-
-        eyeColor:
-          document.getElementById("eyeColor").value
+          document.getElementById(
+            "style"
+          ).value
 
       };
+
+
+      /*
+        Only paid plans store
+        custom appearance.
+      */
+
+      if (
+        plan.appearanceCustomization
+      ) {
+
+        identity.ageRange =
+          document.getElementById(
+            "ageRange"
+          ).value;
+
+        identity.skinTone =
+          document.getElementById(
+            "skinTone"
+          ).value;
+
+        identity.hairColor =
+          document.getElementById(
+            "hairColor"
+          ).value;
+
+        identity.hairStyle =
+          document.getElementById(
+            "hairStyle"
+          ).value;
+
+        identity.eyeColor =
+          document.getElementById(
+            "eyeColor"
+          ).value;
+
+      }
 
 
       localStorage.setItem(
@@ -1167,181 +1552,295 @@
       );
 
 
-      showResult(identity);
+      showResult(
+        identity
+      );
 
     }
 
 
-    function showResult(identity) {
+    /*
+      Show result
+    */
 
-      document.getElementById("previewName")
-        .textContent =
-          identity.name || "Your Ambi";
+    function showResult(
+      identity
+    ) {
+
+      document.getElementById(
+        "previewName"
+      ).textContent =
+        identity.name ||
+        "Your Ambi";
 
 
-      document.getElementById("previewRole")
-        .textContent =
-          identity.role ||
-          "Digital Business Representative";
+      document.getElementById(
+        "previewRole"
+      ).textContent =
+        identity.role ||
+        "Digital Business Representative";
 
 
       const tags =
-        document.getElementById("tags");
+        document.getElementById(
+          "tags"
+        );
+
 
       tags.innerHTML = "";
 
 
       addTag(
         tags,
-        "Gender: " +
-        (identity.gender || "Auto")
-      );
-
-
-      addTag(
-        tags,
-        "Personality: " +
-        (identity.personality || "Auto")
+        "Plan: " +
+        plan.name
       );
 
 
       addTag(
         tags,
         "Primary: " +
-        (identity.primaryLanguage || "English")
+        (
+          identity.primaryLanguage ||
+          "English"
+        )
       );
+
+
+      if (identity.gender) {
+
+        addTag(
+          tags,
+          "Gender: " +
+          identity.gender
+        );
+
+      }
+
+
+      if (identity.personality) {
+
+        addTag(
+          tags,
+          "Personality: " +
+          identity.personality
+        );
+
+      }
 
 
       addTag(
         tags,
         "Appearance: " +
-        (identity.appearance || "Human")
+        (
+          identity.appearance ||
+          "Human"
+        )
       );
 
 
       addTag(
         tags,
         "Style: " +
-        (identity.style || "Modern / Premium")
+        (
+          identity.style ||
+          "Modern / Premium"
+        )
       );
 
 
-      const appearanceSummary =
+      const summary =
         document.getElementById(
           "appearanceSummary"
         );
 
 
-      appearanceSummary.innerHTML =
-        "<strong>Visual Identity</strong><br>" +
+      if (
+        plan.appearanceCustomization
+      ) {
 
-        "Age: " +
-        escapeHtml(
-          identity.ageRange || "Auto — Ambioz decides"
-        ) +
+        summary.innerHTML =
+          "<strong>Visual Identity</strong><br>" +
 
-        "<br>" +
+          "Age: " +
+          escapeHtml(
+            identity.ageRange ||
+            "Ambioz decides"
+          ) +
 
-        "Skin tone: " +
-        escapeHtml(
-          identity.skinTone || "Auto — Ambioz decides"
-        ) +
+          "<br>" +
 
-        "<br>" +
+          "Skin tone: " +
+          escapeHtml(
+            identity.skinTone ||
+            "Ambioz decides"
+          ) +
 
-        "Hair: " +
-        escapeHtml(
-          identity.hairColor || "Auto"
-        ) +
-        ", " +
-        escapeHtml(
-          identity.hairStyle || "Auto"
-        ) +
+          "<br>" +
 
-        "<br>" +
+          "Hair: " +
+          escapeHtml(
+            identity.hairColor ||
+            "Ambioz decides"
+          ) +
+          ", " +
+          escapeHtml(
+            identity.hairStyle ||
+            "Ambioz decides"
+          ) +
 
-        "Eyes: " +
-        escapeHtml(
-          identity.eyeColor || "Auto"
+          "<br>" +
+
+          "Eyes: " +
+          escapeHtml(
+            identity.eyeColor ||
+            "Ambioz decides"
+          );
+
+      } else {
+
+        summary.innerHTML =
+          "<strong>Visual Identity</strong><br>" +
+
+          "Ambioz automatically creates the visual appearance of your Ambi.";
+
+      }
+
+
+      /*
+        Avatar
+      */
+
+      const avatar =
+        document.getElementById(
+          "avatar"
         );
 
 
-      const avatar =
-        document.getElementById("avatar");
-
-
       const img =
-        document.createElement("img");
+        document.createElement(
+          "img"
+        );
 
 
-      img.src = "ambi-avatar.png";
+      img.src =
+        "ambi-avatar.png";
+
 
       img.alt =
-        identity.name || "Ambi";
+        identity.name ||
+        "Ambi";
 
 
-      img.onload = function() {
+      img.onload =
+        function() {
 
-        avatar.innerHTML = "";
+          avatar.innerHTML =
+            "";
 
-        avatar.appendChild(img);
+          avatar.appendChild(
+            img
+          );
 
-      };
-
-
-      document.getElementById("result")
-        .style.display = "block";
+        };
 
 
-      document.getElementById("result")
-        .scrollIntoView({
-          behavior: "smooth"
-        });
+      document.getElementById(
+        "result"
+      ).style.display =
+        "block";
+
+
+      document.getElementById(
+        "result"
+      ).scrollIntoView({
+        behavior: "smooth"
+      });
 
     }
 
 
-    function addTag(container, text) {
+    function addTag(
+      container,
+      text
+    ) {
 
       const tag =
-        document.createElement("span");
+        document.createElement(
+          "span"
+        );
 
-      tag.className = "tag";
 
-      tag.textContent = text;
+      tag.className =
+        "tag";
 
-      container.appendChild(tag);
+
+      tag.textContent =
+        text;
+
+
+      container.appendChild(
+        tag
+      );
 
     }
 
 
-    function escapeHtml(value) {
+    function escapeHtml(
+      value
+    ) {
 
       if (!value) {
         return "";
       }
 
+
       return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
 
     }
 
 
-    function showMessage(message) {
+    function showMessage(
+      message
+    ) {
 
       const element =
-        document.getElementById("message");
+        document.getElementById(
+          "message"
+        );
 
-      element.textContent = message;
 
-      element.style.display = "block";
+      element.textContent =
+        message;
+
+
+      element.style.display =
+        "block";
 
     }
 
+
+    configurePlan();
 
     restoreIdentity();
 
