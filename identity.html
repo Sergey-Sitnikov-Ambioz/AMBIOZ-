@@ -335,6 +335,21 @@
       <form id="identityForm">
 
         <div class="field">
+  <label for="gender">Gender</label>
+
+  <select id="gender">
+    <option value="Female">Female</option>
+    <option value="Male">Male</option>
+    <option value="Non-binary">Non-binary</option>
+    <option value="Not specified">Not specified</option>
+  </select>
+
+  <div class="hint">
+    Choose how your Ambi should be represented.
+  </div>
+</div>
+        
+        <div class="field">
           <label for="ambiName">Name</label>
           <input
             id="ambiName"
@@ -533,6 +548,7 @@
       const identity = {
         name: document.getElementById("ambiName").value.trim(),
         role: document.getElementById("ambiRole").value.trim(),
+        gender: document.getElementById("gender").value,
         personality: document.getElementById("personality").value,
         language: document.getElementById("language").value,
         appearance: document.getElementById("appearance").value,
