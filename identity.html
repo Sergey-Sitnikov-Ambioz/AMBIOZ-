@@ -125,12 +125,6 @@
       margin-top: 28px;
     }
 
-    .result h2 {
-      margin: 0 0 8px;
-      font-size: 32px;
-      letter-spacing: -0.04em;
-    }
-
     .result-intro {
       margin: 24px 0;
       color: #666;
@@ -187,32 +181,6 @@
       background: #f1f1f3;
       font-size: 13px;
       color: #555;
-    }
-
-    .identity {
-      margin-top: 24px;
-      border-top: 1px solid #eee;
-      padding-top: 10px;
-    }
-
-    .identity-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      padding: 14px 0;
-      border-bottom: 1px solid #eee;
-    }
-
-    .identity-label {
-      color: #777;
-      font-size: 15px;
-    }
-
-    .identity-value {
-      font-weight: 600;
-      text-align: right;
-      font-size: 15px;
     }
 
     .actions {
@@ -312,14 +280,6 @@
       .life-grid {
         grid-template-columns: 1fr;
       }
-
-      .identity-row {
-        align-items: flex-start;
-      }
-
-      .identity-value {
-        max-width: 60%;
-      }
     }
   </style>
 </head>
@@ -341,24 +301,31 @@
 
     <section class="card">
 
+      <!-- CREATE IDENTITY -->
+
       <form id="identityForm">
 
         <div class="field">
+
           <label for="gender">Gender</label>
 
           <select id="gender">
+
             <option value="Female">Female</option>
             <option value="Male">Male</option>
             <option value="Non-binary">Non-binary</option>
             <option value="Not specified">Not specified</option>
+
           </select>
 
           <div class="hint">
             Choose how your Ambi should be represented.
           </div>
+
         </div>
 
         <div class="field">
+
           <label for="ambiName">Name</label>
 
           <input
@@ -371,9 +338,11 @@
           <div class="hint">
             Give your digital representative a name.
           </div>
+
         </div>
 
         <div class="field">
+
           <label for="ambiRole">Role</label>
 
           <input
@@ -382,52 +351,69 @@
             value="Digital Business Representative"
             required
           >
+
         </div>
 
         <div class="field">
+
           <label for="personality">Personality</label>
 
           <select id="personality">
+
             <option value="Friendly">Friendly</option>
             <option value="Professional">Professional</option>
             <option value="Confident">Confident</option>
             <option value="Warm">Warm</option>
             <option value="Minimal">Minimal</option>
+
           </select>
+
         </div>
 
         <div class="field">
+
           <label for="language">Language</label>
 
           <select id="language">
+
             <option value="English">English</option>
             <option value="Polish">Polish</option>
             <option value="Russian">Russian</option>
             <option value="German">German</option>
             <option value="Spanish">Spanish</option>
+
           </select>
+
         </div>
 
         <div class="field">
+
           <label for="appearance">Appearance</label>
 
           <select id="appearance">
+
             <option value="Human">Human</option>
             <option value="Digital">Digital</option>
             <option value="Abstract">Abstract</option>
+
           </select>
+
         </div>
 
         <div class="field">
+
           <label for="style">Style</label>
 
           <select id="style">
+
             <option value="Modern / Premium">Modern / Premium</option>
             <option value="Clean / Minimal">Clean / Minimal</option>
             <option value="Friendly / Casual">Friendly / Casual</option>
             <option value="Corporate">Corporate</option>
             <option value="Creative">Creative</option>
+
           </select>
+
         </div>
 
         <button type="submit">
@@ -436,33 +422,53 @@
 
       </form>
 
+
+      <!-- ERROR -->
+
       <div id="error" class="error"></div>
+
+
+      <!-- CREATED AMBI -->
 
       <div id="result" class="result">
 
-        <div class="eyebrow">YOUR AMBI</div>
+        <div class="eyebrow">
+          YOUR AMBI
+        </div>
 
         <div class="ambi-profile">
 
           <div class="ambi-avatar-wrap">
+
             <img
               src="ambi-avatar.png"
               alt="Ambi digital representative"
               class="ambi-avatar"
             >
+
           </div>
 
           <div class="ambi-name-block">
 
             <h2 id="resultName"></h2>
 
-            <p class="ambi-role" id="resultRole"></p>
+            <p
+              class="ambi-role"
+              id="resultRole"
+            ></p>
 
             <div class="ambi-tags">
+
+              <span id="resultGender"></span>
+
               <span id="resultPersonality"></span>
+
               <span id="resultLanguage"></span>
+
               <span id="resultAppearance"></span>
+
               <span id="resultStyle"></span>
+
             </div>
 
           </div>
@@ -472,6 +478,9 @@
         <p class="result-intro">
           Your digital business representative is ready.
         </p>
+
+
+        <!-- MAIN ACTIONS -->
 
         <div class="actions">
 
@@ -493,15 +502,25 @@
 
         </div>
 
+
+        <!-- BRING AMBI TO LIFE -->
+
         <div class="life-section">
 
-          <div class="eyebrow">BRING YOUR AMBI TO LIFE</div>
+          <div class="eyebrow">
+            BRING YOUR AMBI TO LIFE
+          </div>
 
           <div class="life-grid">
 
+
+            <!-- VOICE -->
+
             <div class="life-card">
 
-              <div class="life-title">Voice</div>
+              <div class="life-title">
+                Voice
+              </div>
 
               <div class="life-text">
                 Give your Ambi a voice.
@@ -517,9 +536,14 @@
 
             </div>
 
+
+            <!-- PHOTO -->
+
             <div class="life-card">
 
-              <div class="life-title">Photo</div>
+              <div class="life-title">
+                Photo
+              </div>
 
               <div class="life-text">
                 Create visual content with your Ambi.
@@ -535,9 +559,14 @@
 
             </div>
 
+
+            <!-- VIDEO -->
+
             <div class="life-card">
 
-              <div class="life-title">Video</div>
+              <div class="life-title">
+                Video
+              </div>
 
               <div class="life-text">
                 Create videos with your Ambi.
@@ -563,123 +592,222 @@
 
   </main>
 
+
   <script>
 
-    const form = document.getElementById("identityForm");
-    const result = document.getElementById("result");
-    const error = document.getElementById("error");
+    const form =
+      document.getElementById("identityForm");
 
-    form.addEventListener("submit", function(event) {
+    const result =
+      document.getElementById("result");
 
-      event.preventDefault();
+    const error =
+      document.getElementById("error");
 
-      error.style.display = "none";
 
-      const identity = {
-        name: document.getElementById("ambiName").value.trim(),
-        role: document.getElementById("ambiRole").value.trim(),
-        gender: document.getElementById("gender").value,
-        personality: document.getElementById("personality").value,
-        language: document.getElementById("language").value,
-        appearance: document.getElementById("appearance").value,
-        style: document.getElementById("style").value
-      };
+    form.addEventListener(
+      "submit",
+      function(event) {
 
-      if (
-        !identity.name ||
-        identity.name.toLowerCase() === "name" ||
-        identity.name.toLowerCase() === "имя"
-      ) {
-        error.textContent = "Please enter a name for your Ambi.";
-        error.style.display = "block";
-        return;
+        event.preventDefault();
+
+        error.style.display = "none";
+
+
+        const identity = {
+
+          name:
+            document
+              .getElementById("ambiName")
+              .value
+              .trim(),
+
+          role:
+            document
+              .getElementById("ambiRole")
+              .value
+              .trim(),
+
+          gender:
+            document
+              .getElementById("gender")
+              .value,
+
+          personality:
+            document
+              .getElementById("personality")
+              .value,
+
+          language:
+            document
+              .getElementById("language")
+              .value,
+
+          appearance:
+            document
+              .getElementById("appearance")
+              .value,
+
+          style:
+            document
+              .getElementById("style")
+              .value
+
+        };
+
+
+        if (
+          !identity.name ||
+          identity.name.toLowerCase() === "name" ||
+          identity.name.toLowerCase() === "имя"
+        ) {
+
+          error.textContent =
+            "Please enter a name for your Ambi.";
+
+          error.style.display = "block";
+
+          return;
+        }
+
+
+        /*
+          Save Ambi Identity
+        */
+
+        localStorage.setItem(
+          "ambiIdentity",
+          JSON.stringify(identity)
+        );
+
+
+        /*
+          Display Ambi
+        */
+
+        document
+          .getElementById("resultName")
+          .textContent =
+          identity.name;
+
+        document
+          .getElementById("resultRole")
+          .textContent =
+          identity.role;
+
+        document
+          .getElementById("resultGender")
+          .textContent =
+          identity.gender;
+
+        document
+          .getElementById("resultPersonality")
+          .textContent =
+          identity.personality;
+
+        document
+          .getElementById("resultLanguage")
+          .textContent =
+          identity.language;
+
+        document
+          .getElementById("resultAppearance")
+          .textContent =
+          identity.appearance;
+
+        document
+          .getElementById("resultStyle")
+          .textContent =
+          identity.style;
+
+
+        /*
+          Hide form
+          Show created Ambi
+        */
+
+        form.style.display = "none";
+
+        result.style.display = "block";
+
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
       }
+    );
 
-      localStorage.setItem(
-        "ambiIdentity",
-        JSON.stringify(identity)
-      );
 
-      document.getElementById("resultName").textContent =
-        identity.name;
-
-      document.getElementById("resultRole").textContent =
-        identity.role;
-
-      document.getElementById("resultGender").textContent =
-        identity.gender;
-
-      document.getElementById("resultPersonality").textContent =
-        identity.personality;
-
-      document.getElementById("resultLanguage").textContent =
-        identity.language;
-
-      document.getElementById("resultAppearance").textContent =
-        identity.appearance;
-
-      document.getElementById("resultStyle").textContent =
-        identity.style;
-
-      document.getElementById("identityRole").textContent =
-        identity.role;
-
-      document.getElementById("identityPersonality").textContent =
-        identity.personality;
-
-      document.getElementById("identityLanguage").textContent =
-        identity.language;
-
-      document.getElementById("identityAppearance").textContent =
-        identity.appearance;
-
-      document.getElementById("identityStyle").textContent =
-        identity.style;
-
-      form.style.display = "none";
-      result.style.display = "block";
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
-    });
+    /*
+      Restore previously saved Identity
+    */
 
     const savedIdentity =
       localStorage.getItem("ambiIdentity");
+
 
     if (savedIdentity) {
 
       try {
 
-        const identity = JSON.parse(savedIdentity);
+        const identity =
+          JSON.parse(savedIdentity);
 
-        document.getElementById("ambiName").value =
+
+        document
+          .getElementById("ambiName")
+          .value =
           identity.name || "";
 
-        document.getElementById("ambiRole").value =
+
+        document
+          .getElementById("ambiRole")
+          .value =
           identity.role ||
           "Digital Business Representative";
 
-        document.getElementById("gender").value =
-          identity.gender || "Female";
 
-        document.getElementById("personality").value =
-          identity.personality || "Friendly";
+        document
+          .getElementById("gender")
+          .value =
+          identity.gender ||
+          "Female";
 
-        document.getElementById("language").value =
-          identity.language || "English";
 
-        document.getElementById("appearance").value =
-          identity.appearance || "Human";
+        document
+          .getElementById("personality")
+          .value =
+          identity.personality ||
+          "Friendly";
 
-        document.getElementById("style").value =
-          identity.style || "Modern / Premium";
+
+        document
+          .getElementById("language")
+          .value =
+          identity.language ||
+          "English";
+
+
+        document
+          .getElementById("appearance")
+          .value =
+          identity.appearance ||
+          "Human";
+
+
+        document
+          .getElementById("style")
+          .value =
+          identity.style ||
+          "Modern / Premium";
 
       } catch (e) {
 
-        localStorage.removeItem("ambiIdentity");
+        localStorage.removeItem(
+          "ambiIdentity"
+        );
 
       }
 
