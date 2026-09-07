@@ -127,36 +127,92 @@
 
     .result h2 {
       margin: 0 0 8px;
-      font-size: 28px;
-      letter-spacing: -0.03em;
+      font-size: 32px;
+      letter-spacing: -0.04em;
     }
 
     .result-intro {
-      margin: 0 0 24px;
+      margin: 24px 0;
       color: #666;
       line-height: 1.5;
     }
 
-    . {
-      border-top: 1px solid #eee;
-      padding-top: 20px;
+    .ambi-profile {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin: 10px 0 24px;
     }
 
-    .-row {
+    .ambi-avatar-wrap {
+      width: 150px;
+      height: 150px;
+      flex-shrink: 0;
+      overflow: hidden;
+      border-radius: 50%;
+      background: #eee;
+    }
+
+    .ambi-avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .ambi-name-block {
+      min-width: 0;
+    }
+
+    .ambi-name-block h2 {
+      margin: 0 0 6px;
+      font-size: 32px;
+      letter-spacing: -0.04em;
+    }
+
+    .ambi-role {
+      margin: 0 0 16px;
+      color: #666;
+      font-size: 16px;
+    }
+
+    .ambi-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .ambi-tags span {
+      padding: 7px 11px;
+      border-radius: 20px;
+      background: #f1f1f3;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .identity {
+      margin-top: 24px;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+    }
+
+    .identity-row {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       gap: 20px;
-      padding: 13px 0;
+      padding: 14px 0;
       border-bottom: 1px solid #eee;
     }
 
-    .-label {
+    .identity-label {
       color: #777;
+      font-size: 15px;
     }
 
-    .-value {
+    .identity-value {
       font-weight: 600;
       text-align: right;
+      font-size: 15px;
     }
 
     .actions {
@@ -182,119 +238,46 @@
       font-size: 14px;
     }
 
-    .ambi-profile {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  margin: 10px 0 24px;
-}
+    .life-section {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid #eee;
+    }
 
-.ambi-avatar-wrap {
-  width: 150px;
-  height: 150px;
-  flex-shrink: 0;
-  overflow: hidden;
-  border-radius: 50%;
-  background: #eee;
-}
+    .life-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
 
-.ambi-avatar {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+    .life-card {
+      padding: 20px;
+      border: 1px solid #e5e5e7;
+      border-radius: 18px;
+      background: #fafafa;
+    }
 
-.ambi-name-block {
-  min-width: 0;
-}
+    .life-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
 
-.ambi-name-block h2 {
-  margin: 0 0 6px;
-  font-size: 32px;
-  letter-spacing: -0.04em;
-}
+    .life-text {
+      min-height: 48px;
+      color: #777;
+      font-size: 14px;
+      line-height: 1.45;
+      margin-bottom: 16px;
+    }
 
-.ambi-role {
-  margin: 0 0 16px;
-  color: #666;
-  font-size: 16px;
-}
+    .life-card button {
+      margin-top: 0;
+    }
 
-.ambi-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.ambi-tags span {
-  padding: 7px 11px;
-  border-radius: 20px;
-  background: #f1f1f3;
-  font-size: 13px;
-  color: #555;
-}
-
-.life-section {
-  margin-top: 48px;
-  padding-top: 32px;
-  border-top: 1px solid #eee;
-}
-
-.life-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: 18px;
-}
-
-.life-card {
-  padding: 20px;
-  border: 1px solid #e5e5e7;
-  border-radius: 18px;
-  background: #fafafa;
-}
-
-.life-title {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.life-text {
-  min-height: 48px;
-  color: #777;
-  font-size: 14px;
-  line-height: 1.45;
-  margin-bottom: 16px;
-}
-
-.life-card button {
-  margin-top: 0;
-}
-
-@media (max-width: 600px) {
-
-  .ambi-profile {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .ambi-avatar-wrap {
-    width: 120px;
-    height: 120px;
-  }
-
-  .ambi-name-block h2 {
-    font-size: 28px;
-  }
-
-  .life-grid {
-    grid-template-columns: 1fr;
-  }
-
-}
-    
     @media (max-width: 600px) {
+
       .container {
         padding-top: 32px;
       }
@@ -308,8 +291,34 @@
         border-radius: 20px;
       }
 
+      .ambi-profile {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .ambi-avatar-wrap {
+        width: 120px;
+        height: 120px;
+      }
+
+      .ambi-name-block h2 {
+        font-size: 28px;
+      }
+
       .actions {
         grid-template-columns: 1fr;
+      }
+
+      .life-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .identity-row {
+        align-items: flex-start;
+      }
+
+      .identity-value {
+        max-width: 60%;
       }
     }
   </style>
@@ -321,7 +330,7 @@
 
     <a class="back" href="ambi.html">← Back to Ambi</a>
 
-    <div class="eyebrow">AMBIOZ · AMBI </div>
+    <div class="eyebrow">AMBIOZ · AMBI IDENTITY</div>
 
     <h1>Meet your Ambi</h1>
 
@@ -335,28 +344,30 @@
       <form id="identityForm">
 
         <div class="field">
-  <label for="gender">Gender</label>
+          <label for="gender">Gender</label>
 
-  <select id="gender">
-    <option value="Female">Female</option>
-    <option value="Male">Male</option>
-    <option value="Non-binary">Non-binary</option>
-    <option value="Not specified">Not specified</option>
-  </select>
+          <select id="gender">
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+            <option value="Non-binary">Non-binary</option>
+            <option value="Not specified">Not specified</option>
+          </select>
 
-  <div class="hint">
-    Choose how your Ambi should be represented.
-  </div>
-</div>
-        
+          <div class="hint">
+            Choose how your Ambi should be represented.
+          </div>
+        </div>
+
         <div class="field">
           <label for="ambiName">Name</label>
+
           <input
             id="ambiName"
             type="text"
             placeholder="Ava"
             required
           >
+
           <div class="hint">
             Give your digital representative a name.
           </div>
@@ -364,6 +375,7 @@
 
         <div class="field">
           <label for="ambiRole">Role</label>
+
           <input
             id="ambiRole"
             type="text"
@@ -374,6 +386,7 @@
 
         <div class="field">
           <label for="personality">Personality</label>
+
           <select id="personality">
             <option value="Friendly">Friendly</option>
             <option value="Professional">Professional</option>
@@ -385,6 +398,7 @@
 
         <div class="field">
           <label for="language">Language</label>
+
           <select id="language">
             <option value="English">English</option>
             <option value="Polish">Polish</option>
@@ -396,6 +410,7 @@
 
         <div class="field">
           <label for="appearance">Appearance</label>
+
           <select id="appearance">
             <option value="Human">Human</option>
             <option value="Digital">Digital</option>
@@ -405,6 +420,7 @@
 
         <div class="field">
           <label for="style">Style</label>
+
           <select id="style">
             <option value="Modern / Premium">Modern / Premium</option>
             <option value="Clean / Minimal">Clean / Minimal</option>
@@ -422,145 +438,160 @@
 
       <div id="error" class="error"></div>
 
-<div id="result" class="result">
+      <div id="result" class="result">
 
-  <div class="eyebrow">YOUR AMBI</div>
+        <div class="eyebrow">YOUR AMBI</div>
 
-  <div class="ambi-profile">
+        <div class="ambi-profile">
 
-    <div class="ambi-avatar-wrap">
-      <img
-        src="ambi-avatar.png"
-        alt="Ambi digital representative"
-        class="ambi-avatar"
-      >
-    </div>
+          <div class="ambi-avatar-wrap">
+            <img
+              src="ambi-avatar.png"
+              alt="Ambi digital representative"
+              class="ambi-avatar"
+            >
+          </div>
 
-    <div class="ambi-name-block">
-      <h2 id="resultName"></h2>
+          <div class="ambi-name-block">
 
-      <p class="ambi-role" id="resultRole"></p>
+            <h2 id="resultName"></h2>
 
-      <div class="ambi-tags">
-        <span id="resultPersonality"></span>
-        <span id="resultLanguage"></span>
-        <span id="resultAppearance"></span>
-        <span id="resultStyle"></span>
-      </div>
-    </div>
-    <div class="identity">
+            <p class="ambi-role" id="resultRole"></p>
 
-  <div class="identity-row">
-    <span class="identity-label">Role</span>
-    <span id="resultRole" class="identity-value"></span>
-  </div>
+            <div class="ambi-tags">
+              <span id="resultPersonality"></span>
+              <span id="resultLanguage"></span>
+              <span id="resultAppearance"></span>
+              <span id="resultStyle"></span>
+            </div>
 
-  <div class="identity-row">
-    <span class="identity-label">Gender</span>
-    <span id="resultGender" class="identity-value"></span>
-  </div>
+          </div>
 
-  <div class="identity-row">
-    <span class="identity-label">Personality</span>
-    <span id="resultPersonality" class="identity-value"></span>
-  </div>
-
-  <div class="identity-row">
-    <span class="identity-label">Language</span>
-    <span id="resultLanguage" class="identity-value"></span>
-  </div>
-
-  <div class="identity-row">
-    <span class="identity-label">Appearance</span>
-    <span id="resultAppearance" class="identity-value"></span>
-  </div>
-
-  <div class="identity-row">
-    <span class="identity-label">Style</span>
-    <span id="resultStyle" class="identity-value"></span>
-  </div>
-
-</div>
-
-  </div>
-
-  <p class="result-intro">
-    Your digital business representative is ready.
-  </p>
-
-  <div class="actions">
-
-    <button
-      type="button"
-      onclick="window.location.href='ambi.html'"
-      class="secondary"
-    >
-      Talk to Ambi
-    </button>
-
-    <button
-      type="button"
-      onclick="window.location.href='create-content.html'"
-      class="secondary"
-    >
-      Create Content
-    </button>
-
-  </div>
-
-  <div class="life-section">
-
-    <div class="eyebrow">BRING YOUR AMBI TO LIFE</div>
-
-    <div class="life-grid">
-
-      <div class="life-card">
-        <div class="life-title">Voice</div>
-        <div class="life-text">
-          Give your Ambi a voice.
         </div>
-        <button
-          type="button"
-          class="secondary"
-          onclick="alert('Voice is coming next.')"
-        >
-          Voice →
-        </button>
-      </div>
 
-      <div class="life-card">
-        <div class="life-title">Photo</div>
-        <div class="life-text">
-          Create visual content with your Ambi.
+        <p class="result-intro">
+          Your digital business representative is ready.
+        </p>
+
+        <div class="identity">
+
+          <div class="identity-row">
+            <span class="identity-label">Role</span>
+            <span id="identityRole" class="identity-value"></span>
+          </div>
+
+          <div class="identity-row">
+            <span class="identity-label">Gender</span>
+            <span id="resultGender" class="identity-value"></span>
+          </div>
+
+          <div class="identity-row">
+            <span class="identity-label">Personality</span>
+            <span id="identityPersonality" class="identity-value"></span>
+          </div>
+
+          <div class="identity-row">
+            <span class="identity-label">Language</span>
+            <span id="identityLanguage" class="identity-value"></span>
+          </div>
+
+          <div class="identity-row">
+            <span class="identity-label">Appearance</span>
+            <span id="identityAppearance" class="identity-value"></span>
+          </div>
+
+          <div class="identity-row">
+            <span class="identity-label">Style</span>
+            <span id="identityStyle" class="identity-value"></span>
+          </div>
+
         </div>
-        <button
-          type="button"
-          class="secondary"
-          onclick="alert('Photo is coming next.')"
-        >
-          Photo →
-        </button>
-      </div>
 
-      <div class="life-card">
-        <div class="life-title">Video</div>
-        <div class="life-text">
-          Create videos with your Ambi.
+        <div class="actions">
+
+          <button
+            type="button"
+            onclick="window.location.href='ambi.html'"
+            class="secondary"
+          >
+            Talk to Ambi
+          </button>
+
+          <button
+            type="button"
+            onclick="window.location.href='create-content.html'"
+            class="secondary"
+          >
+            Create Content
+          </button>
+
         </div>
-        <button
-          type="button"
-          class="secondary"
-          onclick="alert('Video is coming next.')"
-        >
-          Video →
-        </button>
+
+        <div class="life-section">
+
+          <div class="eyebrow">BRING YOUR AMBI TO LIFE</div>
+
+          <div class="life-grid">
+
+            <div class="life-card">
+
+              <div class="life-title">Voice</div>
+
+              <div class="life-text">
+                Give your Ambi a voice.
+              </div>
+
+              <button
+                type="button"
+                class="secondary"
+                onclick="alert('Voice is coming next.')"
+              >
+                Voice →
+              </button>
+
+            </div>
+
+            <div class="life-card">
+
+              <div class="life-title">Photo</div>
+
+              <div class="life-text">
+                Create visual content with your Ambi.
+              </div>
+
+              <button
+                type="button"
+                class="secondary"
+                onclick="alert('Photo is coming next.')"
+              >
+                Photo →
+              </button>
+
+            </div>
+
+            <div class="life-card">
+
+              <div class="life-title">Video</div>
+
+              <div class="life-text">
+                Create videos with your Ambi.
+              </div>
+
+              <button
+                type="button"
+                class="secondary"
+                onclick="alert('Video is coming next.')"
+              >
+                Video →
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
-
-    </div>
-
-  </div>
-
-</div>
 
     </section>
 
@@ -587,7 +618,7 @@
         appearance: document.getElementById("appearance").value,
         style: document.getElementById("style").value
       };
-     
+
       if (
         !identity.name ||
         identity.name.toLowerCase() === "name" ||
@@ -595,8 +626,9 @@
       ) {
         error.textContent = "Please enter a name for your Ambi.";
         error.style.display = "block";
-      return;
+        return;
       }
+
       localStorage.setItem(
         "ambiIdentity",
         JSON.stringify(identity)
@@ -623,6 +655,21 @@
       document.getElementById("resultStyle").textContent =
         identity.style;
 
+      document.getElementById("identityRole").textContent =
+        identity.role;
+
+      document.getElementById("identityPersonality").textContent =
+        identity.personality;
+
+      document.getElementById("identityLanguage").textContent =
+        identity.language;
+
+      document.getElementById("identityAppearance").textContent =
+        identity.appearance;
+
+      document.getElementById("identityStyle").textContent =
+        identity.style;
+
       form.style.display = "none";
       result.style.display = "block";
 
@@ -633,7 +680,6 @@
 
     });
 
-    // Restore previously created identity
     const savedIdentity =
       localStorage.getItem("ambiIdentity");
 
@@ -650,6 +696,9 @@
           identity.role ||
           "Digital Business Representative";
 
+        document.getElementById("gender").value =
+          identity.gender || "Female";
+
         document.getElementById("personality").value =
           identity.personality || "Friendly";
 
@@ -663,7 +712,9 @@
           identity.style || "Modern / Premium";
 
       } catch (e) {
+
         localStorage.removeItem("ambiIdentity");
+
       }
 
     }
