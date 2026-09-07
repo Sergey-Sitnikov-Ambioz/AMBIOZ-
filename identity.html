@@ -103,6 +103,36 @@
       line-height: 1.4;
     }
 
+    .language-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .language-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 14px;
+      border: 1px solid #d8d8dc;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 400;
+      background: #fff;
+    }
+
+    .language-option:hover {
+      background: #f7f7f8;
+    }
+
+    .language-option input {
+      width: auto;
+      margin: 0;
+      cursor: pointer;
+    }
+
     button {
       width: 100%;
       margin-top: 8px;
@@ -273,6 +303,10 @@
         font-size: 28px;
       }
 
+      .language-list {
+        grid-template-columns: 1fr;
+      }
+
       .actions {
         grid-template-columns: 1fr;
       }
@@ -301,21 +335,19 @@
 
     <section class="card">
 
-      <!-- CREATE IDENTITY -->
-
       <form id="identityForm">
+
+        <!-- GENDER -->
 
         <div class="field">
 
           <label for="gender">Gender</label>
 
           <select id="gender">
-
             <option value="Female">Female</option>
             <option value="Male">Male</option>
             <option value="Non-binary">Non-binary</option>
             <option value="Not specified">Not specified</option>
-
           </select>
 
           <div class="hint">
@@ -323,6 +355,9 @@
           </div>
 
         </div>
+
+
+        <!-- NAME -->
 
         <div class="field">
 
@@ -341,6 +376,9 @@
 
         </div>
 
+
+        <!-- ROLE -->
+
         <div class="field">
 
           <label for="ambiRole">Role</label>
@@ -353,6 +391,9 @@
           >
 
         </div>
+
+
+        <!-- PERSONALITY -->
 
         <div class="field">
 
@@ -370,25 +411,153 @@
 
         </div>
 
+
+        <!-- PRIMARY LANGUAGE -->
+
         <div class="field">
 
-          <label for="language">Language</label>
+          <label for="primaryLanguage">
+            Primary language
+          </label>
 
-          <select id="language">
+          <select id="primaryLanguage">
 
             <option value="English">English</option>
             <option value="Polish">Polish</option>
             <option value="Russian">Russian</option>
             <option value="German">German</option>
             <option value="Spanish">Spanish</option>
+            <option value="French">French</option>
+            <option value="Italian">Italian</option>
+            <option value="Ukrainian">Ukrainian</option>
+            <option value="Dutch">Dutch</option>
+            <option value="Portuguese">Portuguese</option>
 
           </select>
 
+          <div class="hint">
+            The main language your Ambi uses.
+          </div>
+
         </div>
+
+
+        <!-- ADDITIONAL LANGUAGES -->
 
         <div class="field">
 
-          <label for="appearance">Appearance</label>
+          <label>
+            Additional languages
+          </label>
+
+          <div class="hint">
+            Select all additional languages your Ambi can use.
+          </div>
+
+          <div class="language-list">
+
+            <label class="language-option">
+              <input
+                type="checkbox"
+                name="additionalLanguage"
+                value="English"
+              >
+              English
+            </label>
+
+            <label class="language-option">
+              <input
+                type="checkbox"
+                name="additionalLanguage"
+                value="Polish"
+              >
+              Polish
+            </label>
+
+            <label class="language-option">
+              <input
+                type="checkbox"
+                name="additionalLanguage"
+                value="Russian"
+              >
+              Russian
+            </label>
+
+            <label class="language-option">
+              <input
+                type="checkbox"
+                name="additionalLanguage"
+                value="German"
+              >
+              German
+            </label>
+
+            <label class="language-option">
+              <input
+                type="checkbox"
+                name="additionalLanguage"
+                value="Spanish"
+              >
+              Spanish
+            </label>
+
+            <label class="language-option">
+              <input
+                type="checkbox"
+                name="additionalLanguage"
+                value="French"
+              >
+              French
+            </label>
+
+            <label class="language-option">
+              <input
+                type="checkbox"
+                name="additionalLanguage"
+                value="Italian"
+              >
+              Italian
+            </label>
+
+            <label class="language-option">
+              <input
+                type="checkbox"
+                name="additionalLanguage"
+                value="Ukrainian"
+              >
+              Ukrainian
+            </label>
+
+            <label class="language-option">
+              <input
+                type="checkbox"
+                name="additionalLanguage"
+                value="Dutch"
+              >
+              Dutch
+            </label>
+
+            <label class="language-option">
+              <input
+                type="checkbox"
+                name="additionalLanguage"
+                value="Portuguese"
+              >
+              Portuguese
+            </label>
+
+          </div>
+
+        </div>
+
+
+        <!-- APPEARANCE -->
+
+        <div class="field">
+
+          <label for="appearance">
+            Appearance
+          </label>
 
           <select id="appearance">
 
@@ -400,21 +569,41 @@
 
         </div>
 
+
+        <!-- STYLE -->
+
         <div class="field">
 
-          <label for="style">Style</label>
+          <label for="style">
+            Style
+          </label>
 
           <select id="style">
 
-            <option value="Modern / Premium">Modern / Premium</option>
-            <option value="Clean / Minimal">Clean / Minimal</option>
-            <option value="Friendly / Casual">Friendly / Casual</option>
-            <option value="Corporate">Corporate</option>
-            <option value="Creative">Creative</option>
+            <option value="Modern / Premium">
+              Modern / Premium
+            </option>
+
+            <option value="Clean / Minimal">
+              Clean / Minimal
+            </option>
+
+            <option value="Friendly / Casual">
+              Friendly / Casual
+            </option>
+
+            <option value="Corporate">
+              Corporate
+            </option>
+
+            <option value="Creative">
+              Creative
+            </option>
 
           </select>
 
         </div>
+
 
         <button type="submit">
           Create my Ambi →
@@ -463,7 +652,7 @@
 
               <span id="resultPersonality"></span>
 
-              <span id="resultLanguage"></span>
+              <span id="resultPrimaryLanguage"></span>
 
               <span id="resultAppearance"></span>
 
@@ -614,6 +803,24 @@
         error.style.display = "none";
 
 
+        /*
+          Collect additional languages
+        */
+
+        const additionalLanguages =
+          Array.from(
+            document.querySelectorAll(
+              'input[name="additionalLanguage"]:checked'
+            )
+          ).map(
+            checkbox => checkbox.value
+          );
+
+
+        /*
+          Create Ambi Identity
+        */
+
         const identity = {
 
           name:
@@ -638,10 +845,24 @@
               .getElementById("personality")
               .value,
 
-          language:
+          primaryLanguage:
             document
-              .getElementById("language")
+              .getElementById("primaryLanguage")
               .value,
+
+          additionalLanguages:
+            additionalLanguages,
+
+          languages:
+            [
+              document
+                .getElementById("primaryLanguage")
+                .value,
+              ...additionalLanguages
+            ].filter(
+              (language, index, array) =>
+                array.indexOf(language) === index
+            ),
 
           appearance:
             document
@@ -655,6 +876,10 @@
 
         };
 
+
+        /*
+          Validate name
+        */
 
         if (
           !identity.name ||
@@ -672,7 +897,7 @@
 
 
         /*
-          Save Ambi Identity
+          Save Identity
         */
 
         localStorage.setItem(
@@ -682,7 +907,7 @@
 
 
         /*
-          Display Ambi
+          Display Identity
         */
 
         document
@@ -690,30 +915,36 @@
           .textContent =
           identity.name;
 
+
         document
           .getElementById("resultRole")
           .textContent =
           identity.role;
+
 
         document
           .getElementById("resultGender")
           .textContent =
           identity.gender;
 
+
         document
           .getElementById("resultPersonality")
           .textContent =
           identity.personality;
 
+
         document
-          .getElementById("resultLanguage")
+          .getElementById("resultPrimaryLanguage")
           .textContent =
-          identity.language;
+          identity.primaryLanguage;
+
 
         document
           .getElementById("resultAppearance")
           .textContent =
           identity.appearance;
+
 
         document
           .getElementById("resultStyle")
@@ -723,7 +954,7 @@
 
         /*
           Hide form
-          Show created Ambi
+          Show Ambi
         */
 
         form.style.display = "none";
@@ -741,7 +972,7 @@
 
 
     /*
-      Restore previously saved Identity
+      Restore saved Identity
     */
 
     const savedIdentity =
@@ -784,8 +1015,9 @@
 
 
         document
-          .getElementById("language")
+          .getElementById("primaryLanguage")
           .value =
+          identity.primaryLanguage ||
           identity.language ||
           "English";
 
@@ -802,6 +1034,32 @@
           .value =
           identity.style ||
           "Modern / Premium";
+
+
+        /*
+          Restore additional languages
+        */
+
+        const savedLanguages =
+          identity.additionalLanguages ||
+          [];
+
+
+        document
+          .querySelectorAll(
+            'input[name="additionalLanguage"]'
+          )
+          .forEach(
+            checkbox => {
+
+              checkbox.checked =
+                savedLanguages.includes(
+                  checkbox.value
+                );
+
+            }
+          );
+
 
       } catch (e) {
 
