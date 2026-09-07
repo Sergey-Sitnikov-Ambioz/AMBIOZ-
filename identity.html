@@ -182,6 +182,118 @@
       font-size: 14px;
     }
 
+    .ambi-profile {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 10px 0 24px;
+}
+
+.ambi-avatar-wrap {
+  width: 150px;
+  height: 150px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #eee;
+}
+
+.ambi-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ambi-name-block {
+  min-width: 0;
+}
+
+.ambi-name-block h2 {
+  margin: 0 0 6px;
+  font-size: 32px;
+  letter-spacing: -0.04em;
+}
+
+.ambi-role {
+  margin: 0 0 16px;
+  color: #666;
+  font-size: 16px;
+}
+
+.ambi-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ambi-tags span {
+  padding: 7px 11px;
+  border-radius: 20px;
+  background: #f1f1f3;
+  font-size: 13px;
+  color: #555;
+}
+
+.life-section {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid #eee;
+}
+
+.life-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.life-card {
+  padding: 20px;
+  border: 1px solid #e5e5e7;
+  border-radius: 18px;
+  background: #fafafa;
+}
+
+.life-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.life-text {
+  min-height: 48px;
+  color: #777;
+  font-size: 14px;
+  line-height: 1.45;
+  margin-bottom: 16px;
+}
+
+.life-card button {
+  margin-top: 0;
+}
+
+@media (max-width: 600px) {
+
+  .ambi-profile {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ambi-avatar-wrap {
+    width: 120px;
+    height: 120px;
+  }
+
+  .ambi-name-block h2 {
+    font-size: 28px;
+  }
+
+  .life-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+    
     @media (max-width: 600px) {
       .container {
         padding-top: 32px;
@@ -299,40 +411,34 @@
 
   <div class="eyebrow">YOUR AMBI</div>
 
-  <h2 id="resultName"></h2>
+  <div class="ambi-profile">
+
+    <div class="ambi-avatar-wrap">
+      <img
+        src="ambi-avatar.png"
+        alt="Ambi digital representative"
+        class="ambi-avatar"
+      >
+    </div>
+
+    <div class="ambi-name-block">
+      <h2 id="resultName"></h2>
+
+      <p class="ambi-role" id="resultRole"></p>
+
+      <div class="ambi-tags">
+        <span id="resultPersonality"></span>
+        <span id="resultLanguage"></span>
+        <span id="resultAppearance"></span>
+        <span id="resultStyle"></span>
+      </div>
+    </div>
+
+  </div>
 
   <p class="result-intro">
     Your digital business representative is ready.
   </p>
-
-  <div class="identity">
-
-    <div class="identity-row">
-      <span class="identity-label">Role</span>
-      <span id="resultRole" class="identity-value"></span>
-    </div>
-
-    <div class="identity-row">
-      <span class="identity-label">Personality</span>
-      <span id="resultPersonality" class="identity-value"></span>
-    </div>
-
-    <div class="identity-row">
-      <span class="identity-label">Language</span>
-      <span id="resultLanguage" class="identity-value"></span>
-    </div>
-
-    <div class="identity-row">
-      <span class="identity-label">Appearance</span>
-      <span id="resultAppearance" class="identity-value"></span>
-    </div>
-
-    <div class="identity-row">
-      <span class="identity-label">Style</span>
-      <span id="resultStyle" class="identity-value"></span>
-    </div>
-
-  </div>
 
   <div class="actions">
 
@@ -351,6 +457,58 @@
     >
       Create Content
     </button>
+
+  </div>
+
+  <div class="life-section">
+
+    <div class="eyebrow">BRING YOUR AMBI TO LIFE</div>
+
+    <div class="life-grid">
+
+      <div class="life-card">
+        <div class="life-title">Voice</div>
+        <div class="life-text">
+          Give your Ambi a voice.
+        </div>
+        <button
+          type="button"
+          class="secondary"
+          onclick="alert('Voice is coming next.')"
+        >
+          Voice →
+        </button>
+      </div>
+
+      <div class="life-card">
+        <div class="life-title">Photo</div>
+        <div class="life-text">
+          Create visual content with your Ambi.
+        </div>
+        <button
+          type="button"
+          class="secondary"
+          onclick="alert('Photo is coming next.')"
+        >
+          Photo →
+        </button>
+      </div>
+
+      <div class="life-card">
+        <div class="life-title">Video</div>
+        <div class="life-text">
+          Create videos with your Ambi.
+        </div>
+        <button
+          type="button"
+          class="secondary"
+          onclick="alert('Video is coming next.')"
+        >
+          Video →
+        </button>
+      </div>
+
+    </div>
 
   </div>
 
