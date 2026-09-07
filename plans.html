@@ -2,35 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Ambioz — Plans</title>
 
   <style>
+
     * {
       box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Helvetica, Arial, sans-serif;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
       background: #f7f7f5;
       color: #111;
     }
 
+
     .page {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 50px 24px 70px;
+      padding: 45px 22px 70px;
     }
+
+
+    /* ================================
+       HEADER
+       ================================ */
 
     .top {
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       margin-bottom: 60px;
     }
+
 
     .brand {
       font-size: 22px;
@@ -38,409 +57,755 @@
       letter-spacing: -0.5px;
     }
 
+
     .back {
       color: #111;
       text-decoration: none;
       font-size: 14px;
     }
 
+
+    /* ================================
+       HERO
+       ================================ */
+
     .hero {
-      text-align: center;
-      max-width: 700px;
+      max-width: 720px;
       margin: 0 auto 50px;
+      text-align: center;
     }
+
 
     .hero h1 {
+      margin: 0 0 16px;
+
       font-size: 48px;
       line-height: 1.05;
+
       letter-spacing: -2px;
-      margin: 0 0 16px;
     }
 
+
     .hero p {
+      margin: 0;
+
       font-size: 18px;
       line-height: 1.5;
+
       color: #666;
-      margin: 0;
     }
+
+
+    /* ================================
+       PLANS
+       ================================ */
 
     .plans {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
       gap: 20px;
+
       align-items: stretch;
     }
 
+
     .plan {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 20px;
-      padding: 30px;
       display: flex;
       flex-direction: column;
+
+      background: #fff;
+
+      border: 1px solid #ddd;
+      border-radius: 20px;
+
+      padding: 30px;
     }
+
 
     .plan.featured {
       border: 2px solid #111;
       padding: 29px;
     }
 
+
     .plan-name {
+      margin-bottom: 18px;
+
       font-size: 14px;
       font-weight: 700;
+
       text-transform: uppercase;
       letter-spacing: 1px;
-      margin-bottom: 18px;
     }
+
 
     .price {
+      margin-bottom: 6px;
+
       font-size: 40px;
       font-weight: 700;
+
       letter-spacing: -1.5px;
-      margin-bottom: 6px;
     }
+
 
     .price-note {
+      min-height: 20px;
+
+      margin-bottom: 25px;
+
       font-size: 13px;
       color: #777;
-      min-height: 20px;
-      margin-bottom: 25px;
     }
+
 
     .description {
+      min-height: 68px;
+
+      margin-bottom: 25px;
+
       font-size: 15px;
       line-height: 1.5;
+
       color: #555;
-      min-height: 68px;
-      margin-bottom: 25px;
     }
+
+
+    /* ================================
+       FEATURES
+       ================================ */
 
     .features {
+      flex: 1;
+
       margin: 0 0 30px;
       padding: 0;
+
       list-style: none;
-      flex: 1;
     }
 
+
     .features li {
+      padding: 10px 0;
+
+      border-bottom: 1px solid #eee;
+
       font-size: 14px;
       line-height: 1.45;
-      padding: 9px 0;
-      border-bottom: 1px solid #eee;
     }
+
 
     .features li:last-child {
       border-bottom: none;
     }
 
-    .button {
-      width: 100%;
-      border: 1px solid #111;
-      background: #111;
-      color: white;
-      border-radius: 12px;
-      padding: 14px 16px;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      text-align: center;
-    }
 
-    .button.secondary {
-      background: white;
+    .feature-title {
+      margin-top: 7px;
+
+      font-weight: 700;
       color: #111;
     }
 
+
+    .not-included {
+      color: #888;
+    }
+
+
+    /* ================================
+       BUTTON
+       ================================ */
+
+    .button {
+      width: 100%;
+
+      padding: 14px 16px;
+
+      border: 1px solid #111;
+      border-radius: 12px;
+
+      background: #111;
+      color: #fff;
+
+      font-size: 15px;
+      font-weight: 600;
+
+      cursor: pointer;
+    }
+
+
+    .button.secondary {
+      background: #fff;
+      color: #111;
+    }
+
+
+    .button:hover {
+      opacity: 0.9;
+    }
+
+
     .current {
+      min-height: 16px;
+
+      margin-top: 10px;
+
+      text-align: center;
+
       font-size: 12px;
       color: #777;
-      text-align: center;
-      margin-top: 10px;
-      min-height: 16px;
     }
+
+
+    /* ================================
+       FOOTER NOTE
+       ================================ */
 
     .note {
+      max-width: 700px;
+
+      margin: 35px auto 0;
+
       text-align: center;
-      color: #777;
+
       font-size: 13px;
-      margin-top: 35px;
+      line-height: 1.5;
+
+      color: #777;
     }
 
+
+    /* ================================
+       MOBILE
+       ================================ */
+
     @media (max-width: 800px) {
+
       .plans {
         grid-template-columns: 1fr;
       }
+
 
       .hero h1 {
         font-size: 38px;
       }
 
+
       .top {
         margin-bottom: 40px;
       }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
   <div class="page">
 
-    <div class="top">
-      <div class="brand">AMBIOZ</div>
 
-      <a class="back" href="identity.html">
+    <!-- ================================
+         HEADER
+         ================================ -->
+
+    <div class="top">
+
+      <div class="brand">
+        AMBIOZ
+      </div>
+
+
+      <a
+        class="back"
+        href="identity.html"
+      >
         ← Back to Ambi
       </a>
+
     </div>
 
 
+
+    <!-- ================================
+         HERO
+         ================================ -->
+
     <section class="hero">
 
-      <h1>Choose your Ambioz plan.</h1>
+      <h1>
+        Choose your Ambioz plan.
+      </h1>
+
 
       <p>
-        Start free. Upgrade when your business needs more Ambis,
-        languages and identity customization.
+        Start free. Upgrade when your business
+        needs more Ambis, languages and creative power.
       </p>
 
     </section>
 
 
+
+    <!-- ================================
+         PLANS
+         ================================ -->
+
     <section class="plans">
 
 
-      <!-- FREE -->
+      <!-- ================================
+           FREE
+           ================================ -->
 
       <div class="plan">
+
 
         <div class="plan-name">
           Free
         </div>
 
+
         <div class="price">
           €0
         </div>
+
 
         <div class="price-note">
           Forever
         </div>
 
+
         <div class="description">
-          Explore the Ambioz experience with one digital business representative.
+          Explore Ambioz with one digital
+          business representative.
         </div>
+
 
         <ul class="features">
 
-          <li>✓ 1 Ambi</li>
 
-          <li>✓ 1 primary language</li>
+          <li>
+            ✓ <strong>1 Ambi</strong>
+          </li>
 
-          <li>✓ Automatic appearance</li>
 
-          <li>✓ Business knowledge</li>
+          <li>
+            ✓ <strong>1 primary language</strong>
+          </li>
 
-          <li>✓ AI conversation</li>
 
-          <li>✓ Content generation</li>
+          <li class="not-included">
+            — No additional languages
+          </li>
 
-          <li>✓ Shareable Ambi page</li>
+
+          <li class="not-included">
+            — Automatic appearance
+          </li>
+
+
+          <li>
+            ✓ Business knowledge
+          </li>
+
+
+          <li>
+            ✓ AI conversation
+          </li>
+
+
+          <li>
+            ✓ <strong>5 AI content generations / month</strong>
+          </li>
+
+
+          <li>
+            ✓ <strong>3 photo generations / month</strong>
+          </li>
+
+
+          <li class="not-included">
+            — Video generation
+          </li>
+
+
+          <li>
+            ✓ Shareable Ambi page
+          </li>
+
 
         </ul>
 
+
         <button
           class="button secondary"
-          onclick="selectPlan('free')">
+          onclick="selectPlan('free')"
+        >
           Continue with Free
         </button>
 
+
         <div
           class="current"
-          id="current-free">
+          id="current-free"
+        >
         </div>
+
 
       </div>
 
 
 
-      <!-- PRO -->
+      <!-- ================================
+           PRO
+           ================================ -->
 
       <div class="plan featured">
+
 
         <div class="plan-name">
           Pro
         </div>
 
+
         <div class="price">
           Coming soon
         </div>
+
 
         <div class="price-note">
           Paid plan
         </div>
 
+
         <div class="description">
-          More control and more languages for growing businesses.
+          More control, more languages and
+          more creative capacity for growing businesses.
         </div>
+
 
         <ul class="features">
 
-          <li>✓ Up to 2 Ambis</li>
 
-          <li>✓ 1 primary language</li>
+          <li>
+            ✓ <strong>Up to 2 Ambis</strong>
+          </li>
 
-          <li>✓ 3 additional languages</li>
 
-          <li>✓ Appearance customization</li>
+          <li>
+            ✓ <strong>1 primary language</strong>
+          </li>
 
-          <li>✓ Business knowledge</li>
 
-          <li>✓ AI conversation</li>
+          <li>
+            ✓ <strong>3 additional languages</strong>
+          </li>
 
-          <li>✓ Content generation</li>
 
-          <li>✓ Shareable Ambi page</li>
+          <li>
+            ✓ <strong>Appearance customization</strong>
+          </li>
+
+
+          <li>
+            ✓ Business knowledge
+          </li>
+
+
+          <li>
+            ✓ AI conversation
+          </li>
+
+
+          <li>
+            ✓ <strong>50 AI content generations / month</strong>
+          </li>
+
+
+          <li>
+            ✓ <strong>30 photo generations / month</strong>
+          </li>
+
+
+          <li>
+            ✓ <strong>5 video generations / month</strong>
+          </li>
+
+
+          <li>
+            ✓ Shareable Ambi page
+          </li>
+
 
         </ul>
 
+
         <button
           class="button"
-          onclick="selectPlan('pro')">
+          onclick="selectPlan('pro')"
+        >
           Choose Pro
         </button>
 
+
         <div
           class="current"
-          id="current-pro">
+          id="current-pro"
+        >
         </div>
+
 
       </div>
 
 
 
-      <!-- BUSINESS -->
+      <!-- ================================
+           BUSINESS
+           ================================ -->
 
       <div class="plan">
+
 
         <div class="plan-name">
           Business
         </div>
 
+
         <div class="price">
           Coming soon
         </div>
+
 
         <div class="price-note">
           Paid plan
         </div>
 
+
         <div class="description">
-          Multiple Ambis and more languages for businesses with broader needs.
+          Multiple Ambis, more languages and
+          higher creative limits for larger businesses.
         </div>
+
 
         <ul class="features">
 
-          <li>✓ Up to 5 Ambis</li>
 
-          <li>✓ 1 primary language</li>
+          <li>
+            ✓ <strong>Up to 5 Ambis</strong>
+          </li>
 
-          <li>✓ 5 additional languages</li>
 
-          <li>✓ Appearance customization</li>
+          <li>
+            ✓ <strong>1 primary language</strong>
+          </li>
 
-          <li>✓ Business knowledge</li>
 
-          <li>✓ AI conversation</li>
+          <li>
+            ✓ <strong>5 additional languages</strong>
+          </li>
 
-          <li>✓ Content generation</li>
 
-          <li>✓ Shareable Ambi page</li>
+          <li>
+            ✓ <strong>Appearance customization</strong>
+          </li>
+
+
+          <li>
+            ✓ Business knowledge
+          </li>
+
+
+          <li>
+            ✓ AI conversation
+          </li>
+
+
+          <li>
+            ✓ <strong>200 AI content generations / month</strong>
+          </li>
+
+
+          <li>
+            ✓ <strong>100 photo generations / month</strong>
+          </li>
+
+
+          <li>
+            ✓ <strong>20 video generations / month</strong>
+          </li>
+
+
+          <li>
+            ✓ Shareable Ambi page
+          </li>
+
 
         </ul>
 
+
         <button
           class="button secondary"
-          onclick="selectPlan('business')">
+          onclick="selectPlan('business')"
+        >
           Choose Business
         </button>
 
+
         <div
           class="current"
-          id="current-business">
+          id="current-business"
+        >
         </div>
 
+
       </div>
+
 
     </section>
 
 
+
+    <!-- ================================
+         NOTE
+         ================================ -->
+
     <div class="note">
+
       Payments will be available soon.
+      Current plan selection is for product testing.
+
     </div>
+
 
   </div>
 
 
+
+  <!-- ================================
+       PLAN SYSTEM
+       ================================ -->
+
   <script src="plan.js"></script>
+
 
   <script>
 
+
+    /*
+     * ================================
+     * CURRENT PLAN
+     * ================================
+     */
+
     function renderCurrentPlan() {
 
-      const currentPlan = getAmbiozPlan();
+      const currentPlan =
+        getAmbiozPlan();
+
 
       document
         .querySelectorAll(".current")
-        .forEach(element => {
-          element.textContent = "";
-        });
+        .forEach(
+          element => {
+
+            element.textContent =
+              "";
+
+          }
+        );
+
 
       const currentElement =
         document.getElementById(
           "current-" + currentPlan
         );
 
+
       if (currentElement) {
+
         currentElement.textContent =
           "Current plan";
+
       }
+
     }
 
 
+
+    /*
+     * ================================
+     * SELECT PLAN
+     * ================================
+     */
+
     function selectPlan(plan) {
 
+
       /*
-       * V0.1:
-       * Free can be activated immediately.
+       * FREE
        *
-       * Pro and Business are displayed,
-       * but payment is not connected yet.
+       * Free is available immediately.
        */
 
       if (plan === "free") {
 
-        setAmbiozPlan("free");
+        setAmbiozPlan(
+          "free"
+        );
+
 
         renderCurrentPlan();
 
-        setTimeout(() => {
-          window.location.href =
-            "identity.html";
-        }, 300);
+
+        setTimeout(
+          () => {
+
+            window.location.href =
+              "identity.html";
+
+          },
+          300
+        );
+
 
         return;
       }
 
 
+
+      /*
+       * PRO / BUSINESS
+       *
+       * Payments are not connected yet.
+       */
+
       alert(
         "This plan will be available soon."
       );
+
     }
 
 
+
+    /*
+     * ================================
+     * INITIAL STATE
+     * ================================
+     */
+
     renderCurrentPlan();
 
+
   </script>
+
 
 </body>
 </html>
