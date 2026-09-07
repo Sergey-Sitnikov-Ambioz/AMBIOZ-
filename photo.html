@@ -33,10 +33,6 @@
       font-size: 14px;
     }
 
-    .back:hover {
-      color: #111;
-    }
-
     h1 {
       margin: 0;
       font-size: 32px;
@@ -163,7 +159,7 @@
 
     .prompt-box {
       width: 100%;
-      min-height: 170px;
+      min-height: 190px;
       padding: 16px;
       border: 1px solid #ddd;
       border-radius: 12px;
@@ -208,6 +204,16 @@
       line-height: 1.5;
     }
 
+    .auto-note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: #f5f5f3;
+      color: #666;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
     .error {
       display: none;
       margin-top: 14px;
@@ -220,6 +226,7 @@
     }
 
     @media (max-width: 600px) {
+
       .container {
         padding: 24px 16px 50px;
       }
@@ -235,6 +242,7 @@
       .prompt-actions {
         grid-template-columns: 1fr;
       }
+
     }
   </style>
 </head>
@@ -255,6 +263,7 @@
 
 
     <!-- AMBI -->
+
     <section class="card">
 
       <div class="ambi-header">
@@ -281,6 +290,7 @@
 
 
     <!-- PHOTO SETTINGS -->
+
     <section class="card">
 
       <div class="field">
@@ -403,7 +413,10 @@
       </div>
 
 
-      <button type="button" onclick="createPhoto()">
+      <button
+        type="button"
+        onclick="createPhoto()"
+      >
         Create Photo →
       </button>
 
@@ -413,19 +426,33 @@
 
 
     <!-- RESULT -->
+
     <section class="card result" id="result">
 
       <h2>
         Your Photo
       </h2>
 
+
       <div class="prompt-label">
+
         <label>
           Generation prompt
         </label>
+
       </div>
 
-      <div class="prompt-box" id="promptBox"></div>
+
+      <div
+        class="prompt-box"
+        id="promptBox"
+      ></div>
+
+
+      <div
+        class="auto-note"
+        id="autoNote"
+      ></div>
 
 
       <div class="prompt-actions">
@@ -448,8 +475,10 @@
       </div>
 
 
-      <!-- IMAGE GENERATION AREA -->
-      <div class="generation-area" id="generationArea">
+      <div
+        class="generation-area"
+        id="generationArea"
+      >
 
         <div
           class="generation-placeholder"
@@ -462,9 +491,8 @@
 
 
       <div class="note">
-        Ambioz uses your saved Identity together with the selected
-        scene, pose, expression and format to create a consistent
-        visual representation of your Ambi.
+        Ambioz uses your Identity and selected photo settings
+        to create a consistent visual direction for your Ambi.
       </div>
 
     </section>
@@ -474,10 +502,6 @@
 
   <script>
 
-    /*
-      Load saved Ambi Identity
-    */
-
     const identity =
       JSON.parse(
         localStorage.getItem("ambiIdentity") || "null"
@@ -485,7 +509,7 @@
 
 
     /*
-      Load Ambi
+      Load Identity
     */
 
     function loadIdentity() {
@@ -500,34 +524,31 @@
       }
 
 
-      const name =
-        identity.name || "Your Ambi";
-
-      const role =
-        identity.role ||
-        "Digital Business Representative";
-
-
       document.getElementById("ambiName")
-        .textContent = name;
+        .textContent =
+          identity.name || "Your Ambi";
+
 
       document.getElementById("ambiRole")
-        .textContent = role;
+        .textContent =
+          identity.role ||
+          "Digital Business Representative";
 
-
-      /*
-        Load prototype avatar
-      */
 
       const avatar =
         document.getElementById("avatar");
 
+
       const img =
         document.createElement("img");
 
-      img.src = "ambi-avatar.png";
 
-      img.alt = name;
+      img.src =
+        "ambi-avatar.png";
+
+
+      img.alt =
+        identity.name || "Ambi";
 
 
       img.onload = function() {
@@ -542,10 +563,11 @@
 
 
     /*
-      Build visual identity description
+      Build only explicitly selected
+      visual characteristics.
     */
 
-    function buildIdentityDescription() {
+    function buildVisualDescription() {
 
       if (!identity) {
         return "";
@@ -558,70 +580,74 @@
       if (identity.gender) {
 
         parts.push(
-          `${identity.gender} digital business representative`
-        );
-
-      } else {
-
-        parts.push(
-          "digital business representative"
+          `${identity.gender.toLowerCase()}`
         );
 
       }
 
 
-      if (identity.name) {
+      if (identity.ageRange) {
 
         parts.push(
-          `named ${identity.name}`
+          `in their ${identity.ageRange}`
         );
 
       }
 
 
-      if (identity.role) {
+      if (identity.skinTone) {
 
         parts.push(
-          `with the role of ${identity.role}`
+          `${identity.skinTone} skin`
         );
 
       }
 
 
-      if (identity.personality) {
+      if (identity.hairColor) {
 
         parts.push(
-          `with a ${identity.personality} personality`
+          `${identity.hairColor} hair`
         );
 
       }
 
 
-      if (identity.appearance) {
+      if (identity.hairStyle) {
 
         parts.push(
-          `${identity.appearance} appearance`
+          identity.hairStyle
         );
 
       }
 
 
-      if (identity.style) {
+      if (identity.eyeColor) {
 
         parts.push(
-          `${identity.style} visual style`
+          `${identity.eyeColor} eyes`
         );
 
       }
 
 
-      return parts.join(", ");
+      if (parts.length === 0) {
+
+        return "a professional person with a natural, attractive appearance";
+
+      }
+
+
+      return (
+        "a professional person with " +
+        parts.join(", ")
+      );
 
     }
 
 
     /*
-      Create generation prompt
+      Build prompt
     */
 
     function buildPrompt() {
@@ -639,33 +665,126 @@
         document.getElementById("format").value;
 
 
-      const identityDescription =
-        buildIdentityDescription();
+      const visualDescription =
+        buildVisualDescription();
 
 
-      const prompt =
-        `Create a high-quality professional photo of ${identityDescription}. ` +
+      let prompt =
+        `Create a photorealistic professional business photo of ${visualDescription}. `;
 
-        `The Ambi should have a consistent visual identity and recognizable appearance. ` +
 
+      if (identity && identity.name) {
+
+        prompt +=
+          `The character is named ${identity.name}. `;
+
+      }
+
+
+      if (identity && identity.style) {
+
+        prompt +=
+          `Visual style: ${identity.style}. `;
+
+      }
+
+
+      prompt +=
         `Scene: ${scene}. ` +
 
         `Pose: ${pose}. ` +
 
-        `Facial expression: ${expression}. ` +
+        `Expression: ${expression}. ` +
 
         `Composition: ${format}. ` +
 
-        `Natural realistic lighting, realistic human proportions, ` +
+        `Natural realistic lighting, realistic skin texture, ` +
+
+        `realistic human proportions, natural hands, ` +
 
         `professional photography, clean composition, ` +
 
-        `authentic business environment, high visual quality. ` +
+        `premium business environment. ` +
 
-        `Do not add text, logos, watermarks, captions or UI elements.`;
+        `The character must have a natural unobstructed head, ` +
+
+        `hair and ears. ` +
+
+        `No headphones, no headset, no microphone, ` +
+
+        `no earbuds, no earpiece, no wires, ` +
+
+        `no communication equipment, no call-center equipment, ` +
+
+        `no telephone equipment, no text, no logos, ` +
+
+        `no watermark, no UI elements.`;
 
 
       return prompt;
+
+    }
+
+
+    /*
+      Show which parameters were automatic.
+    */
+
+    function updateAutoNote() {
+
+      if (!identity) {
+        return;
+      }
+
+
+      const automatic = [];
+
+
+      if (!identity.gender) {
+        automatic.push("gender");
+      }
+
+      if (!identity.ageRange) {
+        automatic.push("age");
+      }
+
+      if (!identity.skinTone) {
+        automatic.push("skin tone");
+      }
+
+      if (!identity.hairColor) {
+        automatic.push("hair color");
+      }
+
+      if (!identity.hairStyle) {
+        automatic.push("hair style");
+      }
+
+      if (!identity.eyeColor) {
+        automatic.push("eye color");
+      }
+
+
+      const note =
+        document.getElementById("autoNote");
+
+
+      if (automatic.length === 0) {
+
+        note.style.display = "none";
+
+        return;
+
+      }
+
+
+      note.style.display = "block";
+
+
+      note.textContent =
+        "Ambioz will choose " +
+        automatic.join(", ") +
+        " automatically.";
 
     }
 
@@ -683,39 +802,32 @@
         );
 
         return;
+
       }
-
-
-      const scene =
-        document.getElementById("scene").value;
-
-      const pose =
-        document.getElementById("pose").value;
-
-      const expression =
-        document.getElementById("expression").value;
-
-      const format =
-        document.getElementById("format").value;
 
 
       const prompt =
         buildPrompt();
 
 
-      const photoRequest = {
+      const request = {
 
         identity: identity,
 
-        scene: scene,
+        scene:
+          document.getElementById("scene").value,
 
-        pose: pose,
+        pose:
+          document.getElementById("pose").value,
 
-        expression: expression,
+        expression:
+          document.getElementById("expression").value,
 
-        format: format,
+        format:
+          document.getElementById("format").value,
 
-        prompt: prompt,
+        prompt:
+          prompt,
 
         createdAt:
           new Date().toISOString()
@@ -725,20 +837,26 @@
 
       localStorage.setItem(
         "ambiPhotoRequest",
-        JSON.stringify(photoRequest)
+        JSON.stringify(request)
       );
 
 
       document.getElementById("promptBox")
-        .textContent = prompt;
+        .textContent =
+          prompt;
+
+
+      updateAutoNote();
 
 
       document.getElementById("result")
-        .style.display = "block";
+        .style.display =
+          "block";
 
 
       document.getElementById("generationArea")
-        .style.display = "none";
+        .style.display =
+          "none";
 
 
       document.getElementById("result")
@@ -750,7 +868,7 @@
 
 
     /*
-      Copy prompt
+      Copy
     */
 
     async function copyPrompt() {
@@ -762,13 +880,18 @@
 
       try {
 
-        await navigator.clipboard.writeText(prompt);
+        await navigator.clipboard
+          .writeText(prompt);
 
         const button =
-          event.currentTarget;
+          document.querySelector(
+            ".prompt-actions button"
+          );
+
 
         const original =
           button.textContent;
+
 
         button.textContent =
           "Copied ✓";
@@ -793,13 +916,16 @@
 
 
     /*
-      Temporary image generation stage
+      Temporary generation stage
     */
 
     function generateImage() {
 
-      const generationArea =
-        document.getElementById("generationArea");
+      const area =
+        document.getElementById(
+          "generationArea"
+        );
+
 
       const placeholder =
         document.getElementById(
@@ -807,7 +933,7 @@
         );
 
 
-      generationArea.style.display =
+      area.style.display =
         "block";
 
 
@@ -815,34 +941,34 @@
         <div>
           <strong>Image generator ready</strong>
           <br><br>
-          Your Ambi Identity and photo settings
-          have been converted into a generation prompt.
+          Ambioz has prepared the visual identity
+          and photo direction.
           <br><br>
           A real image generation provider
-          will be connected to this button next.
+          will be connected here next.
         </div>
       `;
 
 
-      generationArea.scrollIntoView({
+      area.scrollIntoView({
         behavior: "smooth"
       });
 
     }
 
 
-    /*
-      Error
-    */
-
     function showError(message) {
 
       const error =
         document.getElementById("error");
 
-      error.textContent = message;
 
-      error.style.display = "block";
+      error.textContent =
+        message;
+
+
+      error.style.display =
+        "block";
 
     }
 
