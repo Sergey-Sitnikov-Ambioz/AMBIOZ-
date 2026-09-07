@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Talk to Ambi — AMBIOZ</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background: #f7f7f7;
+      color: #111111;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #eeeeee;
+      padding: 20px 7%;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #111111;
+      text-decoration: none;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 45px 6% 70px;
+    }
+
+    .profile {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 35px;
+      margin-bottom: 25px;
+      border: 1px solid #e8e8e8;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #eeeeee;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 34px;
+      font-weight: 700;
+
+      margin-bottom: 22px;
+    }
+
+    .label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #888888;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 42px;
+      letter-spacing: -2px;
+      margin-bottom: 8px;
+    }
+
+    .business-type {
+      color: #666666;
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    .section {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 25px;
+      border: 1px solid #e8e8e8;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .intro {
+      color: #777777;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 22px;
+    }
+
+    .info {
+      display: grid;
+      gap: 12px;
+    }
+
+    .info-item {
+      padding: 17px;
+      background: #f7f7f7;
+      border-radius: 12px;
+    }
+
+    .info-item span {
+      display: block;
+      color: #888888;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .info-item strong {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .chat {
+      min-height: 180px;
+      max-height: 450px;
+      overflow-y: auto;
+
+      background: #f7f7f7;
+      border-radius: 14px;
+
+      padding: 18px;
+      margin-bottom: 15px;
+    }
+
+    .message {
+      background: #ffffff;
+      padding: 14px;
+      border-radius: 12px;
+      line-height: 1.5;
+      font-size: 15px;
+      border: 1px solid #eeeeee;
+      margin-bottom: 10px;
+    }
+
+    .message:last-child {
+      margin-bottom: 0;
+    }
+
+    .message strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 13px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 90px;
+
+      padding: 15px;
+
+      border: 1px solid #dddddd;
+      border-radius: 10px;
+
+      font-family: inherit;
+      font-size: 16px;
+
+      resize: vertical;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: #111111;
+    }
+
+    textarea:disabled {
+      opacity: 0.6;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 12px;
+
+      padding: 16px;
+
+      border: none;
+      border-radius: 10px;
+
+      background: #111111;
+      color: #ffffff;
+
+      font-size: 16px;
+      font-weight: 600;
+
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .error {
+      background: #ffffff;
+      border: 1px solid #eeeeee;
+      border-radius: 20px;
+      padding: 30px;
+
+      color: #555555;
+      line-height: 1.5;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      color: #999999;
+      font-size: 12px;
+      padding: 10px 0 30px;
+    }
+
+    @media (max-width: 600px) {
+
+      main {
+        padding-top: 30px;
+      }
+
+      .profile,
+      .section {
+        padding: 24px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <header>
+
+    <a
+      href="index.html"
+      class="logo"
+    >
+      AMBIOZ
+    </a>
+
+  </header>
+
+
+  <main>
+
+    <section
+      class="profile"
+      id="profileSection"
+    >
+
+      <div
+        class="avatar"
+        id="avatar"
+      >
+        A
+      </div>
+
+      <div class="label">
+        DIGITAL BUSINESS REPRESENTATIVE
+      </div>
+
+      <h1 id="businessName">
+        Loading...
+      </h1>
+
+      <div
+        class="business-type"
+        id="businessDescription"
+      >
+        Loading business information...
+      </div>
+
+    </section>
+
+
+    <section
+      class="section"
+      id="businessSection"
+    >
+
+      <h2>
+        About this business
+      </h2>
+
+      <p class="intro">
+        Information provided by the business.
+      </p>
+
+      <div class="info">
+
+        <div class="info-item">
+
+          <span>
+            SERVICES
+          </span>
+
+          <strong id="services">
+            —
+          </strong>
+
+        </div>
+
+
+        <div class="info-item">
+
+          <span>
+            CUSTOMERS
+          </span>
+
+          <strong id="customers">
+            —
+          </strong>
+
+        </div>
+
+
+        <div
+          class="info-item"
+          id="websiteItem"
+        >
+
+          <span>
+            WEBSITE
+          </span>
+
+          <strong id="website">
+            —
+          </strong>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section
+      class="section"
+      id="chatSection"
+    >
+
+      <h2>
+        Talk to Ambi
+      </h2>
+
+      <p class="intro">
+        Ask a question about this business.
+        Ambi will answer as its digital representative.
+      </p>
+
+
+      <div
+        class="chat"
+        id="chatBox"
+      >
+
+        <div class="message">
+
+          <strong>
+            Ambi
+          </strong>
+
+          Hello. I'm the digital representative
+          of this business. How can I help?
+
+        </div>
+
+      </div>
+
+
+      <textarea
+        id="messageInput"
+        maxlength="1000"
+        placeholder="Ask Ambi something..."
+      ></textarea>
+
+
+      <button
+        id="askButton"
+        onclick="sendMessage()"
+      >
+        Ask Ambi →
+      </button>
+
+    </section>
+
+
+    <section
+      class="error hidden"
+      id="errorSection"
+    >
+
+      <strong>
+        This Ambi could not be loaded.
+      </strong>
+
+      <p id="errorMessage"></p>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+    Powered by AMBIOZ
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+  <script>
+
+    const SUPABASE_URL =
+      "https://qabvpdmdikjqdzeogrcz.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_bySPn4HxH44yhY11-3H4hQ_2yMEh5FN";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+
+
+    let business = {};
+
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    const businessId =
+      params.get("id");
+
+
+    async function loadBusiness() {
+
+      if (!businessId) {
+        showError(
+          "No Ambi ID was provided."
+        );
+        return;
+      }
+
+
+      try {
+
+        const { data, error } =
+          await supabaseClient
+            .from("businesses")
+            .select("*")
+            .eq("id", businessId)
+            .single();
+
+
+        if (error) {
+          throw error;
+        }
+
+
+        if (!data) {
+          throw new Error(
+            "Business not found."
+          );
+        }
+
+
+        business = data;
+
+
+        document
+          .getElementById("businessName")
+          .textContent =
+            business.name ||
+            "Business";
+
+
+        document
+          .getElementById("businessDescription")
+          .textContent =
+            business.description ||
+            "Business information";
+
+
+        document
+          .getElementById("services")
+          .textContent =
+            business.services ||
+            "Information not provided.";
+
+
+        document
+          .getElementById("customers")
+          .textContent =
+            business.customers ||
+            "Information not provided.";
+
+
+        const website =
+          document.getElementById(
+            "website"
+          );
+
+
+        if (business.website) {
+
+          website.textContent =
+            business.website;
+
+        } else {
+
+          website.textContent =
+            "Not provided";
+
+        }
+
+
+        const firstLetter =
+          (business.name || "A")
+            .trim()
+            .charAt(0)
+            .toUpperCase();
+
+
+        document
+          .getElementById("avatar")
+          .textContent =
+            firstLetter;
+
+      } catch (error) {
+
+        console.error(error);
+
+        showError(
+          error.message ||
+          "Could not load this Ambi."
+        );
+
+      }
+
+    }
+
+
+    function showError(message) {
+
+      document
+        .getElementById("profileSection")
+        .classList.add("hidden");
+
+      document
+        .getElementById("businessSection")
+        .classList.add("hidden");
+
+      document
+        .getElementById("chatSection")
+        .classList.add("hidden");
+
+      document
+        .getElementById("errorSection")
+        .classList.remove("hidden");
+
+      document
+        .getElementById("errorMessage")
+        .textContent =
+          message;
+
+    }
+
+
+    function appendMessage(
+      chat,
+      label,
+      text
+    ) {
+
+      const message =
+        document.createElement(
+          "div"
+        );
+
+      message.className =
+        "message";
+
+
+      const messageLabel =
+        document.createElement(
+          "strong"
+        );
+
+      messageLabel.textContent =
+        label;
+
+
+      const messageText =
+        document.createElement(
+          "div"
+        );
+
+      messageText.textContent =
+        text;
+
+
+      message.appendChild(
+        messageLabel
+      );
+
+      message.appendChild(
+        messageText
+      );
+
+      chat.appendChild(
+        message
+      );
+
+
+      chat.scrollTop =
+        chat.scrollHeight;
+
+
+      return message;
+
+    }
+
+
+    async function sendMessage() {
+
+      const input =
+        document.getElementById(
+          "messageInput"
+        );
+
+      const button =
+        document.getElementById(
+          "askButton"
+        );
+
+      const chat =
+        document.getElementById(
+          "chatBox"
+        );
+
+
+      const question =
+        input.value.trim();
+
+
+      if (!question) {
+        return;
+      }
+
+
+      input.disabled = true;
+      button.disabled = true;
+      button.textContent =
+        "Ambi is thinking...";
+
+
+      appendMessage(
+        chat,
+        "You",
+        question
+      );
+
+
+      input.value = "";
+
+
+      const loadingMessage =
+        appendMessage(
+          chat,
+          "Ambi",
+          "Thinking..."
+        );
+
+
+      try {
+
+        const response =
+          await fetch(
+            "https://qabvpdmdikjqdzeogrcz.supabase.co/functions/v1/chat-with-ambi",
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json",
+
+                "apikey":
+                  SUPABASE_PUBLISHABLE_KEY
+              },
+
+              body: JSON.stringify({
+
+                mode: "chat",
+
+                message: question,
+
+                business: business
+
+              })
+
+            }
+          );
+
+
+        const data =
+          await response.json();
+
+
+        loadingMessage.remove();
+
+
+        if (!data.success) {
+
+          throw new Error(
+            data.error ||
+            "Ambi could not answer."
+          );
+
+        }
+
+
+        appendMessage(
+          chat,
+          "Ambi",
+          data.reply
+        );
+
+
+      } catch (error) {
+
+        console.error(error);
+
+
+        loadingMessage.textContent =
+          "Error: " +
+          error.message;
+
+      } finally {
+
+        input.disabled = false;
+        button.disabled = false;
+
+        button.textContent =
+          "Ask Ambi →";
+
+        input.focus();
+
+      }
+
+    }
+
+
+    document
+      .getElementById(
+        "messageInput"
+      )
+      .addEventListener(
+        "keydown",
+        function(event) {
+
+          if (
+            event.key === "Enter" &&
+            !event.shiftKey
+          ) {
+
+            event.preventDefault();
+
+            sendMessage();
+
+          }
+
+        }
+      );
+
+
+    loadBusiness();
+
+  </script>
+
+</body>
+
+</html>
