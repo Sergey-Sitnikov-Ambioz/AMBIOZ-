@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Meet your Ambi — AMBIOZ</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f5f5f7;
+      color: #111;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+        "SF Pro Text", Helvetica, Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 42px;
+      color: #666;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .back:hover {
+      color: #111;
+    }
+
+    .eyebrow {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #777;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: 42px;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .intro {
+      margin: 0 0 40px;
+      max-width: 600px;
+      color: #666;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+    }
+
+    .field {
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 9px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 15px 16px;
+      border: 1px solid #d8d8dc;
+      border-radius: 12px;
+      background: #fff;
+      color: #111;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #111;
+    }
+
+    .hint {
+      margin-top: 7px;
+      color: #888;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 8px;
+      padding: 16px 20px;
+      border: 0;
+      border-radius: 14px;
+      background: #111;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.88;
+    }
+
+    .result {
+      display: none;
+      margin-top: 28px;
+    }
+
+    .result h2 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      letter-spacing: -0.03em;
+    }
+
+    .result-intro {
+      margin: 0 0 24px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .identity {
+      border-top: 1px solid #eee;
+      padding-top: 20px;
+    }
+
+    .identity-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 13px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .identity-label {
+      color: #777;
+    }
+
+    .identity-value {
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .secondary {
+      margin-top: 0;
+      background: #f1f1f3;
+      color: #111;
+    }
+
+    .error {
+      display: none;
+      margin-top: 20px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: #fff0f0;
+      color: #b00020;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding-top: 32px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .card {
+        padding: 22px;
+        border-radius: 20px;
+      }
+
+      .actions {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <a class="back" href="ambi.html">← Back to Ambi</a>
+
+    <div class="eyebrow">AMBIOZ · AMBI IDENTITY</div>
+
+    <h1>Meet your Ambi</h1>
+
+    <p class="intro">
+      Create the digital representative of your business.
+      This identity will be used across text, voice, photo and video.
+    </p>
+
+    <section class="card">
+
+      <form id="identityForm">
+
+        <div class="field">
+          <label for="ambiName">Name</label>
+          <input
+            id="ambiName"
+            type="text"
+            placeholder="Ava"
+            required
+          >
+          <div class="hint">
+            Give your digital representative a name.
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="ambiRole">Role</label>
+          <input
+            id="ambiRole"
+            type="text"
+            value="Digital Business Representative"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label for="personality">Personality</label>
+          <select id="personality">
+            <option value="Friendly">Friendly</option>
+            <option value="Professional">Professional</option>
+            <option value="Confident">Confident</option>
+            <option value="Warm">Warm</option>
+            <option value="Minimal">Minimal</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="language">Language</label>
+          <select id="language">
+            <option value="English">English</option>
+            <option value="Polish">Polish</option>
+            <option value="Russian">Russian</option>
+            <option value="German">German</option>
+            <option value="Spanish">Spanish</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="appearance">Appearance</label>
+          <select id="appearance">
+            <option value="Human">Human</option>
+            <option value="Digital">Digital</option>
+            <option value="Abstract">Abstract</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="style">Style</label>
+          <select id="style">
+            <option value="Modern / Premium">Modern / Premium</option>
+            <option value="Clean / Minimal">Clean / Minimal</option>
+            <option value="Friendly / Casual">Friendly / Casual</option>
+            <option value="Corporate">Corporate</option>
+            <option value="Creative">Creative</option>
+          </select>
+        </div>
+
+        <button type="submit">
+          Create my Ambi →
+        </button>
+
+      </form>
+
+      <div id="error" class="error"></div>
+
+      <div id="result" class="result">
+
+        <h2 id="resultName"></h2>
+
+        <p class="result-intro">
+          Your Ambi identity is ready.
+        </p>
+
+        <div class="identity">
+
+          <div class="identity-row">
+            <span class="identity-label">Role</span>
+            <span id="resultRole" class="identity-value"></span>
+          </div>
+
+          <div class="identity-row">
+            <span class="identity-label">Personality</span>
+            <span id="resultPersonality" class="identity-value"></span>
+          </div>
+
+          <div class="identity-row">
+            <span class="identity-label">Language</span>
+            <span id="resultLanguage" class="identity-value"></span>
+          </div>
+
+          <div class="identity-row">
+            <span class="identity-label">Appearance</span>
+            <span id="resultAppearance" class="identity-value"></span>
+          </div>
+
+          <div class="identity-row">
+            <span class="identity-label">Style</span>
+            <span id="resultStyle" class="identity-value"></span>
+          </div>
+
+        </div>
+
+        <div class="actions">
+
+          <button
+            type="button"
+            onclick="window.location.href='ambi.html'"
+            class="secondary"
+          >
+            Talk to Ambi
+          </button>
+
+          <button
+            type="button"
+            onclick="window.location.href='create-content.html'"
+            class="secondary"
+          >
+            Create Content
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+
+    const form = document.getElementById("identityForm");
+    const result = document.getElementById("result");
+    const error = document.getElementById("error");
+
+    form.addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+      error.style.display = "none";
+
+      const identity = {
+        name: document.getElementById("ambiName").value.trim(),
+        role: document.getElementById("ambiRole").value.trim(),
+        personality: document.getElementById("personality").value,
+        language: document.getElementById("language").value,
+        appearance: document.getElementById("appearance").value,
+        style: document.getElementById("style").value
+      };
+
+      if (!identity.name) {
+        error.textContent = "Please enter a name for your Ambi.";
+        error.style.display = "block";
+        return;
+      }
+
+      localStorage.setItem(
+        "ambiIdentity",
+        JSON.stringify(identity)
+      );
+
+      document.getElementById("resultName").textContent =
+        identity.name;
+
+      document.getElementById("resultRole").textContent =
+        identity.role;
+
+      document.getElementById("resultPersonality").textContent =
+        identity.personality;
+
+      document.getElementById("resultLanguage").textContent =
+        identity.language;
+
+      document.getElementById("resultAppearance").textContent =
+        identity.appearance;
+
+      document.getElementById("resultStyle").textContent =
+        identity.style;
+
+      form.style.display = "none";
+      result.style.display = "block";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    });
+
+    // Restore previously created identity
+    const savedIdentity =
+      localStorage.getItem("ambiIdentity");
+
+    if (savedIdentity) {
+
+      try {
+
+        const identity = JSON.parse(savedIdentity);
+
+        document.getElementById("ambiName").value =
+          identity.name || "";
+
+        document.getElementById("ambiRole").value =
+          identity.role ||
+          "Digital Business Representative";
+
+        document.getElementById("personality").value =
+          identity.personality || "Friendly";
+
+        document.getElementById("language").value =
+          identity.language || "English";
+
+        document.getElementById("appearance").value =
+          identity.appearance || "Human";
+
+        document.getElementById("style").value =
+          identity.style || "Modern / Premium";
+
+      } catch (e) {
+        localStorage.removeItem("ambiIdentity");
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
