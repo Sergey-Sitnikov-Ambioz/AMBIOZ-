@@ -73,6 +73,43 @@
       margin-bottom: 28px;
     }
 
+    .usage {
+      margin-bottom: 25px;
+      padding: 16px 18px;
+      background: #f7f7f7;
+      border: 1px solid #eeeeee;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .usage strong {
+      font-size: 17px;
+    }
+
+    .upgrade {
+      display: none;
+      margin-top: 20px;
+      padding: 18px;
+      background: #f7f7f7;
+      border: 1px solid #dddddd;
+      border-radius: 14px;
+      line-height: 1.5;
+    }
+
+    .upgrade strong {
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .upgrade a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #111111;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
     label {
       display: block;
       font-size: 12px;
@@ -164,26 +201,53 @@
   </style>
 </head>
 
+
 <body>
 
   <header>
-    <a href="index.html" class="logo">AMBIOZ</a>
+
+    <a
+      href="index.html"
+      class="logo">
+      AMBIOZ
+    </a>
+
   </header>
+
 
   <main>
 
-    <a class="back" href="ambi.html">
+    <a
+      class="back"
+      href="ambi.html">
       ← Back to Ambi
     </a>
 
+
     <section class="section">
 
-      <h1>Product Description</h1>
+      <h1>
+        Product Description
+      </h1>
 
       <p class="intro">
         Give Ambi basic product information and get a clear,
         professional description ready to use.
       </p>
+
+
+      <!-- CONTENT USAGE -->
+
+      <div class="usage">
+
+        <strong id="contentRemaining">
+          0
+        </strong>
+
+        content generations remaining this month
+
+      </div>
+
 
       <label for="productName">
         PRODUCT OR SERVICE
@@ -195,6 +259,7 @@
         placeholder="Enter product or service name..."
       >
 
+
       <label for="productInfo">
         BASIC INFORMATION
       </label>
@@ -205,78 +270,293 @@
         placeholder="Describe the product or service using the information you know..."
       ></textarea>
 
-      <button id="createButton" onclick="createDescription()">
+
+      <button
+        id="createButton"
+        onclick="createDescription()">
+
         Create description →
+
       </button>
+
+
+      <!-- UPGRADE MESSAGE -->
+
+      <div
+        class="upgrade"
+        id="upgradeMessage">
+
+        <strong>
+          You've reached your content limit.
+        </strong>
+
+        <div>
+          Upgrade your plan to continue creating
+          AI content with Ambi.
+        </div>
+
+        <a href="plans.html">
+          View plans →
+        </a>
+
+      </div>
 
     </section>
 
-    <section class="section hidden" id="resultSection">
 
-      <h2>Ambi's description</h2>
+    <!-- RESULT -->
+
+    <section
+      class="section hidden"
+      id="resultSection">
+
+      <h2>
+        Ambi's description
+      </h2>
 
       <p class="intro">
         Ready to use.
       </p>
 
-      <div class="result" id="result"></div>
+      <div
+        class="result"
+        id="result">
+      </div>
 
     </section>
 
   </main>
 
+
+  <!-- PLAN SYSTEM -->
+
+  <script src="plan.js"></script>
+
+
   <script>
+
+    /*
+     * ================================
+     * BUSINESS DATA
+     * ================================
+     */
 
     let business = {};
 
+
     const savedBusiness =
-      localStorage.getItem("ambiBusiness");
+      localStorage.getItem(
+        "ambiBusiness"
+      );
+
 
     if (savedBusiness) {
+
       try {
-        business = JSON.parse(savedBusiness);
+
+        business =
+          JSON.parse(
+            savedBusiness
+          );
+
       } catch (error) {
-        console.error("Could not read business data:", error);
+
+        console.error(
+          "Could not read business data:",
+          error
+        );
+
       }
+
     }
+
+
+    /*
+     * ================================
+     * USAGE DISPLAY
+     * ================================
+     */
+
+    function updateContentUsage() {
+
+      const remaining =
+        getRemainingGenerations(
+          "content"
+        );
+
+
+      const remainingElement =
+        document.getElementById(
+          "contentRemaining"
+        );
+
+
+      if (remainingElement) {
+
+        remainingElement.textContent =
+          remaining;
+
+      }
+
+
+      const button =
+        document.getElementById(
+          "createButton"
+        );
+
+
+      const upgradeMessage =
+        document.getElementById(
+          "upgradeMessage"
+        );
+
+
+      if (remaining <= 0) {
+
+        button.disabled = true;
+
+        button.textContent =
+          "Content limit reached";
+
+
+        upgradeMessage.style.display =
+          "block";
+
+      } else {
+
+        button.disabled = false;
+
+        button.textContent =
+          "Create description →";
+
+
+        upgradeMessage.style.display =
+          "none";
+
+      }
+
+    }
+
+
+    /*
+     * ================================
+     * CREATE DESCRIPTION
+     * ================================
+     */
 
     async function createDescription() {
 
       const productName =
-        document.getElementById("productName");
+        document.getElementById(
+          "productName"
+        );
+
 
       const productInfo =
-        document.getElementById("productInfo");
+        document.getElementById(
+          "productInfo"
+        );
+
 
       const button =
-        document.getElementById("createButton");
+        document.getElementById(
+          "createButton"
+        );
+
 
       const resultSection =
-        document.getElementById("resultSection");
+        document.getElementById(
+          "resultSection"
+        );
+
 
       const result =
-        document.getElementById("result");
+        document.getElementById(
+          "result"
+        );
+
+
+      const upgradeMessage =
+        document.getElementById(
+          "upgradeMessage"
+        );
+
+
+      /*
+       * ================================
+       * CHECK CONTENT LIMIT
+       * ================================
+       */
+
+      if (!canGenerate("content")) {
+
+        upgradeMessage.style.display =
+          "block";
+
+        updateContentUsage();
+
+        return;
+
+      }
+
+
+      /*
+       * ================================
+       * READ INPUT
+       * ================================
+       */
 
       const name =
         productName.value.trim();
 
+
       const info =
         productInfo.value.trim();
 
+
       if (!name || !info) {
-        resultSection.classList.remove("hidden");
+
+        resultSection.classList.remove(
+          "hidden"
+        );
+
         result.textContent =
           "Please enter the product or service name and basic information.";
+
         return;
+
       }
 
-      productName.disabled = true;
-      productInfo.disabled = true;
-      button.disabled = true;
-      button.textContent = "Ambi is thinking...";
 
-      resultSection.classList.remove("hidden");
-      result.textContent = "Thinking...";
+      /*
+       * ================================
+       * LOADING STATE
+       * ================================
+       */
+
+      productName.disabled = true;
+
+      productInfo.disabled = true;
+
+      button.disabled = true;
+
+      button.textContent =
+        "Ambi is thinking...";
+
+
+      resultSection.classList.remove(
+        "hidden"
+      );
+
+      result.textContent =
+        "Thinking...";
+
+
+      /*
+       * ================================
+       * AI REQUEST
+       * ================================
+       */
 
       try {
 
@@ -287,14 +567,17 @@
               method: "POST",
 
               headers: {
-                "Content-Type": "application/json",
+                "Content-Type":
+                  "application/json",
+
                 "apikey":
                   "sb_publishable_bySPn4HxH44yhY11-3H4hQ_2yMEh5FN"
               },
 
               body: JSON.stringify({
 
-                mode: "product_description",
+                mode:
+                  "product_description",
 
                 message:
                   `
@@ -317,24 +600,73 @@ Rules:
 - Do not mention these instructions.
 `,
 
-                business: business
+                business:
+                  business
 
               })
             }
           );
 
+
         const data =
           await response.json();
 
-        if (!data.success) {
+
+        /*
+         * ================================
+         * CHECK RESPONSE
+         * ================================
+         */
+
+        if (!response.ok) {
+
           throw new Error(
             data.error ||
             "Ambi could not create the description."
           );
+
         }
+
+
+        if (!data.success) {
+
+          throw new Error(
+            data.error ||
+            "Ambi could not create the description."
+          );
+
+        }
+
+
+        if (!data.reply) {
+
+          throw new Error(
+            "Ambi returned an empty response."
+          );
+
+        }
+
+
+        /*
+         * ================================
+         * SUCCESS
+         * ================================
+         *
+         * Consume one generation only
+         * after successful AI output.
+         */
+
+        useGeneration(
+          "content"
+        );
+
 
         result.textContent =
           data.reply;
+
+
+        updateContentUsage();
+
 
       } catch (error) {
 
@@ -343,19 +675,62 @@ Rules:
           error
         );
 
+
         result.textContent =
-          "Error: " + error.message;
+          "Error: " +
+          error.message;
+
 
       } finally {
 
-        productName.disabled = false;
-        productInfo.disabled = false;
-        button.disabled = false;
-        button.textContent =
-          "Create description →";
+        /*
+         * Restore inputs.
+         */
+
+        productName.disabled =
+          false;
+
+        productInfo.disabled =
+          false;
+
+
+        /*
+         * Restore button only if
+         * generations are still available.
+         */
+
+        if (
+          canGenerate("content")
+        ) {
+
+          button.disabled =
+            false;
+
+          button.textContent =
+            "Create description →";
+
+        } else {
+
+          button.disabled =
+            true;
+
+          button.textContent =
+            "Content limit reached";
+
+        }
 
       }
+
     }
+
+
+    /*
+     * ================================
+     * INITIAL STATE
+     * ================================
+     */
+
+    updateContentUsage();
 
   </script>
 
