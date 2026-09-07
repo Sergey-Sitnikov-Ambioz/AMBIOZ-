@@ -232,7 +232,39 @@
       JSON.parse(savedBusiness);
 
   }
+  
+  function updateContentUsage() {
 
+  const remaining =
+    getRemainingGenerations("content");
+
+  const element =
+    document.getElementById(
+      "contentRemaining"
+    );
+
+  if (element) {
+    element.textContent =
+      remaining;
+  }
+
+  const button =
+    document.getElementById(
+      "createButton"
+    );
+
+
+  if (
+    remaining <= 0 &&
+    button
+  ) {
+
+    button.disabled = true;
+
+    button.textContent =
+      "Content limit reached";
+  }
+  }
 
   async function createPost() {
 
@@ -262,6 +294,14 @@
       document
         .getElementById("result");
 
+    if (!canGenerate("content")) {
+
+      error.textContent =
+        "You've reached your Free plan content limit. Upgrade your plan to continue creating AI content.";
+
+    return;
+    }
+  } 
 
     if (!topic) {
 
@@ -366,6 +406,9 @@ STRICT RULES:
       result.textContent =
         data.reply;
 
+      useGeneration("content");
+
+      updateContentUsage();
 
       resultCard.classList.add(
         "visible"
