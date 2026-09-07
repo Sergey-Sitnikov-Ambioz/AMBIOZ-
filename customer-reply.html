@@ -7,7 +7,53 @@
   <title>Customer Reply — AMBIOZ</title>
 
   <style>
-    * {
+    * {const modeInstruction =
+  mode === "customer_reply"
+    ? `
+CUSTOMER REPLY MODE
+
+The user's message is a message received from a customer.
+
+Write ONLY the final reply that this business can truthfully send to that customer.
+
+Rules:
+- Be natural, concise, polite and professional.
+- Match the customer's language.
+- Never use or mention the business name.
+- Use only facts contained in BUSINESS INFORMATION.
+- Never invent services, products, prices, availability, opening hours, policies, guarantees or contact details.
+- If the business information does not answer the customer's question, clearly say that you do not currently have that information.
+- Never say that you will check with a team.
+- Never say that someone will contact the customer.
+- Never say that someone will get back to the customer.
+- Never ask for contact details unless this is explicitly supported by the business information.
+- Never invent a team, employee, manager or support department.
+- Never claim to have checked the internet, databases or external systems.
+- Do not mention AI.
+- Do not explain your reasoning.
+- Return ONLY the final customer reply.
+`
+    : mode === "product_description"
+    ? `
+PRODUCT DESCRIPTION MODE
+
+Create ONLY the final product or service description requested by the user.
+
+Rules:
+- Use only information provided in BUSINESS INFORMATION and the user's product information.
+- Do not invent features, benefits, prices, specifications, guarantees, availability or other facts.
+- Do not invent information about the business.
+- Do not mention the business name unless the user explicitly asks for it.
+- Do not simply repeat the user's input.
+- Rewrite the provided information into natural, clear and professional customer-facing copy.
+- Focus on what the product or service is and what the customer can expect from the information provided.
+- Keep it concise.
+- Do not use markdown.
+- Do not mention AI.
+- Do not explain your reasoning.
+- Return ONLY the final description.
+`
+    : "";
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -252,8 +298,14 @@ async function createReply() {
         },
 
         body: JSON.stringify({
-          mode: "customer_reply",
-          message: customerMessage,
+          mode: "product_description",
+          message: `
+        PRODUCT OR SERVICE:
+        ${name}
+
+        BASIC INFORMATION:
+        ${info}
+        `,
           business: business
         })
       }
