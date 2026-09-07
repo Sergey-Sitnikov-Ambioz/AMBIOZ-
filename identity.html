@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Meet your Ambi — AMBIOZ</title>
+  <title>Identity Studio — Ambioz</title>
 
   <style>
     * {
@@ -13,68 +13,59 @@
 
     body {
       margin: 0;
-      background: #f5f5f7;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+      background: #f7f7f5;
       color: #111;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-        "SF Pro Text", Helvetica, Arial, sans-serif;
     }
 
     .container {
       max-width: 760px;
       margin: 0 auto;
-      padding: 48px 20px 80px;
+      padding: 32px 20px 60px;
     }
 
     .back {
       display: inline-block;
-      margin-bottom: 42px;
+      margin-bottom: 28px;
       color: #666;
       text-decoration: none;
-      font-size: 15px;
-    }
-
-    .back:hover {
-      color: #111;
-    }
-
-    .eyebrow {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #777;
-      margin-bottom: 14px;
+      font-size: 14px;
     }
 
     h1 {
-      margin: 0 0 14px;
-      font-size: 42px;
-      line-height: 1.05;
-      letter-spacing: -0.04em;
+      margin: 0;
+      font-size: 32px;
+      line-height: 1.1;
+      letter-spacing: -0.8px;
     }
 
-    .intro {
-      margin: 0 0 40px;
-      max-width: 600px;
+    .subtitle {
+      margin: 10px 0 30px;
       color: #666;
-      font-size: 18px;
+      font-size: 16px;
       line-height: 1.5;
     }
 
     .card {
       background: #fff;
-      border-radius: 24px;
-      padding: 28px;
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+      border: 1px solid #e4e4e4;
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 20px;
     }
 
     .field {
-      margin-bottom: 24px;
+      margin-bottom: 22px;
+    }
+
+    .field:last-child {
+      margin-bottom: 0;
     }
 
     label {
       display: block;
-      margin-bottom: 9px;
+      margin-bottom: 8px;
       font-size: 14px;
       font-weight: 600;
     }
@@ -82,12 +73,12 @@
     input,
     select {
       width: 100%;
-      padding: 15px 16px;
-      border: 1px solid #d8d8dc;
-      border-radius: 12px;
+      padding: 13px 14px;
+      border: 1px solid #d8d8d8;
+      border-radius: 10px;
       background: #fff;
       color: #111;
-      font-size: 16px;
+      font-size: 15px;
       outline: none;
     }
 
@@ -96,10 +87,22 @@
       border-color: #111;
     }
 
+    .section-title {
+      margin: 0 0 20px;
+      font-size: 20px;
+    }
+
+    .section-description {
+      margin: -10px 0 22px;
+      color: #777;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
     .hint {
       margin-top: 7px;
       color: #888;
-      font-size: 13px;
+      font-size: 12px;
       line-height: 1.4;
     }
 
@@ -107,200 +110,179 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-top: 12px;
     }
 
-    .language-option {
+    .language-item {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 13px 14px;
-      border: 1px solid #d8d8dc;
-      border-radius: 12px;
+      gap: 9px;
+      padding: 11px 12px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
       cursor: pointer;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 400;
-      background: #fff;
     }
 
-    .language-option:hover {
-      background: #f7f7f8;
-    }
-
-    .language-option input {
+    .language-item input {
       width: auto;
       margin: 0;
-      cursor: pointer;
     }
 
     button {
       width: 100%;
-      margin-top: 8px;
-      padding: 16px 20px;
-      border: 0;
-      border-radius: 14px;
+      padding: 15px 18px;
+      border: none;
+      border-radius: 11px;
       background: #111;
       color: #fff;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
       cursor: pointer;
     }
 
     button:hover {
-      opacity: 0.88;
+      opacity: 0.9;
     }
 
     .result {
       display: none;
-      margin-top: 28px;
     }
 
-    .result-intro {
-      margin: 24px 0;
-      color: #666;
-      line-height: 1.5;
-    }
-
-    .ambi-profile {
+    .identity-preview {
       display: flex;
       align-items: center;
-      gap: 24px;
-      margin: 10px 0 24px;
+      gap: 18px;
+      margin-bottom: 24px;
     }
 
-    .ambi-avatar-wrap {
-      width: 150px;
-      height: 150px;
-      flex-shrink: 0;
-      overflow: hidden;
+    .avatar {
+      width: 82px;
+      height: 82px;
       border-radius: 50%;
+      overflow: hidden;
       background: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #777;
+      font-size: 30px;
+      font-weight: 600;
+      flex-shrink: 0;
     }
 
-    .ambi-avatar {
+    .avatar img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    .ambi-name-block {
-      min-width: 0;
+    .preview-name {
+      font-size: 23px;
+      font-weight: 600;
     }
 
-    .ambi-name-block h2 {
-      margin: 0 0 6px;
-      font-size: 32px;
-      letter-spacing: -0.04em;
+    .preview-role {
+      margin-top: 4px;
+      color: #777;
+      font-size: 14px;
     }
 
-    .ambi-role {
-      margin: 0 0 16px;
-      color: #666;
-      font-size: 16px;
-    }
-
-    .ambi-tags {
+    .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      margin-top: 20px;
     }
 
-    .ambi-tags span {
-      padding: 7px 11px;
+    .tag {
+      padding: 7px 10px;
+      background: #f0f0ee;
       border-radius: 20px;
-      background: #f1f1f3;
-      font-size: 13px;
       color: #555;
+      font-size: 12px;
+    }
+
+    .appearance-summary {
+      margin-top: 20px;
+      padding: 16px;
+      background: #fafaf8;
+      border-radius: 12px;
+      color: #555;
+      font-size: 14px;
+      line-height: 1.6;
     }
 
     .actions {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 10px;
       margin-top: 24px;
     }
 
-    .secondary {
-      margin-top: 0;
-      background: #f1f1f3;
+    .action-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 12px;
+      border-radius: 11px;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .action-link.secondary {
+      background: #f0f0ee;
       color: #111;
     }
 
-    .error {
-      display: none;
-      margin-top: 20px;
-      padding: 14px 16px;
-      border-radius: 12px;
-      background: #fff0f0;
-      color: #b00020;
-      font-size: 14px;
-    }
-
-    .life-section {
-      margin-top: 48px;
-      padding-top: 32px;
-      border-top: 1px solid #eee;
-    }
-
-    .life-grid {
+    .media-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 18px;
+      gap: 10px;
+      margin-top: 24px;
     }
 
-    .life-card {
-      padding: 20px;
-      border: 1px solid #e5e5e7;
-      border-radius: 18px;
-      background: #fafafa;
+    .media-card {
+      padding: 18px 10px;
+      text-align: center;
+      border: 1px solid #e4e4e4;
+      border-radius: 12px;
+      color: #888;
+      font-size: 13px;
     }
 
-    .life-title {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 8px;
+    .media-card strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
     }
 
-    .life-text {
-      min-height: 48px;
-      color: #777;
+    .message {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: #fff1f1;
+      border: 1px solid #eccaca;
+      color: #a33;
       font-size: 14px;
-      line-height: 1.45;
-      margin-bottom: 16px;
-    }
-
-    .life-card button {
-      margin-top: 0;
     }
 
     @media (max-width: 600px) {
-
       .container {
-        padding-top: 32px;
+        padding: 24px 16px 50px;
       }
 
       h1 {
-        font-size: 34px;
+        font-size: 28px;
       }
 
       .card {
-        padding: 22px;
-        border-radius: 20px;
-      }
-
-      .ambi-profile {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .ambi-avatar-wrap {
-        width: 120px;
-        height: 120px;
-      }
-
-      .ambi-name-block h2 {
-        font-size: 28px;
+        padding: 20px;
       }
 
       .language-list {
@@ -311,7 +293,7 @@
         grid-template-columns: 1fr;
       }
 
-      .life-grid {
+      .media-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -322,457 +304,650 @@
 
   <main class="container">
 
-    <a class="back" href="ambi.html">← Back to Ambi</a>
+    <a class="back" href="ambi.html">
+      ← Back to Ambi
+    </a>
 
-    <div class="eyebrow">AMBIOZ · AMBI IDENTITY</div>
+    <h1>Identity Studio</h1>
 
-    <h1>Meet your Ambi</h1>
-
-    <p class="intro">
-      Create the digital representative of your business.
-      This identity will be used across text, voice, photo and video.
+    <p class="subtitle">
+      Define who your Ambi is.
     </p>
+
+
+    <!-- BASIC IDENTITY -->
 
     <section class="card">
 
-      <form id="identityForm">
+      <h2 class="section-title">
+        Basic Identity
+      </h2>
 
-        <!-- GENDER -->
+      <div class="field">
 
-        <div class="field">
+        <label for="gender">
+          Gender
+        </label>
 
-          <label for="gender">Gender</label>
+        <select id="gender">
 
-          <select id="gender">
-            <option value="Female">Female</option>
-            <option value="Male">Male</option>
-            <option value="Non-binary">Non-binary</option>
-            <option value="Not specified">Not specified</option>
-          </select>
+          <option value="">
+            Let Ambioz decide
+          </option>
 
-          <div class="hint">
-            Choose how your Ambi should be represented.
-          </div>
+          <option value="Female">
+            Female
+          </option>
 
-        </div>
+          <option value="Male">
+            Male
+          </option>
 
+          <option value="Non-binary">
+            Non-binary
+          </option>
 
-        <!-- NAME -->
+        </select>
 
-        <div class="field">
-
-          <label for="ambiName">Name</label>
-
-          <input
-            id="ambiName"
-            type="text"
-            placeholder="Ava"
-            required
-          >
-
-          <div class="hint">
-            Give your digital representative a name.
-          </div>
-
-        </div>
+      </div>
 
 
-        <!-- ROLE -->
+      <div class="field">
 
-        <div class="field">
+        <label for="name">
+          Name
+        </label>
 
-          <label for="ambiRole">Role</label>
+        <input
+          id="name"
+          type="text"
+          placeholder="Ava"
+        >
 
-          <input
-            id="ambiRole"
-            type="text"
-            value="Digital Business Representative"
-            required
-          >
-
-        </div>
-
-
-        <!-- PERSONALITY -->
-
-        <div class="field">
-
-          <label for="personality">Personality</label>
-
-          <select id="personality">
-
-            <option value="Friendly">Friendly</option>
-            <option value="Professional">Professional</option>
-            <option value="Confident">Confident</option>
-            <option value="Warm">Warm</option>
-            <option value="Minimal">Minimal</option>
-
-          </select>
-
-        </div>
+      </div>
 
 
-        <!-- PRIMARY LANGUAGE -->
+      <div class="field">
 
-        <div class="field">
+        <label for="role">
+          Role
+        </label>
 
-          <label for="primaryLanguage">
-            Primary language
+        <input
+          id="role"
+          type="text"
+          placeholder="Digital Business Representative"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="personality">
+          Personality
+        </label>
+
+        <select id="personality">
+
+          <option value="">
+            Let Ambioz decide
+          </option>
+
+          <option value="Friendly">
+            Friendly
+          </option>
+
+          <option value="Professional">
+            Professional
+          </option>
+
+          <option value="Confident">
+            Confident
+          </option>
+
+          <option value="Warm">
+            Warm
+          </option>
+
+          <option value="Calm">
+            Calm
+          </option>
+
+          <option value="Energetic">
+            Energetic
+          </option>
+
+          <option value="Creative">
+            Creative
+          </option>
+
+        </select>
+
+      </div>
+
+    </section>
+
+
+    <!-- LANGUAGES -->
+
+    <section class="card">
+
+      <h2 class="section-title">
+        Languages
+      </h2>
+
+      <p class="section-description">
+        Choose the primary language and any additional languages your Ambi can use.
+      </p>
+
+
+      <div class="field">
+
+        <label for="primaryLanguage">
+          Primary language
+        </label>
+
+        <select id="primaryLanguage">
+
+          <option value="English">
+            English
+          </option>
+
+          <option value="Polish">
+            Polish
+          </option>
+
+          <option value="Russian">
+            Russian
+          </option>
+
+          <option value="German">
+            German
+          </option>
+
+          <option value="Spanish">
+            Spanish
+          </option>
+
+          <option value="French">
+            French
+          </option>
+
+          <option value="Italian">
+            Italian
+          </option>
+
+          <option value="Ukrainian">
+            Ukrainian
+          </option>
+
+          <option value="Dutch">
+            Dutch
+          </option>
+
+          <option value="Portuguese">
+            Portuguese
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Additional languages
+        </label>
+
+        <div class="language-list">
+
+          <label class="language-item">
+            <input type="checkbox" value="English">
+            English
           </label>
 
-          <select id="primaryLanguage">
-
-            <option value="English">English</option>
-            <option value="Polish">Polish</option>
-            <option value="Russian">Russian</option>
-            <option value="German">German</option>
-            <option value="Spanish">Spanish</option>
-            <option value="French">French</option>
-            <option value="Italian">Italian</option>
-            <option value="Ukrainian">Ukrainian</option>
-            <option value="Dutch">Dutch</option>
-            <option value="Portuguese">Portuguese</option>
-
-          </select>
-
-          <div class="hint">
-            The main language your Ambi uses.
-          </div>
-
-        </div>
-
-
-        <!-- ADDITIONAL LANGUAGES -->
-
-        <div class="field">
-
-          <label>
-            Additional languages
+          <label class="language-item">
+            <input type="checkbox" value="Polish">
+            Polish
           </label>
 
-          <div class="hint">
-            Select all additional languages your Ambi can use.
-          </div>
-
-          <div class="language-list">
-
-            <label class="language-option">
-              <input
-                type="checkbox"
-                name="additionalLanguage"
-                value="English"
-              >
-              English
-            </label>
-
-            <label class="language-option">
-              <input
-                type="checkbox"
-                name="additionalLanguage"
-                value="Polish"
-              >
-              Polish
-            </label>
-
-            <label class="language-option">
-              <input
-                type="checkbox"
-                name="additionalLanguage"
-                value="Russian"
-              >
-              Russian
-            </label>
-
-            <label class="language-option">
-              <input
-                type="checkbox"
-                name="additionalLanguage"
-                value="German"
-              >
-              German
-            </label>
-
-            <label class="language-option">
-              <input
-                type="checkbox"
-                name="additionalLanguage"
-                value="Spanish"
-              >
-              Spanish
-            </label>
-
-            <label class="language-option">
-              <input
-                type="checkbox"
-                name="additionalLanguage"
-                value="French"
-              >
-              French
-            </label>
-
-            <label class="language-option">
-              <input
-                type="checkbox"
-                name="additionalLanguage"
-                value="Italian"
-              >
-              Italian
-            </label>
-
-            <label class="language-option">
-              <input
-                type="checkbox"
-                name="additionalLanguage"
-                value="Ukrainian"
-              >
-              Ukrainian
-            </label>
-
-            <label class="language-option">
-              <input
-                type="checkbox"
-                name="additionalLanguage"
-                value="Dutch"
-              >
-              Dutch
-            </label>
-
-            <label class="language-option">
-              <input
-                type="checkbox"
-                name="additionalLanguage"
-                value="Portuguese"
-              >
-              Portuguese
-            </label>
-
-          </div>
-
-        </div>
-
-
-        <!-- APPEARANCE -->
-
-        <div class="field">
-
-          <label for="appearance">
-            Appearance
+          <label class="language-item">
+            <input type="checkbox" value="Russian">
+            Russian
           </label>
 
-          <select id="appearance">
-
-            <option value="Human">Human</option>
-            <option value="Digital">Digital</option>
-            <option value="Abstract">Abstract</option>
-
-          </select>
-
-        </div>
-
-
-        <!-- STYLE -->
-
-        <div class="field">
-
-          <label for="style">
-            Style
+          <label class="language-item">
+            <input type="checkbox" value="German">
+            German
           </label>
 
-          <select id="style">
+          <label class="language-item">
+            <input type="checkbox" value="Spanish">
+            Spanish
+          </label>
 
-            <option value="Modern / Premium">
-              Modern / Premium
-            </option>
+          <label class="language-item">
+            <input type="checkbox" value="French">
+            French
+          </label>
 
-            <option value="Clean / Minimal">
-              Clean / Minimal
-            </option>
+          <label class="language-item">
+            <input type="checkbox" value="Italian">
+            Italian
+          </label>
 
-            <option value="Friendly / Casual">
-              Friendly / Casual
-            </option>
+          <label class="language-item">
+            <input type="checkbox" value="Ukrainian">
+            Ukrainian
+          </label>
 
-            <option value="Corporate">
-              Corporate
-            </option>
+          <label class="language-item">
+            <input type="checkbox" value="Dutch">
+            Dutch
+          </label>
 
-            <option value="Creative">
-              Creative
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <button type="submit">
-          Create my Ambi →
-        </button>
-
-      </form>
-
-
-      <!-- ERROR -->
-
-      <div id="error" class="error"></div>
-
-
-      <!-- CREATED AMBI -->
-
-      <div id="result" class="result">
-
-        <div class="eyebrow">
-          YOUR AMBI
-        </div>
-
-        <div class="ambi-profile">
-
-          <div class="ambi-avatar-wrap">
-
-            <img
-              src="ambi-avatar.png"
-              alt="Ambi digital representative"
-              class="ambi-avatar"
-            >
-
-          </div>
-
-          <div class="ambi-name-block">
-
-            <h2 id="resultName"></h2>
-
-            <p
-              class="ambi-role"
-              id="resultRole"
-            ></p>
-
-            <div class="ambi-tags">
-
-              <span id="resultGender"></span>
-
-              <span id="resultPersonality"></span>
-
-              <span id="resultPrimaryLanguage"></span>
-
-              <span id="resultAppearance"></span>
-
-              <span id="resultStyle"></span>
-
-            </div>
-
-          </div>
+          <label class="language-item">
+            <input type="checkbox" value="Portuguese">
+            Portuguese
+          </label>
 
         </div>
 
-        <p class="result-intro">
-          Your digital business representative is ready.
-        </p>
+      </div>
+
+    </section>
 
 
-        <!-- MAIN ACTIONS -->
+    <!-- VISUAL APPEARANCE -->
 
-        <div class="actions">
+    <section class="card">
 
-          <button
-            type="button"
-            onclick="window.location.href='ambi.html'"
-            class="secondary"
+      <h2 class="section-title">
+        Visual Appearance
+      </h2>
+
+      <p class="section-description">
+        These settings are optional. Leave them on Auto and Ambioz will create a suitable visual identity for your Ambi.
+      </p>
+
+
+      <div class="field">
+
+        <label for="ageRange">
+          Age range
+        </label>
+
+        <select id="ageRange">
+
+          <option value="">
+            Auto — Let Ambioz decide
+          </option>
+
+          <option value="20s">
+            20s
+          </option>
+
+          <option value="30s">
+            30s
+          </option>
+
+          <option value="40s">
+            40s
+          </option>
+
+          <option value="50s">
+            50s
+          </option>
+
+          <option value="60s">
+            60s
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="skinTone">
+          Skin tone
+        </label>
+
+        <select id="skinTone">
+
+          <option value="">
+            Auto — Let Ambioz decide
+          </option>
+
+          <option value="fair">
+            Fair
+          </option>
+
+          <option value="light">
+            Light
+          </option>
+
+          <option value="medium">
+            Medium
+          </option>
+
+          <option value="tan">
+            Tan
+          </option>
+
+          <option value="deep">
+            Deep
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="hairColor">
+          Hair color
+        </label>
+
+        <select id="hairColor">
+
+          <option value="">
+            Auto — Let Ambioz decide
+          </option>
+
+          <option value="black">
+            Black
+          </option>
+
+          <option value="dark brown">
+            Dark brown
+          </option>
+
+          <option value="brown">
+            Brown
+          </option>
+
+          <option value="light brown">
+            Light brown
+          </option>
+
+          <option value="blonde">
+            Blonde
+          </option>
+
+          <option value="red">
+            Red
+          </option>
+
+          <option value="gray">
+            Gray
+          </option>
+
+          <option value="white">
+            White
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="hairStyle">
+          Hair style
+        </label>
+
+        <select id="hairStyle">
+
+          <option value="">
+            Auto — Let Ambioz decide
+          </option>
+
+          <option value="long straight hair">
+            Long straight hair
+          </option>
+
+          <option value="long wavy hair">
+            Long wavy hair
+          </option>
+
+          <option value="shoulder-length hair">
+            Shoulder-length hair
+          </option>
+
+          <option value="short hair">
+            Short hair
+          </option>
+
+          <option value="short textured hair">
+            Short textured hair
+          </option>
+
+          <option value="curly hair">
+            Curly hair
+          </option>
+
+          <option value="natural hairstyle">
+            Natural hairstyle
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="eyeColor">
+          Eye color
+        </label>
+
+        <select id="eyeColor">
+
+          <option value="">
+            Auto — Let Ambioz decide
+          </option>
+
+          <option value="brown">
+            Brown
+          </option>
+
+          <option value="dark brown">
+            Dark brown
+          </option>
+
+          <option value="hazel">
+            Hazel
+          </option>
+
+          <option value="green">
+            Green
+          </option>
+
+          <option value="blue">
+            Blue
+          </option>
+
+          <option value="gray">
+            Gray
+          </option>
+
+        </select>
+
+      </div>
+
+    </section>
+
+
+    <!-- VISUAL STYLE -->
+
+    <section class="card">
+
+      <h2 class="section-title">
+        Visual Style
+      </h2>
+
+
+      <div class="field">
+
+        <label for="appearance">
+          Appearance
+        </label>
+
+        <select id="appearance">
+
+          <option value="Human">
+            Human
+          </option>
+
+          <option value="Digital">
+            Digital
+          </option>
+
+          <option value="Abstract">
+            Abstract
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="style">
+          Style
+        </label>
+
+        <select id="style">
+
+          <option value="Modern / Premium">
+            Modern / Premium
+          </option>
+
+          <option value="Clean / Minimal">
+            Clean / Minimal
+          </option>
+
+          <option value="Friendly / Casual">
+            Friendly / Casual
+          </option>
+
+          <option value="Corporate">
+            Corporate
+          </option>
+
+          <option value="Creative">
+            Creative
+          </option>
+
+        </select>
+
+      </div>
+
+    </section>
+
+
+    <!-- CREATE -->
+
+    <section class="card">
+
+      <button
+        type="button"
+        onclick="createIdentity()"
+      >
+        Create Identity →
+      </button>
+
+      <div class="message" id="message"></div>
+
+    </section>
+
+
+    <!-- RESULT -->
+
+    <section class="card result" id="result">
+
+      <h2 class="section-title">
+        Your Ambi
+      </h2>
+
+
+      <div class="identity-preview">
+
+        <div class="avatar" id="avatar">
+          A
+        </div>
+
+        <div>
+
+          <div
+            class="preview-name"
+            id="previewName"
           >
-            Talk to Ambi
-          </button>
+            Ava
+          </div>
 
-          <button
-            type="button"
-            onclick="window.location.href='create-content.html'"
-            class="secondary"
+          <div
+            class="preview-role"
+            id="previewRole"
           >
-            Create Content
-          </button>
+            Digital Business Representative
+          </div>
 
         </div>
 
-
-        <!-- BRING AMBI TO LIFE -->
-
-        <div class="life-section">
-
-          <div class="eyebrow">
-            BRING YOUR AMBI TO LIFE
-          </div>
-
-          <div class="life-grid">
+      </div>
 
 
-            <!-- VOICE -->
-
-            <div class="life-card">
-
-              <div class="life-title">
-                Voice
-              </div>
-
-              <div class="life-text">
-                Give your Ambi a voice.
-              </div>
-
-              <button
-                type="button"
-                class="secondary"
-                onclick="alert('Voice is coming next.')"
-              >
-                Voice →
-              </button>
-
-            </div>
+      <div class="tags" id="tags"></div>
 
 
-            <!-- PHOTO -->
-
-            <div class="life-card">
-
-              <div class="life-title">
-                Photo
-              </div>
-
-              <div class="life-text">
-                Create visual content with your Ambi.
-              </div>
-
-              <button
-                type="button"
-                class="secondary"
-                onclick="alert('Photo is coming next.')"
-              >
-                Photo →
-              </button>
-
-            </div>
+      <div
+        class="appearance-summary"
+        id="appearanceSummary"
+      ></div>
 
 
-            <!-- VIDEO -->
+      <div class="actions">
 
-            <div class="life-card">
+        <a
+          class="action-link"
+          href="photo.html"
+        >
+          Create Photo →
+        </a>
 
-              <div class="life-title">
-                Video
-              </div>
+        <a
+          class="action-link secondary"
+          href="ambi.html"
+        >
+          Talk to Ambi →
+        </a>
 
-              <div class="life-text">
-                Create videos with your Ambi.
-              </div>
+      </div>
 
-              <button
-                type="button"
-                class="secondary"
-                onclick="alert('Video is coming next.')"
-              >
-                Video →
-              </button>
 
-            </div>
+      <div class="media-grid">
 
-          </div>
+        <div class="media-card">
+          <strong>Voice</strong>
+          Coming next
+        </div>
 
+        <div class="media-card">
+          <strong>Photo</strong>
+          Available now
+        </div>
+
+        <div class="media-card">
+          <strong>Video</strong>
+          Coming next
         </div>
 
       </div>
@@ -784,292 +959,391 @@
 
   <script>
 
-    const form =
-      document.getElementById("identityForm");
-
-    const result =
-      document.getElementById("result");
-
-    const error =
-      document.getElementById("error");
+    const savedIdentity =
+      JSON.parse(
+        localStorage.getItem("ambiIdentity") || "null"
+      );
 
 
-    form.addEventListener(
-      "submit",
-      function(event) {
+    function restoreIdentity() {
 
-        event.preventDefault();
+      if (!savedIdentity) {
+        return;
+      }
 
-        error.style.display = "none";
+      setValue("gender", savedIdentity.gender);
+      setValue("name", savedIdentity.name);
+      setValue("role", savedIdentity.role);
+      setValue("personality", savedIdentity.personality);
 
+      setValue(
+        "primaryLanguage",
+        savedIdentity.primaryLanguage
+      );
 
-        /*
-          Collect additional languages
-        */
+      setValue(
+        "ageRange",
+        savedIdentity.ageRange
+      );
 
-        const additionalLanguages =
-          Array.from(
-            document.querySelectorAll(
-              'input[name="additionalLanguage"]:checked'
-            )
-          ).map(
-            checkbox => checkbox.value
-          );
+      setValue(
+        "skinTone",
+        savedIdentity.skinTone
+      );
 
+      setValue(
+        "hairColor",
+        savedIdentity.hairColor
+      );
 
-        /*
-          Create Ambi Identity
-        */
+      setValue(
+        "hairStyle",
+        savedIdentity.hairStyle
+      );
 
-        const identity = {
+      setValue(
+        "eyeColor",
+        savedIdentity.eyeColor
+      );
 
-          name:
-            document
-              .getElementById("ambiName")
-              .value
-              .trim(),
+      setValue(
+        "appearance",
+        savedIdentity.appearance
+      );
 
-          role:
-            document
-              .getElementById("ambiRole")
-              .value
-              .trim(),
-
-          gender:
-            document
-              .getElementById("gender")
-              .value,
-
-          personality:
-            document
-              .getElementById("personality")
-              .value,
-
-          primaryLanguage:
-            document
-              .getElementById("primaryLanguage")
-              .value,
-
-          additionalLanguages:
-            additionalLanguages,
-
-          languages:
-            [
-              document
-                .getElementById("primaryLanguage")
-                .value,
-              ...additionalLanguages
-            ].filter(
-              (language, index, array) =>
-                array.indexOf(language) === index
-            ),
-
-          appearance:
-            document
-              .getElementById("appearance")
-              .value,
-
-          style:
-            document
-              .getElementById("style")
-              .value
-
-        };
+      setValue(
+        "style",
+        savedIdentity.style
+      );
 
 
-        /*
-          Validate name
-        */
-
-        if (
-          !identity.name ||
-          identity.name.toLowerCase() === "name" ||
-          identity.name.toLowerCase() === "имя"
-        ) {
-
-          error.textContent =
-            "Please enter a name for your Ambi.";
-
-          error.style.display = "block";
-
-          return;
-        }
+      const additional =
+        savedIdentity.additionalLanguages || [];
 
 
-        /*
-          Save Identity
-        */
+      document
+        .querySelectorAll(".language-item input")
+        .forEach(function(input) {
 
-        localStorage.setItem(
-          "ambiIdentity",
-          JSON.stringify(identity)
-        );
+          input.checked =
+            additional.includes(input.value);
 
-
-        /*
-          Display Identity
-        */
-
-        document
-          .getElementById("resultName")
-          .textContent =
-          identity.name;
-
-
-        document
-          .getElementById("resultRole")
-          .textContent =
-          identity.role;
-
-
-        document
-          .getElementById("resultGender")
-          .textContent =
-          identity.gender;
-
-
-        document
-          .getElementById("resultPersonality")
-          .textContent =
-          identity.personality;
-
-
-        document
-          .getElementById("resultPrimaryLanguage")
-          .textContent =
-          identity.primaryLanguage;
-
-
-        document
-          .getElementById("resultAppearance")
-          .textContent =
-          identity.appearance;
-
-
-        document
-          .getElementById("resultStyle")
-          .textContent =
-          identity.style;
-
-
-        /*
-          Hide form
-          Show Ambi
-        */
-
-        form.style.display = "none";
-
-        result.style.display = "block";
-
-
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
         });
 
+
+      if (savedIdentity.name) {
+        showResult(savedIdentity);
       }
-    );
+
+    }
 
 
-    /*
-      Restore saved Identity
-    */
+    function setValue(id, value) {
 
-    const savedIdentity =
-      localStorage.getItem("ambiIdentity");
+      if (
+        value !== undefined &&
+        value !== null
+      ) {
 
+        const element =
+          document.getElementById(id);
 
-    if (savedIdentity) {
-
-      try {
-
-        const identity =
-          JSON.parse(savedIdentity);
-
-
-        document
-          .getElementById("ambiName")
-          .value =
-          identity.name || "";
-
-
-        document
-          .getElementById("ambiRole")
-          .value =
-          identity.role ||
-          "Digital Business Representative";
-
-
-        document
-          .getElementById("gender")
-          .value =
-          identity.gender ||
-          "Female";
-
-
-        document
-          .getElementById("personality")
-          .value =
-          identity.personality ||
-          "Friendly";
-
-
-        document
-          .getElementById("primaryLanguage")
-          .value =
-          identity.primaryLanguage ||
-          identity.language ||
-          "English";
-
-
-        document
-          .getElementById("appearance")
-          .value =
-          identity.appearance ||
-          "Human";
-
-
-        document
-          .getElementById("style")
-          .value =
-          identity.style ||
-          "Modern / Premium";
-
-
-        /*
-          Restore additional languages
-        */
-
-        const savedLanguages =
-          identity.additionalLanguages ||
-          [];
-
-
-        document
-          .querySelectorAll(
-            'input[name="additionalLanguage"]'
-          )
-          .forEach(
-            checkbox => {
-
-              checkbox.checked =
-                savedLanguages.includes(
-                  checkbox.value
-                );
-
-            }
-          );
-
-
-      } catch (e) {
-
-        localStorage.removeItem(
-          "ambiIdentity"
-        );
+        if (element) {
+          element.value = value;
+        }
 
       }
 
     }
+
+
+    function createIdentity() {
+
+      const name =
+        document.getElementById("name")
+          .value.trim();
+
+
+      const role =
+        document.getElementById("role")
+          .value.trim();
+
+
+      if (!name) {
+
+        showMessage(
+          "Please enter a name for your Ambi."
+        );
+
+        return;
+
+      }
+
+
+      const additionalLanguages = [];
+
+
+      document
+        .querySelectorAll(
+          ".language-item input:checked"
+        )
+        .forEach(function(input) {
+
+          additionalLanguages.push(
+            input.value
+          );
+
+        });
+
+
+      const primaryLanguage =
+        document.getElementById(
+          "primaryLanguage"
+        ).value;
+
+
+      const languages =
+        [
+          primaryLanguage,
+          ...additionalLanguages
+        ]
+        .filter(Boolean)
+        .filter(
+          (value, index, array) =>
+            array.indexOf(value) === index
+        );
+
+
+      const identity = {
+
+        name: name,
+
+        role:
+          role ||
+          "Digital Business Representative",
+
+        gender:
+          document.getElementById("gender").value,
+
+        personality:
+          document.getElementById("personality").value,
+
+        primaryLanguage:
+          primaryLanguage,
+
+        additionalLanguages:
+          additionalLanguages,
+
+        languages:
+          languages,
+
+        appearance:
+          document.getElementById("appearance").value,
+
+        style:
+          document.getElementById("style").value,
+
+        ageRange:
+          document.getElementById("ageRange").value,
+
+        skinTone:
+          document.getElementById("skinTone").value,
+
+        hairColor:
+          document.getElementById("hairColor").value,
+
+        hairStyle:
+          document.getElementById("hairStyle").value,
+
+        eyeColor:
+          document.getElementById("eyeColor").value
+
+      };
+
+
+      localStorage.setItem(
+        "ambiIdentity",
+        JSON.stringify(identity)
+      );
+
+
+      showResult(identity);
+
+    }
+
+
+    function showResult(identity) {
+
+      document.getElementById("previewName")
+        .textContent =
+          identity.name || "Your Ambi";
+
+
+      document.getElementById("previewRole")
+        .textContent =
+          identity.role ||
+          "Digital Business Representative";
+
+
+      const tags =
+        document.getElementById("tags");
+
+      tags.innerHTML = "";
+
+
+      addTag(
+        tags,
+        "Gender: " +
+        (identity.gender || "Auto")
+      );
+
+
+      addTag(
+        tags,
+        "Personality: " +
+        (identity.personality || "Auto")
+      );
+
+
+      addTag(
+        tags,
+        "Primary: " +
+        (identity.primaryLanguage || "English")
+      );
+
+
+      addTag(
+        tags,
+        "Appearance: " +
+        (identity.appearance || "Human")
+      );
+
+
+      addTag(
+        tags,
+        "Style: " +
+        (identity.style || "Modern / Premium")
+      );
+
+
+      const appearanceSummary =
+        document.getElementById(
+          "appearanceSummary"
+        );
+
+
+      appearanceSummary.innerHTML =
+        "<strong>Visual Identity</strong><br>" +
+
+        "Age: " +
+        escapeHtml(
+          identity.ageRange || "Auto — Ambioz decides"
+        ) +
+
+        "<br>" +
+
+        "Skin tone: " +
+        escapeHtml(
+          identity.skinTone || "Auto — Ambioz decides"
+        ) +
+
+        "<br>" +
+
+        "Hair: " +
+        escapeHtml(
+          identity.hairColor || "Auto"
+        ) +
+        ", " +
+        escapeHtml(
+          identity.hairStyle || "Auto"
+        ) +
+
+        "<br>" +
+
+        "Eyes: " +
+        escapeHtml(
+          identity.eyeColor || "Auto"
+        );
+
+
+      const avatar =
+        document.getElementById("avatar");
+
+
+      const img =
+        document.createElement("img");
+
+
+      img.src = "ambi-avatar.png";
+
+      img.alt =
+        identity.name || "Ambi";
+
+
+      img.onload = function() {
+
+        avatar.innerHTML = "";
+
+        avatar.appendChild(img);
+
+      };
+
+
+      document.getElementById("result")
+        .style.display = "block";
+
+
+      document.getElementById("result")
+        .scrollIntoView({
+          behavior: "smooth"
+        });
+
+    }
+
+
+    function addTag(container, text) {
+
+      const tag =
+        document.createElement("span");
+
+      tag.className = "tag";
+
+      tag.textContent = text;
+
+      container.appendChild(tag);
+
+    }
+
+
+    function escapeHtml(value) {
+
+      if (!value) {
+        return "";
+      }
+
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+    function showMessage(message) {
+
+      const element =
+        document.getElementById("message");
+
+      element.textContent = message;
+
+      element.style.display = "block";
+
+    }
+
+
+    restoreIdentity();
 
   </script>
 
