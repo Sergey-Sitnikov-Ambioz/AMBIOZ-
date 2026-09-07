@@ -49,6 +49,10 @@ const AMBIOZ_PLANS = {
 };
 
 
+/* =================================
+   PLAN
+   ================================= */
+
 function getAmbiozPlan() {
 
   const savedPlan =
@@ -67,10 +71,9 @@ function getAmbiozPlan() {
 
 function getAmbiozPlanConfig() {
 
-  const plan =
-    getAmbiozPlan();
-
-  return AMBIOZ_PLANS[plan];
+  return AMBIOZ_PLANS[
+    getAmbiozPlan()
+  ];
 }
 
 
@@ -91,10 +94,8 @@ function setAmbiozPlan(plan) {
 
 function canCustomizeAppearance() {
 
-  const config =
-    getAmbiozPlanConfig();
-
-  return config.appearanceCustomization;
+  return getAmbiozPlanConfig()
+    .appearanceCustomization;
 }
 
 
@@ -126,12 +127,9 @@ function canCreateAnotherAmbi(
 }
 
 
-/*
- * ================================
- * GENERATION USAGE
- * ================================
- */
-
+/* =================================
+   GENERATION USAGE
+   ================================= */
 
 function getUsage() {
 
@@ -178,23 +176,21 @@ function getGenerationLimit(type) {
   const config =
     getAmbiozPlanConfig();
 
-  if (
-    type === "content"
-  ) {
+
+  if (type === "content") {
     return config.contentGenerations;
   }
 
-  if (
-    type === "photo"
-  ) {
+
+  if (type === "photo") {
     return config.photoGenerations;
   }
 
-  if (
-    type === "video"
-  ) {
+
+  if (type === "video") {
     return config.videoGenerations;
   }
+
 
   return 0;
 }
@@ -205,23 +201,21 @@ function getGenerationUsage(type) {
   const usage =
     getUsage();
 
-  if (
-    type === "content"
-  ) {
+
+  if (type === "content") {
     return usage.contentGenerations;
   }
 
-  if (
-    type === "photo"
-  ) {
+
+  if (type === "photo") {
     return usage.photoGenerations;
   }
 
-  if (
-    type === "video"
-  ) {
+
+  if (type === "video") {
     return usage.videoGenerations;
   }
+
 
   return 0;
 }
@@ -245,27 +239,22 @@ function useGeneration(type) {
     return false;
   }
 
+
   const usage =
     getUsage();
 
 
-  if (
-    type === "content"
-  ) {
+  if (type === "content") {
     usage.contentGenerations++;
   }
 
 
-  if (
-    type === "photo"
-  ) {
+  if (type === "photo") {
     usage.photoGenerations++;
   }
 
 
-  if (
-    type === "video"
-  ) {
+  if (type === "video") {
     usage.videoGenerations++;
   }
 
@@ -288,4 +277,261 @@ function getRemainingGenerations(type) {
     0,
     limit - used
   );
+}
+
+
+/* =================================
+   AMBI VISUAL IDENTITY
+   ================================= */
+
+/*
+ * IMPORTANT:
+ *
+ * This profile is created ONCE
+ * and then reused.
+ *
+ * This prevents:
+ *
+ * Photo 1 → different person
+ * Photo 2 → different person
+ * Photo 3 → different person
+ *
+ * Instead:
+ *
+ * Ambi → one visual identity
+ *       ↓
+ *       all photos
+ *       ↓
+ *       future video
+ */
+
+
+/* =================================
+   RANDOM HELPER
+   ================================= */
+
+function chooseRandom(array) {
+
+  return array[
+    Math.floor(
+      Math.random() *
+      array.length
+    )
+  ];
+}
+
+
+/* =================================
+   AUTO APPEARANCE
+   ================================= */
+
+function createAutomaticAppearance() {
+
+  return {
+
+    gender:
+      chooseRandom([
+        "female",
+        "male"
+      ]),
+
+    ageRange:
+      chooseRandom([
+        "20s",
+        "30s",
+        "30s",
+        "40s"
+      ]),
+
+    skinTone:
+      chooseRandom([
+        "fair",
+        "light",
+        "medium",
+        "tan",
+        "deep"
+      ]),
+
+    hairColor:
+      chooseRandom([
+        "black",
+        "dark brown",
+        "brown",
+        "light brown",
+        "blonde"
+      ]),
+
+    hairStyle:
+      chooseRandom([
+        "long straight hair",
+        "long wavy hair",
+        "shoulder-length hair",
+        "short hair",
+        "short textured hair",
+        "curly hair"
+      ]),
+
+    eyeColor:
+      chooseRandom([
+        "brown",
+        "dark brown",
+        "hazel",
+        "green",
+        "blue",
+        "gray"
+      ])
+
+  };
+}
+
+
+/* =================================
+   GET VISUAL IDENTITY
+   ================================= */
+
+function getAmbiVisualIdentity() {
+
+  const saved =
+    localStorage.getItem(
+      "ambiVisualIdentity"
+    );
+
+
+  if (saved) {
+
+    try {
+
+      return JSON.parse(saved);
+
+    } catch (error) {
+
+      console.warn(
+        "Invalid visual identity."
+      );
+
+    }
+
+  }
+
+
+  /*
+   * Create it once.
+   */
+
+  const identity =
+    createAutomaticAppearance();
+
+
+  localStorage.setItem(
+    "ambiVisualIdentity",
+    JSON.stringify(identity)
+  );
+
+
+  return identity;
+}
+
+
+/* =================================
+   SAVE VISUAL IDENTITY
+   ================================= */
+
+function saveAmbiVisualIdentity(identity) {
+
+  if (!identity) {
+    return false;
+  }
+
+
+  localStorage.setItem(
+    "ambiVisualIdentity",
+    JSON.stringify(identity)
+  );
+
+
+  return true;
+}
+
+
+/* =================================
+   RESET VISUAL IDENTITY
+   ================================= */
+
+function resetAmbiVisualIdentity() {
+
+  localStorage.removeItem(
+    "ambiVisualIdentity"
+  );
+
+}
+
+
+/* =================================
+   BUILD VISUAL DESCRIPTION
+   ================================= */
+
+function getAmbiVisualDescription() {
+
+  const visual =
+    getAmbiVisualIdentity();
+
+
+  const parts = [];
+
+
+  if (visual.gender) {
+
+    parts.push(
+      `gender: ${visual.gender}`
+    );
+
+  }
+
+
+  if (visual.ageRange) {
+
+    parts.push(
+      `age range: ${visual.ageRange}`
+    );
+
+  }
+
+
+  if (visual.skinTone) {
+
+    parts.push(
+      `skin tone: ${visual.skinTone}`
+    );
+
+  }
+
+
+  if (visual.hairColor) {
+
+    parts.push(
+      `hair color: ${visual.hairColor}`
+    );
+
+  }
+
+
+  if (visual.hairStyle) {
+
+    parts.push(
+      `hair style: ${visual.hairStyle}`
+    );
+
+  }
+
+
+  if (visual.eyeColor) {
+
+    parts.push(
+      `eye color: ${visual.eyeColor}`
+    );
+
+  }
+
+
+  return parts.join(", ");
 }
