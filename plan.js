@@ -10,7 +10,11 @@ const AMBIOZ_PLANS = {
 
     additionalLanguages: 0,
 
-    totalLanguages: 1
+    totalLanguages: 1,
+
+    photoGenerations: 3,
+    
+    videoGenerations: 0
   },
 
   pro: {
@@ -24,7 +28,11 @@ const AMBIOZ_PLANS = {
 
     additionalLanguages: 3,
 
-    totalLanguages: 4
+    totalLanguages: 4,
+
+    photoGenerations: 30,
+    
+    videoGenerations: 5
   },
 
   business: {
@@ -38,7 +46,11 @@ const AMBIOZ_PLANS = {
 
     additionalLanguages: 5,
 
-    totalLanguages: 6
+    totalLanguages: 6,
+
+    photoGenerations: 100,
+    
+    videoGenerations: 20
   }
 };
 
