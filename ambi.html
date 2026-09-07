@@ -583,7 +583,24 @@
       sendMessage();
     }
   });
+  function shareAmbi() {
 
+  if (!business || !business.id) {
+    alert("This Ambi does not have a shareable link yet.");
+    return;
+  }
+
+  const shareUrl =
+    window.location.origin +
+    window.location.pathname.replace(
+      "ambi.html",
+      "share.html"
+    ) +
+    "?id=" +
+    encodeURIComponent(business.id);
+
+  window.location.href = shareUrl;
+}
   </script>
 </body>
 </html>
