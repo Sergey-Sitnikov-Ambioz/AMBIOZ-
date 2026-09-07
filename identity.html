@@ -137,12 +137,12 @@
       line-height: 1.5;
     }
 
-    .identity {
+    . {
       border-top: 1px solid #eee;
       padding-top: 20px;
     }
 
-    .identity-row {
+    .-row {
       display: flex;
       justify-content: space-between;
       gap: 20px;
@@ -150,11 +150,11 @@
       border-bottom: 1px solid #eee;
     }
 
-    .identity-label {
+    .-label {
       color: #777;
     }
 
-    .identity-value {
+    .-value {
       font-weight: 600;
       text-align: right;
     }
@@ -321,7 +321,7 @@
 
     <a class="back" href="ambi.html">← Back to Ambi</a>
 
-    <div class="eyebrow">AMBIOZ · AMBI IDENTITY</div>
+    <div class="eyebrow">AMBIOZ · AMBI </div>
 
     <h1>Meet your Ambi</h1>
 
@@ -448,6 +448,39 @@
         <span id="resultStyle"></span>
       </div>
     </div>
+    <div class="identity">
+
+  <div class="identity-row">
+    <span class="identity-label">Role</span>
+    <span id="resultRole" class="identity-value"></span>
+  </div>
+
+  <div class="identity-row">
+    <span class="identity-label">Gender</span>
+    <span id="resultGender" class="identity-value"></span>
+  </div>
+
+  <div class="identity-row">
+    <span class="identity-label">Personality</span>
+    <span id="resultPersonality" class="identity-value"></span>
+  </div>
+
+  <div class="identity-row">
+    <span class="identity-label">Language</span>
+    <span id="resultLanguage" class="identity-value"></span>
+  </div>
+
+  <div class="identity-row">
+    <span class="identity-label">Appearance</span>
+    <span id="resultAppearance" class="identity-value"></span>
+  </div>
+
+  <div class="identity-row">
+    <span class="identity-label">Style</span>
+    <span id="resultStyle" class="identity-value"></span>
+  </div>
+
+</div>
 
   </div>
 
@@ -554,7 +587,7 @@
         appearance: document.getElementById("appearance").value,
         style: document.getElementById("style").value
       };
-
+     
       if (
         !identity.name ||
         identity.name.toLowerCase() === "name" ||
@@ -571,6 +604,9 @@
 
       document.getElementById("resultName").textContent =
         identity.name;
+
+      document.getElementById("resultGender").textContent =
+        identity.gender;
 
       document.getElementById("resultRole").textContent =
         identity.role;
