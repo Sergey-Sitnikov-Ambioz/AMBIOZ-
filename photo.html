@@ -262,18 +262,17 @@
       font-size: 14px;
       line-height: 1.5;
       color: #666;
+      white-space: pre-wrap;
+      word-break: break-word;
     }
 
     .error {
       color: #b00020;
     }
 
-    /*
-      IMPORTANT FIX
-
-      The result card must be visible by default
-      and hidden only when .hidden is present.
-    */
+    .success {
+      color: #18794e;
+    }
 
     .result {
       display: block;
@@ -327,6 +326,24 @@
       background: #f4f4f5;
       color: #777;
       font-size: 14px;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .debug-box {
+      margin-top: 14px;
+      background: #fafafa;
+      border: 1px solid #e5e5e7;
+      border-radius: 12px;
+      padding: 12px;
+      font-family: monospace;
+      font-size: 11px;
+      line-height: 1.45;
+      color: #666;
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 220px;
+      overflow: auto;
     }
 
     @media (max-width: 700px) {
@@ -1022,6 +1039,11 @@
       id="status"
     ></div>
 
+    <div
+      class="debug-box hidden"
+      id="debugBox"
+    ></div>
+
   </div>
 
 
@@ -1086,13 +1108,12 @@
 
 
 /* ============================================================
-   GRADIO
+   GRADIO CLIENT
    ============================================================ */
 
 import {
   Client
-}
-from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
+} from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
 
 
 /* ============================================================
@@ -1110,6 +1131,17 @@ const supabase =
     SUPABASE_URL,
     SUPABASE_KEY
   );
+
+
+/* ============================================================
+   HUGGING FACE SPACE
+   ============================================================ */
+
+const HF_SPACE =
+  "mrfakename/Z-Image-Turbo";
+
+const HF_SPACE_URL =
+  "https://mrfakename-z-image-turbo.hf.space";
 
 
 /* ============================================================
@@ -1146,6 +1178,9 @@ const upgradeBox =
 const statusElement =
   document.getElementById("status");
 
+const debugBox =
+  document.getElementById("debugBox");
+
 const result =
   document.getElementById("result");
 
@@ -1160,60 +1195,11 @@ const imageLoading =
 
 
 /* ============================================================
-   PLAN.JS
-   ============================================================ */
-
-const planScript =
-  document.createElement("script");
-
-planScript.src = "plan.js";
-
-document.head.appendChild(
-  planScript
-);
-
-
-function waitForPlanJS() {
-
-  return new Promise(resolve => {
-
-    if (
-      typeof window.canGenerate ===
-      "function"
-    ) {
-
-      resolve();
-
-      return;
-    }
-
-
-    const interval =
-      setInterval(() => {
-
-        if (
-          typeof window.canGenerate ===
-          "function"
-        ) {
-
-          clearInterval(interval);
-
-          resolve();
-
-        }
-
-      }, 50);
-
-  });
-
-}
-
-
-/* ============================================================
    BUSINESS
    ============================================================ */
 
 let business = null;
+
 
 try {
 
@@ -1259,10 +1245,13 @@ let currentMode = "ambi";
 
 function setMode(mode) {
 
-  currentMode = mode;
+  currentMode =
+    mode;
 
 
-  if (mode === "ambi") {
+  if (
+    mode === "ambi"
+  ) {
 
     ambiMode.classList.add(
       "active"
@@ -1309,9 +1298,15 @@ function setMode(mode) {
     "src"
   );
 
-  openImage.href = "#";
+  openImage.href =
+    "#";
 
-  statusElement.textContent = "";
+  statusElement.textContent =
+    "";
+
+  debugBox.classList.add(
+    "hidden"
+  );
 
 }
 
@@ -1326,6 +1321,67 @@ businessMode.addEventListener(
   "click",
   () => setMode("business")
 );
+
+
+/* ============================================================
+   PLAN.JS
+   ============================================================ */
+
+const planScript =
+  document.createElement(
+    "script"
+  );
+
+planScript.src =
+  "plan.js";
+
+document.head.appendChild(
+  planScript
+);
+
+
+function waitForPlanJS() {
+
+  return new Promise(
+    resolve => {
+
+      if (
+        typeof window.canGenerate ===
+        "function"
+      ) {
+
+        resolve();
+
+        return;
+
+      }
+
+
+      const interval =
+        setInterval(
+          () => {
+
+            if (
+              typeof window.canGenerate ===
+              "function"
+            ) {
+
+              clearInterval(
+                interval
+              );
+
+              resolve();
+
+            }
+
+          },
+          50
+        );
+
+    }
+  );
+
+}
 
 
 /* ============================================================
@@ -1354,7 +1410,8 @@ function updateQuota() {
 
 
   if (
-    remaining === Infinity
+    remaining ===
+    Infinity
   ) {
 
     remainingElement.textContent =
@@ -1369,7 +1426,8 @@ function updateQuota() {
 
 
   if (
-    remaining <= 0
+    remaining <=
+    0
   ) {
 
     upgradeBox.classList.remove(
@@ -1405,7 +1463,7 @@ function updateProvider() {
   ) {
 
     providerText.textContent =
-      "Provider: —";
+      "Provider: Free image generation";
 
     return;
 
@@ -1417,31 +1475,19 @@ function updateProvider() {
 
 
   if (
-    provider === "free"
-  ) {
-
-    providerText.textContent =
-      "Provider: Free image generation";
-
-    return;
-
-  }
-
-
-  if (
-    provider === "paid"
+    provider ===
+    "paid"
   ) {
 
     providerText.textContent =
       "Provider: AMBIOZ paid image engine";
 
-    return;
+  } else {
+
+    providerText.textContent =
+      "Provider: Free image generation";
 
   }
-
-
-  providerText.textContent =
-    "Provider: —";
 
 }
 
@@ -1494,12 +1540,18 @@ function loadExistingAppearance() {
     getVisualIdentity();
 
 
-  if (!identity) {
+  if (
+    !identity
+  ) {
+
     return;
+
   }
 
 
-  if (identity.ageRange) {
+  if (
+    identity.ageRange
+  ) {
 
     document.getElementById(
       "age"
@@ -1509,7 +1561,9 @@ function loadExistingAppearance() {
   }
 
 
-  if (identity.skinTone) {
+  if (
+    identity.skinTone
+  ) {
 
     document.getElementById(
       "skin"
@@ -1519,7 +1573,9 @@ function loadExistingAppearance() {
   }
 
 
-  if (identity.gender) {
+  if (
+    identity.gender
+  ) {
 
     document.getElementById(
       "gender"
@@ -1529,7 +1585,9 @@ function loadExistingAppearance() {
   }
 
 
-  if (identity.hairColor) {
+  if (
+    identity.hairColor
+  ) {
 
     document.getElementById(
       "hairColor"
@@ -1539,7 +1597,9 @@ function loadExistingAppearance() {
   }
 
 
-  if (identity.hairStyle) {
+  if (
+    identity.hairStyle
+  ) {
 
     document.getElementById(
       "hairStyle"
@@ -1549,7 +1609,9 @@ function loadExistingAppearance() {
   }
 
 
-  if (identity.eyeColor) {
+  if (
+    identity.eyeColor
+  ) {
 
     document.getElementById(
       "eyes"
@@ -1568,7 +1630,8 @@ function loadExistingAppearance() {
 function buildAppearance() {
 
   const existing =
-    getVisualIdentity() || {};
+    getVisualIdentity() ||
+    {};
 
 
   const genderValue =
@@ -1611,32 +1674,38 @@ function buildAppearance() {
 
     gender:
       genderValue === "auto"
-        ? existing.gender || "female"
+        ? existing.gender ||
+          "female"
         : genderValue,
 
     ageRange:
       ageValue === "auto"
-        ? existing.ageRange || "30s"
+        ? existing.ageRange ||
+          "30s"
         : ageValue,
 
     skinTone:
       skinValue === "auto"
-        ? existing.skinTone || "medium"
+        ? existing.skinTone ||
+          "medium"
         : skinValue,
 
     hairColor:
       hairColorValue === "auto"
-        ? existing.hairColor || "dark brown"
+        ? existing.hairColor ||
+          "dark brown"
         : hairColorValue,
 
     hairStyle:
       hairStyleValue === "auto"
-        ? existing.hairStyle || "shoulder-length"
+        ? existing.hairStyle ||
+          "shoulder-length"
         : hairStyleValue,
 
     eyeColor:
       eyesValue === "auto"
-        ? existing.eyeColor || "brown"
+        ? existing.eyeColor ||
+          "brown"
         : eyesValue
 
   };
@@ -1694,7 +1763,7 @@ Ambi represents ${businessName}.
 Business context:
 ${businessDescription}
 
-VISUAL IDENTITY — PRESERVE THIS IDENTITY:
+VISUAL IDENTITY:
 
 Gender:
 ${appearance.gender}
@@ -1935,229 +2004,50 @@ function getDimensions(
 ) {
 
   if (
-    format === "portrait"
+    format ===
+    "portrait"
   ) {
 
     return {
-      width: 1024,
-      height: 1536
+
+      width:
+        1024,
+
+      height:
+        1536
+
     };
 
   }
 
 
   if (
-    format === "square"
+    format ===
+    "square"
   ) {
 
     return {
-      width: 1024,
-      height: 1024
+
+      width:
+        1024,
+
+      height:
+        1024
+
     };
 
   }
 
 
   return {
-    width: 1536,
-    height: 1024
+
+    width:
+      1536,
+
+    height:
+      1024
+
   };
-
-}
-
-
-/* ============================================================
-   SAVE RESULT
-   ============================================================ */
-
-function savePhotoRequest(
-  prompt,
-  imageUrl
-) {
-
-  try {
-
-    localStorage.setItem(
-      "ambiPhotoRequest",
-      JSON.stringify({
-
-        mode:
-          currentMode,
-
-        prompt:
-          prompt,
-
-        createdAt:
-          new Date().toISOString()
-
-      })
-    );
-
-
-    localStorage.setItem(
-      "ambiLastPhoto",
-      JSON.stringify({
-
-        mode:
-          currentMode,
-
-        imageUrl:
-          imageUrl,
-
-        createdAt:
-          new Date().toISOString()
-
-      })
-    );
-
-  } catch (error) {
-
-    console.warn(
-      "Could not save image locally.",
-      error
-    );
-
-  }
-
-}
-
-
-/* ============================================================
-   FREE PROVIDER
-   ============================================================ */
-
-async function generateWithFreeProvider(
-  prompt,
-  dimensions
-) {
-
-  /*
-    Current free provider:
-    Hugging Face ZeroGPU
-
-    Space:
-    mrfakename/Z-Image-Turbo
-  */
-
-  const app =
-    await Client.connect(
-      "mrfakename/Z-Image-Turbo"
-    );
-
-
-  const response =
-    await app.predict(
-      "/generate_image",
-      [
-
-        prompt,
-
-        dimensions.height,
-
-        dimensions.width,
-
-        9,
-
-        42,
-
-        true
-
-      ]
-    );
-
-
-  let imageUrl = null;
-
-
-  if (
-    response &&
-    response.data &&
-    response.data[0]
-  ) {
-
-    const output =
-      response.data[0];
-
-
-    if (
-      typeof output ===
-      "string"
-    ) {
-
-      imageUrl =
-        output;
-
-    }
-
-    else if (
-      output.url
-    ) {
-
-      imageUrl =
-        output.url;
-
-    }
-
-    else if (
-      output.path
-    ) {
-
-      imageUrl =
-        output.path;
-
-    }
-
-    else if (
-      output.data
-    ) {
-
-      imageUrl =
-        output.data;
-
-    }
-
-  }
-
-
-  if (!imageUrl) {
-
-    throw new Error(
-      "The image generator returned no image."
-    );
-
-  }
-
-
-  return imageUrl;
-
-}
-
-
-/* ============================================================
-   PAID PROVIDER
-   ============================================================ */
-
-async function generateWithPaidProvider(
-  prompt,
-  dimensions
-) {
-
-  /*
-    The paid provider is deliberately NOT connected yet.
-
-    When Pro / Business payments are activated,
-    this function will call a Supabase Edge Function.
-
-    The actual provider API key will remain
-    server-side in Supabase Secrets.
-
-    It will NEVER be placed in this HTML file.
-  */
-
-
-  throw new Error(
-    "Paid image generation is not connected yet. Pro and Business image generation will be activated when the paid provider is connected."
-  );
 
 }
 
@@ -2170,26 +2060,109 @@ function normalizeImageUrl(
   value
 ) {
 
-  if (!value) {
+  if (
+    !value
+  ) {
+
     return null;
+
   }
 
+
+  /*
+    Plain URL
+  */
 
   if (
     typeof value ===
     "string"
   ) {
 
+    if (
+      value.startsWith(
+        "http://"
+      ) ||
+      value.startsWith(
+        "https://"
+      )
+    ) {
+
+      return value;
+
+    }
+
+
+    /*
+      Gradio relative URL
+    */
+
+    if (
+      value.startsWith(
+        "/gradio_api/"
+      )
+    ) {
+
+      return (
+        HF_SPACE_URL +
+        value
+      );
+
+    }
+
+
+    if (
+      value.startsWith(
+        "/file="
+      )
+    ) {
+
+      return (
+        HF_SPACE_URL +
+        "/gradio_api" +
+        value
+      );
+
+    }
+
+
+    /*
+      A server filepath.
+
+      Current Gradio normally gives us
+      FileData.url, so this is only a fallback.
+    */
+
+    if (
+      value.startsWith(
+        "/"
+      )
+    ) {
+
+      return (
+        HF_SPACE_URL +
+        "/gradio_api/file=" +
+        value
+      );
+
+    }
+
+
     return value;
 
   }
 
 
+  /*
+    Gradio FileData
+  */
+
   if (
     value.url
   ) {
 
-    return value.url;
+    return normalizeImageUrl(
+      value.url
+    );
 
   }
 
@@ -2198,7 +2171,9 @@ function normalizeImageUrl(
     value.path
   ) {
 
-    return value.path;
+    return normalizeImageUrl(
+      value.path
+    );
 
   }
 
@@ -2207,7 +2182,9 @@ function normalizeImageUrl(
     value.data
   ) {
 
-    return value.data;
+    return normalizeImageUrl(
+      value.data
+    );
 
   }
 
@@ -2218,27 +2195,115 @@ function normalizeImageUrl(
 
 
 /* ============================================================
+   DEBUG
+   ============================================================ */
+
+function showDebug(
+  value
+) {
+
+  try {
+
+    debugBox.textContent =
+      JSON.stringify(
+        value,
+        null,
+        2
+      );
+
+  } catch {
+
+    debugBox.textContent =
+      String(value);
+
+  }
+
+
+  debugBox.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+/* ============================================================
+   HUMAN ERROR
+   ============================================================ */
+
+function getErrorMessage(
+  error
+) {
+
+  if (
+    !error
+  ) {
+
+    return "Unknown error.";
+
+  }
+
+
+  if (
+    typeof error ===
+    "string"
+  ) {
+
+    return error;
+
+  }
+
+
+  if (
+    error.message
+  ) {
+
+    return error.message;
+
+  }
+
+
+  try {
+
+    return JSON.stringify(
+      error
+    );
+
+  } catch {
+
+    return String(error);
+
+  }
+
+}
+
+
+/* ============================================================
    DISPLAY IMAGE
    ============================================================ */
 
 function displayGeneratedImage(
-  imageUrl
+  imageValue
 ) {
 
   return new Promise(
-    (resolve, reject) => {
+    (
+      resolve,
+      reject
+    ) => {
 
-      const normalized =
+      const imageUrl =
         normalizeImageUrl(
-          imageUrl
+          imageValue
         );
 
 
-      if (!normalized) {
+      if (
+        !imageUrl
+      ) {
 
         reject(
           new Error(
-            "The image URL is empty."
+            "Gradio returned an image, but no usable image URL was found."
           )
         );
 
@@ -2247,10 +2312,11 @@ function displayGeneratedImage(
       }
 
 
-      /*
-        Hide result until the image
-        actually loads.
-      */
+      console.log(
+        "AMBIOZ image URL:",
+        imageUrl
+      );
+
 
       result.classList.add(
         "hidden"
@@ -2270,18 +2336,28 @@ function displayGeneratedImage(
       resultImage.onload =
         () => {
 
+          console.log(
+            "AMBIOZ image loaded successfully."
+          );
+
+
           imageLoading.classList.add(
             "hidden"
           );
+
 
           result.classList.remove(
             "hidden"
           );
 
-          openImage.href =
-            normalized;
 
-          resolve();
+          openImage.href =
+            imageUrl;
+
+
+          resolve(
+            imageUrl
+          );
 
         };
 
@@ -2289,17 +2365,20 @@ function displayGeneratedImage(
       resultImage.onerror =
         () => {
 
+          console.error(
+            "AMBIOZ image failed to load:",
+            imageUrl
+          );
+
+
           imageLoading.classList.add(
             "hidden"
           );
 
-          result.classList.add(
-            "hidden"
-          );
 
           reject(
             new Error(
-              "The image was generated, but the browser could not load it."
+              "The image was generated, but the browser could not load the returned image file."
             )
           );
 
@@ -2307,7 +2386,7 @@ function displayGeneratedImage(
 
 
       resultImage.src =
-        normalized;
+        imageUrl;
 
     }
   );
@@ -2316,13 +2395,332 @@ function displayGeneratedImage(
 
 
 /* ============================================================
-   MAIN GENERATOR
+   GENERATE USING CURRENT HUGGING FACE SPACE
+   ============================================================ */
+
+async function generateWithFreeProvider(
+  prompt,
+  dimensions
+) {
+
+  statusElement.textContent =
+    "Connecting to image generator…";
+
+
+  /*
+    Connect directly to the current Space.
+  */
+
+  const app =
+    await Client.connect(
+      HF_SPACE,
+      {
+        events:
+          [
+            "status",
+            "data"
+          ]
+      }
+    );
+
+
+  statusElement.textContent =
+    "Image generator connected. Starting generation…";
+
+
+  /*
+    Submit the job.
+
+    Current Space endpoint:
+    /generate_image
+
+    Inputs:
+      1. prompt
+      2. height
+      3. width
+      4. num_inference_steps
+      5. seed
+      6. randomize_seed
+
+    This matches the current Hugging Face Space.
+  */
+
+  const job =
+    app.submit(
+      "/generate_image",
+      [
+
+        prompt,
+
+        dimensions.height,
+
+        dimensions.width,
+
+        9,
+
+        42,
+
+        true
+
+      ]
+    );
+
+
+  let finalData =
+    null;
+
+
+  let lastStatus =
+    null;
+
+
+  for await (
+    const message of job
+  ) {
+
+    console.log(
+      "AMBIOZ Gradio event:",
+      message
+    );
+
+
+    /*
+      STATUS
+    */
+
+    if (
+      message.type ===
+      "status"
+    ) {
+
+      lastStatus =
+        message;
+
+
+      if (
+        message.stage ===
+        "pending"
+      ) {
+
+        if (
+          typeof message.position ===
+          "number"
+        ) {
+
+          statusElement.textContent =
+            `Image generation queued. Position: ${message.position}`;
+
+        } else {
+
+          statusElement.textContent =
+            "Image generation queued…";
+
+        }
+
+      }
+
+
+      else if (
+        message.stage ===
+        "generating"
+      ) {
+
+        statusElement.textContent =
+          "Generating image…";
+
+      }
+
+
+      else if (
+        message.stage ===
+        "complete"
+      ) {
+
+        statusElement.textContent =
+          "Image generated. Loading result…";
+
+      }
+
+
+      else if (
+        message.stage ===
+        "error"
+      ) {
+
+        throw new Error(
+          message.message ||
+          "Hugging Face image generation failed."
+        );
+
+      }
+
+    }
+
+
+    /*
+      DATA
+    */
+
+    if (
+      message.type ===
+      "data"
+    ) {
+
+      finalData =
+        message.data;
+
+    }
+
+  }
+
+
+  /*
+    No output
+    */
+
+  if (
+    !finalData
+  ) {
+
+    throw new Error(
+      lastStatus?.message ||
+      "The image generator finished without returning image data."
+    );
+
+  }
+
+
+  console.log(
+    "AMBIOZ final Gradio data:",
+    finalData
+  );
+
+
+  /*
+    The first output is the image.
+    The second output is the seed.
+  */
+
+  const imageOutput =
+    Array.isArray(
+      finalData
+    )
+      ? finalData[0]
+      : finalData;
+
+
+  if (
+    !imageOutput
+  ) {
+
+    throw new Error(
+      "The image generator returned no image output."
+    );
+
+  }
+
+
+  showDebug(
+    {
+      type:
+        "gradio-result",
+
+      output:
+        imageOutput,
+
+      fullData:
+        finalData
+    }
+  );
+
+
+  return imageOutput;
+
+}
+
+
+/* ============================================================
+   PAID PROVIDER
+   ============================================================ */
+
+async function generateWithPaidProvider(
+  prompt,
+  dimensions
+) {
+
+  /*
+    Paid image generation is deliberately
+    not connected yet.
+
+    When Pro / Business payments are activated,
+    this function will call a Supabase Edge Function.
+
+    Paid API keys will remain server-side.
+  */
+
+  throw new Error(
+    "Paid image generation is not connected yet. Pro and Business image generation will be activated when the paid provider is connected."
+  );
+
+}
+
+
+/* ============================================================
+   SAVE PHOTO
+   ============================================================ */
+
+function savePhoto(
+  prompt,
+  imageUrl
+) {
+
+  try {
+
+    localStorage.setItem(
+      "ambiLastPhoto",
+      JSON.stringify({
+
+        mode:
+          currentMode,
+
+        prompt:
+          prompt,
+
+        imageUrl:
+          imageUrl,
+
+        createdAt:
+          new Date().toISOString()
+
+      })
+    );
+
+  } catch (
+    error
+  ) {
+
+    console.warn(
+      "Could not save generated image.",
+      error
+    );
+
+  }
+
+}
+
+
+/* ============================================================
+   MAIN GENERATION
    ============================================================ */
 
 async function generateImage() {
 
   statusElement.textContent =
     "";
+
+  debugBox.classList.add(
+    "hidden"
+  );
 
   result.classList.add(
     "hidden"
@@ -2337,7 +2735,7 @@ async function generateImage() {
 
 
   /*
-    Check quota.
+    QUOTA CHECK
   */
 
   if (
@@ -2355,8 +2753,10 @@ async function generateImage() {
         "hidden"
       );
 
-      statusElement.textContent =
-        "Your photo generation limit has been reached.";
+      statusElement.innerHTML =
+        `<span class="error">
+          Your photo generation limit has been reached.
+        </span>`;
 
       return;
 
@@ -2366,7 +2766,7 @@ async function generateImage() {
 
 
   /*
-    Determine provider.
+    PROVIDER
   */
 
   const provider =
@@ -2377,10 +2777,10 @@ async function generateImage() {
 
 
   /*
-    Build prompt.
+    PROMPT
   */
 
-  let prompt = "";
+  let prompt;
 
   let dimensions;
 
@@ -2394,17 +2794,26 @@ async function generateImage() {
       buildAmbiPrompt();
 
 
+    /*
+      Use square for the first
+      reliable MVP test.
+
+      Z-Image-Turbo supports the
+      dimensions, but square removes
+      one variable while debugging.
+    */
+
     dimensions = {
 
-      width: 1024,
+      width:
+        1024,
 
-      height: 1536
+      height:
+        1024
 
     };
 
-  }
-
-  else {
+  } else {
 
     prompt =
       buildBusinessPrompt();
@@ -2421,7 +2830,7 @@ async function generateImage() {
 
 
   /*
-    UI state.
+    UI
   */
 
   generateButton.disabled =
@@ -2431,12 +2840,12 @@ async function generateImage() {
     true;
 
   statusElement.textContent =
-    "Generating image…";
+    "Starting image generation…";
 
 
   try {
 
-    let imageUrl;
+    let imageOutput;
 
 
     /*
@@ -2448,7 +2857,7 @@ async function generateImage() {
       "free"
     ) {
 
-      imageUrl =
+      imageOutput =
         await generateWithFreeProvider(
           prompt,
           dimensions
@@ -2466,7 +2875,7 @@ async function generateImage() {
       "paid"
     ) {
 
-      imageUrl =
+      imageOutput =
         await generateWithPaidProvider(
           prompt,
           dimensions
@@ -2485,20 +2894,17 @@ async function generateImage() {
 
 
     /*
-      Display image FIRST.
-
-      If the browser cannot actually load
-      the returned image, quota is NOT consumed.
+      Normalize and load image.
     */
 
-    await displayGeneratedImage(
-      imageUrl
-    );
+    const imageUrl =
+      await displayGeneratedImage(
+        imageOutput
+      );
 
 
     /*
-      Only successful generation
-      consumes a photo generation.
+      ONLY NOW consume quota.
     */
 
     if (
@@ -2514,33 +2920,56 @@ async function generateImage() {
 
 
     /*
-      Save locally.
+      Save.
     */
 
-    savePhotoRequest(
+    savePhoto(
       prompt,
-      normalizeImageUrl(
-        imageUrl
-      )
-    );
-
-
-    statusElement.textContent =
-      "Image generated successfully.";
-
-
-  } catch (error) {
-
-    console.error(
-      "Image generation error:",
-      error
+      imageUrl
     );
 
 
     statusElement.innerHTML =
-      `<span class="error">
-        Image generation failed. Your generation was not charged.
+      `<span class="success">
+        Image generated successfully.
       </span>`;
+
+
+  } catch (
+    error
+  ) {
+
+    console.error(
+      "AMBIOZ image generation error:",
+      error
+    );
+
+
+    const message =
+      getErrorMessage(
+        error
+      );
+
+
+    statusElement.innerHTML =
+      `<span class="error">
+        Image generation failed.
+        Your generation was not charged.
+
+        ${message}
+      </span>`;
+
+
+    showDebug(
+      {
+        error:
+          message,
+
+        object:
+          error
+
+      }
+    );
 
   }
 
@@ -2550,6 +2979,7 @@ async function generateImage() {
 
   generateAgain.disabled =
     false;
+
 
   updateQuota();
 
@@ -2571,15 +3001,6 @@ generateButton.addEventListener(
 generateAgain.addEventListener(
   "click",
   () => {
-
-    window.scrollTo({
-
-      top: 0,
-
-      behavior: "smooth"
-
-    });
-
 
     generateImage();
 
@@ -2623,9 +3044,7 @@ async function initialize() {
 
     loadExistingAppearance();
 
-  }
-
-  else {
+  } else {
 
     document.getElementById(
       "appearanceControls"
@@ -2658,7 +3077,6 @@ initialize();
 
 
 </script>
-
 
 </body>
 
