@@ -62,14 +62,13 @@
     .brand {
       font-size: 20px;
       font-weight: 700;
+      letter-spacing: -0.5px;
     }
 
 
     .back {
       color: #111;
-
       text-decoration: none;
-
       font-size: 14px;
     }
 
@@ -78,6 +77,7 @@
       margin: 0 0 10px;
 
       font-size: 40px;
+      line-height: 1.05;
 
       letter-spacing: -1.5px;
     }
@@ -104,6 +104,10 @@
       margin-bottom: 20px;
     }
 
+
+    /* ================================
+       IDENTITY
+       ================================ */
 
     .identity {
       display: flex;
@@ -144,6 +148,10 @@
     }
 
 
+    /* ================================
+       USAGE
+       ================================ */
+
     .usage {
       padding: 15px 17px;
 
@@ -154,6 +162,8 @@
       background: #f7f7f5;
 
       font-size: 14px;
+
+      line-height: 1.5;
     }
 
 
@@ -161,6 +171,36 @@
       font-size: 17px;
     }
 
+
+    /* ================================
+       VISUAL IDENTITY
+       ================================ */
+
+    .visual-status {
+      margin-bottom: 25px;
+
+      padding: 16px;
+
+      background: #f7f7f5;
+
+      border-radius: 12px;
+
+      font-size: 14px;
+
+      line-height: 1.5;
+
+      color: #555;
+    }
+
+
+    .visual-status strong {
+      color: #111;
+    }
+
+
+    /* ================================
+       FIELDS
+       ================================ */
 
     .field {
       margin-bottom: 22px;
@@ -199,8 +239,12 @@
     }
 
 
+    /* ================================
+       APPEARANCE
+       ================================ */
+
     .appearance-note {
-      padding: 15px;
+      padding: 16px;
 
       margin-bottom: 25px;
 
@@ -215,6 +259,10 @@
       line-height: 1.5;
     }
 
+
+    /* ================================
+       BUTTON
+       ================================ */
 
     button {
       width: 100%;
@@ -244,33 +292,9 @@
     }
 
 
-    .upgrade {
-      display: none;
-
-      margin-top: 18px;
-
-      padding: 18px;
-
-      border: 1px solid #ddd;
-
-      border-radius: 14px;
-
-      line-height: 1.5;
-    }
-
-
-    .upgrade a {
-      display: inline-block;
-
-      margin-top: 10px;
-
-      color: #111;
-
-      font-weight: 600;
-
-      text-decoration: none;
-    }
-
+    /* ================================
+       STATUS
+       ================================ */
 
     .status {
       display: none;
@@ -306,6 +330,49 @@
     }
 
 
+    /* ================================
+       UPGRADE
+       ================================ */
+
+    .upgrade {
+      display: none;
+
+      margin-top: 18px;
+
+      padding: 18px;
+
+      border: 1px solid #ddd;
+
+      border-radius: 14px;
+
+      line-height: 1.5;
+    }
+
+
+    .upgrade strong {
+      display: block;
+
+      margin-bottom: 7px;
+    }
+
+
+    .upgrade a {
+      display: inline-block;
+
+      margin-top: 10px;
+
+      color: #111;
+
+      font-weight: 600;
+
+      text-decoration: none;
+    }
+
+
+    /* ================================
+       RESULT
+       ================================ */
+
     .result {
       display: none;
 
@@ -325,6 +392,15 @@
       margin: 0 auto;
 
       border-radius: 18px;
+    }
+
+
+    .result-title {
+      margin-bottom: 15px;
+
+      font-size: 18px;
+
+      font-weight: 700;
     }
 
 
@@ -385,7 +461,9 @@
   <div class="page">
 
 
-    <!-- HEADER -->
+    <!-- ================================
+         HEADER
+         ================================ -->
 
     <div class="top">
 
@@ -419,7 +497,9 @@
     <div class="card">
 
 
-      <!-- IDENTITY -->
+      <!-- ================================
+           AMBI IDENTITY
+           ================================ -->
 
       <div class="identity">
 
@@ -455,7 +535,9 @@
 
 
 
-      <!-- USAGE -->
+      <!-- ================================
+           PHOTO USAGE
+           ================================ -->
 
       <div class="usage">
 
@@ -469,7 +551,21 @@
 
 
 
-      <!-- FREE -->
+      <!-- ================================
+           VISUAL IDENTITY STATUS
+           ================================ -->
+
+      <div
+        id="visualStatus"
+        class="visual-status"
+      >
+      </div>
+
+
+
+      <!-- ================================
+           FREE APPEARANCE
+           ================================ -->
 
       <div
         id="automaticAppearance"
@@ -483,15 +579,19 @@
 
         <br><br>
 
-        Your Free plan lets Ambioz choose
-        a natural and professional appearance
-        for your Ambi automatically.
+        Your Free plan does not include
+        appearance customization.
+
+        Ambioz automatically creates and preserves
+        a consistent visual identity for your Ambi.
 
       </div>
 
 
 
-      <!-- PAID APPEARANCE -->
+      <!-- ================================
+           PAID APPEARANCE
+           ================================ -->
 
       <div
         id="customAppearance"
@@ -504,6 +604,7 @@
           <label for="ageRange">
             AGE
           </label>
+
 
           <select id="ageRange">
 
@@ -543,6 +644,7 @@
             SKIN TONE
           </label>
 
+
           <select id="skinTone">
 
             <option value="auto">
@@ -580,6 +682,7 @@
           <label for="hairColor">
             HAIR COLOR
           </label>
+
 
           <select id="hairColor">
 
@@ -631,6 +734,7 @@
             HAIR STYLE
           </label>
 
+
           <select id="hairStyle">
 
             <option value="auto">
@@ -677,6 +781,7 @@
             EYE COLOR
           </label>
 
+
           <select id="eyeColor">
 
             <option value="auto">
@@ -715,7 +820,9 @@
 
 
 
-      <!-- SCENE -->
+      <!-- ================================
+           SCENE
+           ================================ -->
 
       <div class="field">
 
@@ -752,7 +859,9 @@
 
 
 
-      <!-- POSE -->
+      <!-- ================================
+           POSE
+           ================================ -->
 
       <div class="field">
 
@@ -785,7 +894,9 @@
 
 
 
-      <!-- EXPRESSION -->
+      <!-- ================================
+           EXPRESSION
+           ================================ -->
 
       <div class="field">
 
@@ -822,7 +933,9 @@
 
 
 
-      <!-- FORMAT -->
+      <!-- ================================
+           FORMAT
+           ================================ -->
 
       <div class="field">
 
@@ -851,7 +964,9 @@
 
 
 
-      <!-- GENERATE -->
+      <!-- ================================
+           GENERATE
+           ================================ -->
 
       <button
         id="generateButton"
@@ -862,7 +977,9 @@
 
 
 
-      <!-- STATUS -->
+      <!-- ================================
+           STATUS
+           ================================ -->
 
       <div
         id="status"
@@ -872,7 +989,9 @@
 
 
 
-      <!-- ERROR -->
+      <!-- ================================
+           ERROR
+           ================================ -->
 
       <div
         id="error"
@@ -882,7 +1001,9 @@
 
 
 
-      <!-- UPGRADE -->
+      <!-- ================================
+           UPGRADE
+           ================================ -->
 
       <div
         id="upgrade"
@@ -893,11 +1014,11 @@
           You've reached your photo generation limit.
         </strong>
 
-        <br>
+        <div>
+          Upgrade your plan to create more
+          Ambi photos.
+        </div>
 
-        Upgrade your plan to create more Ambi photos.
-
-        <br>
 
         <a href="plans.html">
           View plans →
@@ -907,12 +1028,19 @@
 
 
 
-      <!-- RESULT -->
+      <!-- ================================
+           RESULT
+           ================================ -->
 
       <div
         id="result"
         class="result"
       >
+
+        <div class="result-title">
+          Your Ambi
+        </div>
+
 
         <img
           id="generatedImage"
@@ -926,6 +1054,7 @@
             id="openImage"
             href="#"
             target="_blank"
+            rel="noopener"
           >
             Open image
           </a>
@@ -941,25 +1070,26 @@
 
 
 
-  <!-- PLAN SYSTEM -->
+  <!-- ================================
+       PLAN SYSTEM
+       ================================ -->
 
   <script src="plan.js"></script>
 
 
 
-  <!-- GRADIO CLIENT -->
+  <!-- ================================
+       GRADIO CLIENT
+       ================================ -->
 
   <script type="module">
 
     import {
       Client
     }
-    from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
+    from
+      "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
 
-
-    /*
-     * Make available to the regular script.
-     */
 
     window.AmbiozGradioClient =
       Client;
@@ -971,11 +1101,9 @@
   <script>
 
 
-    /*
-     * ================================
-     * IDENTITY
-     * ================================
-     */
+    /* =================================
+       IDENTITY
+       ================================= */
 
     const identity =
       JSON.parse(
@@ -985,11 +1113,9 @@
       );
 
 
-    /*
-     * ================================
-     * BUSINESS
-     * ================================
-     */
+    /* =================================
+       BUSINESS
+       ================================= */
 
     const business =
       JSON.parse(
@@ -999,11 +1125,22 @@
       );
 
 
-    /*
-     * ================================
-     * DISPLAY IDENTITY
-     * ================================
-     */
+    /* =================================
+       PLAN
+       ================================= */
+
+    const currentPlan =
+      getAmbiozPlan();
+
+
+    const plan =
+      getAmbiozPlanConfig();
+
+
+
+    /* =================================
+       DISPLAY IDENTITY
+       ================================= */
 
     if (identity) {
 
@@ -1035,22 +1172,68 @@
 
 
 
-    /*
-     * ================================
-     * PLAN
-     * ================================
-     */
+    /* =================================
+       VISUAL IDENTITY
+       ================================= */
 
-    const plan =
-      getAmbiozPlanConfig();
+    function initializeVisualIdentity() {
+
+      /*
+       * This function creates the visual
+       * identity only once.
+       *
+       * After that, all photos use
+       * exactly the same profile.
+       */
+
+      const visual =
+        getAmbiVisualIdentity();
+
+
+      const status =
+        document
+          .getElementById(
+            "visualStatus"
+          );
+
+
+      if (!visual) {
+
+        status.innerHTML =
+          "<strong>Visual identity:</strong> automatic";
+
+        return;
+
+      }
+
+
+      const description =
+        getAmbiVisualDescription();
+
+
+      status.innerHTML =
+        `
+          <strong>
+            Ambi visual identity
+          </strong>
+
+          <br><br>
+
+          ${description}
+
+          <br><br>
+
+          This identity will be reused
+          across future Ambi photos.
+        `;
+
+    }
 
 
 
-    /*
-     * ================================
-     * APPEARANCE
-     * ================================
-     */
+    /* =================================
+       APPEARANCE ACCESS
+       ================================= */
 
     if (
       plan.appearanceCustomization
@@ -1059,6 +1242,14 @@
       document
         .getElementById(
           "customAppearance"
+        )
+        .style.display =
+          "block";
+
+
+      document
+        .getElementById(
+          "visualStatus"
         )
         .style.display =
           "block";
@@ -1072,15 +1263,24 @@
         .style.display =
           "block";
 
+
+      document
+        .getElementById(
+          "visualStatus"
+        )
+        .style.display =
+          "block";
+
     }
 
 
+    initializeVisualIdentity();
 
-    /*
-     * ================================
-     * USAGE
-     * ================================
-     */
+
+
+    /* =================================
+       PHOTO USAGE
+       ================================= */
 
     function updatePhotoUsage() {
 
@@ -1119,8 +1319,10 @@
         button.disabled =
           true;
 
+
         button.textContent =
           "Photo limit reached";
+
 
         upgrade.style.display =
           "block";
@@ -1130,8 +1332,10 @@
         button.disabled =
           false;
 
+
         button.textContent =
           "Generate Photo →";
+
 
         upgrade.style.display =
           "none";
@@ -1142,11 +1346,9 @@
 
 
 
-    /*
-     * ================================
-     * FORMAT
-     * ================================
-     */
+    /* =================================
+       DIMENSIONS
+       ================================= */
 
     function getDimensions() {
 
@@ -1191,41 +1393,68 @@
 
 
 
-    /*
-     * ================================
-     * BUILD APPEARANCE
-     * ================================
-     */
+    /* =================================
+       APPEARANCE DESCRIPTION
+       ================================= */
 
     function buildAppearance() {
 
       /*
-       * FREE
+       * Always use the persistent
+       * visual identity.
        */
 
-      if (
-        !plan.appearanceCustomization
-      ) {
+      const visual =
+        getAmbiVisualIdentity();
+
+
+      if (!visual) {
 
         return `
-The appearance is automatically selected by Ambioz.
-
-Create a natural, professional-looking adult person
-with a modern business-presentative appearance.
-
-Do not make the person look like a call-center operator.
-Do not use a headset.
-Do not use earphones.
-Do not use a visible microphone.
+Professional adult person
+with a natural business appearance.
         `.trim();
 
       }
 
 
+      return `
+Gender: ${visual.gender || "natural"}
+Age range: ${visual.ageRange || "natural"}
+Skin tone: ${visual.skinTone || "natural"}
+Hair color: ${visual.hairColor || "natural"}
+Hair style: ${visual.hairStyle || "natural"}
+Eye color: ${visual.eyeColor || "natural"}
 
-      /*
-       * PAID
-       */
+The exact same person must be preserved
+across future Ambi images.
+
+Do not change the person's identity.
+Do not randomly change facial characteristics.
+      `.trim();
+
+    }
+
+
+
+    /* =================================
+       PAID APPEARANCE UPDATE
+       ================================= */
+
+    function updatePaidVisualIdentity() {
+
+      if (
+        !plan.appearanceCustomization
+      ) {
+
+        return getAmbiVisualIdentity();
+
+      }
+
+
+      const current =
+        getAmbiVisualIdentity();
+
 
       const age =
         document
@@ -1267,89 +1496,58 @@ Do not use a visible microphone.
           .value;
 
 
-      const details = [];
+      const updated = {
+
+        gender:
+          current.gender,
 
 
-      if (age !== "auto") {
-
-        details.push(
-          `age range: ${age}`
-        );
-
-      }
+        ageRange:
+          age === "auto"
+            ? current.ageRange
+            : age,
 
 
-      if (skin !== "auto") {
-
-        details.push(
-          `skin tone: ${skin}`
-        );
-
-      }
+        skinTone:
+          skin === "auto"
+            ? current.skinTone
+            : skin,
 
 
-      if (hairColor !== "auto") {
-
-        details.push(
-          `hair color: ${hairColor}`
-        );
-
-      }
+        hairColor:
+          hairColor === "auto"
+            ? current.hairColor
+            : hairColor,
 
 
-      if (hairStyle !== "auto") {
-
-        details.push(
-          `hair style: ${hairStyle}`
-        );
-
-      }
+        hairStyle:
+          hairStyle === "auto"
+            ? current.hairStyle
+            : hairStyle,
 
 
-      if (eyeColor !== "auto") {
+        eyeColor:
+          eyeColor === "auto"
+            ? current.eyeColor
+            : eyeColor
 
-        details.push(
-          `eye color: ${eyeColor}`
-        );
-
-      }
-
-
-      if (
-        details.length === 0
-      ) {
-
-        return `
-Let Ambioz choose the unspecified
-appearance details naturally.
-
-Professional adult business representative.
-No headset.
-No earphones.
-No visible microphone.
-        `.trim();
-
-      }
+      };
 
 
-      return `
-${details.join(", ")}.
+      saveAmbiVisualIdentity(
+        updated
+      );
 
-Professional adult business representative.
-No headset.
-No earphones.
-No visible microphone.
-      `.trim();
+
+      return updated;
 
     }
 
 
 
-    /*
-     * ================================
-     * BUILD PROMPT
-     * ================================
-     */
+    /* =================================
+       BUILD PROMPT
+       ================================= */
 
     function buildPhotoPrompt() {
 
@@ -1361,6 +1559,16 @@ No visible microphone.
       const role =
         identity?.role ||
         "Digital Business Representative";
+
+
+      const description =
+        business?.description ||
+        "modern business";
+
+
+      const services =
+        business?.services ||
+        "";
 
 
       const scene =
@@ -1391,87 +1599,103 @@ No visible microphone.
         buildAppearance();
 
 
-      const businessDescription =
-        business?.description ||
-        "";
-
-
-      const services =
-        business?.services ||
-        "";
-
-
       return `
-Create a professional photorealistic image
-of an AI digital business representative.
+Create a photorealistic professional portrait
+of a person representing a modern business.
 
-This person visually represents a real business.
+The person is a real-looking professional human,
+not a call-center employee.
 
-Representative:
-${name}
+PERSON IDENTITY:
+Name: ${name}
 
 Role:
 ${role}
 
-Business:
-${businessDescription}
+BUSINESS:
+${description}
 
-Services:
+SERVICES:
 ${services}
 
-Appearance:
+FIXED VISUAL IDENTITY:
 ${appearance}
 
-Scene:
+SCENE:
 ${scene}
 
-Pose:
+POSE:
 ${pose}
 
-Facial expression:
+EXPRESSION:
 ${expression}
 
-Visual direction:
-- photorealistic
-- professional
-- natural human appearance
-- modern business environment
-- realistic skin and facial details
-- natural lighting
-- clean composition
+VISUAL STYLE:
 - premium commercial photography
-- approachable and trustworthy
-- the person is the main subject
+- photorealistic
+- natural human proportions
+- realistic skin
+- realistic eyes
+- realistic hair
+- natural lighting
+- modern professional environment
+- clean composition
+- trustworthy
+- approachable
+- confident
+- business-oriented
+- person is the primary subject
 
-Strict exclusions:
-- no headset
-- no earphones
-- no microphone
-- no telephone operator equipment
-- no call-center environment
-- no text
-- no captions
-- no logo
-- no watermark
-- no UI
-- no artificial interface elements
+ABSOLUTELY DO NOT INCLUDE:
+- headset
+- headphones
+- earphones
+- earpiece
+- microphone
+- boom microphone
+- telephone
+- call-center equipment
+- customer service desk
+- call-center environment
+- text
+- letters
+- words
+- signs
+- labels
+- logos
+- brand marks
+- watermark
+- UI
+- interface
+- captions
+- subtitles
+
+Do not place any text or logo anywhere
+in the image.
+
+Do not invent a company logo.
+
+The person must look like a professional
+business representative photographed
+for a modern company's website.
+
+Preserve the same person's appearance
+for future images of this Ambi.
       `.trim();
 
     }
 
 
 
-    /*
-     * ================================
-     * WAIT FOR GRADIO CLIENT
-     * ================================
-     */
+    /* =================================
+       WAIT FOR GRADIO
+       ================================= */
 
     async function waitForGradioClient() {
 
       for (
         let i = 0;
-        i < 50;
+        i < 100;
         i++
       ) {
 
@@ -1505,362 +1729,70 @@ Strict exclusions:
 
 
 
-    /*
-     * ================================
-     * GENERATE
-     * ================================
-     */
+    /* =================================
+       EXTRACT IMAGE URL
+       ================================= */
 
-    async function generatePhoto() {
-
-      const button =
-        document
-          .getElementById(
-            "generateButton"
-          );
-
-
-      const status =
-        document
-          .getElementById(
-            "status"
-          );
-
-
-      const error =
-        document
-          .getElementById(
-            "error"
-          );
-
-
-      const result =
-        document
-          .getElementById(
-            "result"
-          );
-
-
-      const generatedImage =
-        document
-          .getElementById(
-            "generatedImage"
-          );
-
-
-      const openImage =
-        document
-          .getElementById(
-            "openImage"
-          );
-
-
-      /*
-       * Clear previous messages.
-       */
-
-      status.style.display =
-        "none";
-
-      error.style.display =
-        "none";
-
-      result.style.display =
-        "none";
-
-
-      /*
-       * Check limit.
-       */
+    function extractImageUrl(
+      imageData
+    ) {
 
       if (
-        !canGenerate("photo")
+        typeof imageData ===
+        "string"
       ) {
 
-        updatePhotoUsage();
-
-        return;
+        return imageData;
 
       }
 
 
-      /*
-       * Prepare UI.
-       */
+      if (
+        imageData &&
+        imageData.url
+      ) {
 
-      button.disabled =
-        true;
+        return imageData.url;
 
-      button.textContent =
-        "Generating...";
-
-
-      status.textContent =
-        "Connecting to the image generator...";
-
-      status.style.display =
-        "block";
+      }
 
 
-      try {
+      if (
+        imageData &&
+        imageData.path
+      ) {
+
+        return imageData.path;
+
+      }
 
 
-        /*
-         * Get Gradio client.
-         */
-
-        const Client =
-          await waitForGradioClient();
-
-
-        /*
-         * Connect to public ZeroGPU Space.
-         */
-
-        const app =
-          await Client.connect(
-            "mrfakename/Z-Image-Turbo"
-          );
-
-
-        status.textContent =
-          "Generating your Ambi photo. This may take a moment...";
-
-
-        /*
-         * Prompt.
-         */
-
-        const prompt =
-          buildPhotoPrompt();
-
-
-        /*
-         * Dimensions.
-         */
-
-        const dimensions =
-          getDimensions();
-
-
-        /*
-         * Generate.
-         *
-         * Endpoint:
-         * /generate_image
-         *
-         * Inputs:
-         * prompt
-         * height
-         * width
-         * steps
-         * seed
-         * randomize
-         */
-
-        const response =
-          await app.predict(
-            "/generate_image",
-            [
-              prompt,
-
-              dimensions.height,
-
-              dimensions.width,
-
-              9,
-
-              42,
-
-              true
-            ]
-          );
-
-
-        /*
-         * Validate response.
-         */
+      if (
+        imageData &&
+        imageData.image
+      ) {
 
         if (
-          !response ||
-          !response.data ||
-          !response.data[0]
-        ) {
-
-          throw new Error(
-            "The image generator returned no image."
-          );
-
-        }
-
-
-        const imageData =
-          response.data[0];
-
-
-        let imageUrl = null;
-
-
-        /*
-         * Gradio normally returns
-         * an object containing url/path.
-         */
-
-        if (
-          typeof imageData ===
+          typeof imageData.image ===
           "string"
         ) {
 
-          imageUrl =
-            imageData;
+          return imageData.image;
 
         }
 
 
         if (
-          imageData &&
-          imageData.url
+          imageData.image.url
         ) {
 
-          imageUrl =
-            imageData.url;
+          return imageData.image.url;
 
         }
 
 
         if (
-          imageData &&
-          imageData.path &&
-          !imageUrl
+          imageData.image.path
         ) {
 
-          imageUrl =
-            imageData.path;
-
-        }
-
-
-        if (!imageUrl) {
-
-          throw new Error(
-            "The generated image URL could not be read."
-          );
-
-        }
-
-
-        /*
-         * Show image.
-         */
-
-        generatedImage.src =
-          imageUrl;
-
-
-        openImage.href =
-          imageUrl;
-
-
-        result.style.display =
-          "block";
-
-
-        status.textContent =
-          "Photo generated successfully.";
-
-
-        /*
-         * IMPORTANT:
-         *
-         * Consume one generation
-         * ONLY after receiving image.
-         */
-
-        useGeneration(
-          "photo"
-        );
-
-
-        /*
-         * Save result information.
-         */
-
-        localStorage.setItem(
-          "ambiLastPhoto",
-          JSON.stringify({
-            url: imageUrl,
-            prompt: prompt,
-            createdAt:
-              new Date().toISOString()
-          })
-        );
-
-
-        updatePhotoUsage();
-
-
-      } catch (err) {
-
-
-        console.error(
-          "Photo generation error:",
-          err
-        );
-
-
-        status.style.display =
-          "none";
-
-
-        error.textContent =
-          err?.message ||
-          "Photo generation failed. Please try again.";
-
-
-        error.style.display =
-          "block";
-
-
-      } finally {
-
-
-        if (
-          canGenerate("photo")
-        ) {
-
-          button.disabled =
-            false;
-
-          button.textContent =
-            "Generate Photo →";
-
-        } else {
-
-          button.disabled =
-            true;
-
-          button.textContent =
-            "Photo limit reached";
-
-        }
-
-      }
-
-    }
-
-
-
-    /*
-     * ================================
-     * INITIAL STATE
-     * ================================
-     */
-
-    updatePhotoUsage();
-
-  </script>
-
-
-</body>
-
-</html>
+          return image
