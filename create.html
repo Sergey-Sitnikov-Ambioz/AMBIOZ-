@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Create your Ambi — AMBIOZ</title>
 
   <style>
@@ -109,6 +110,7 @@
       margin-top: 7px;
       color: #888888;
       font-size: 12px;
+      line-height: 1.45;
     }
 
     .button {
@@ -128,11 +130,20 @@
       opacity: 0.85;
     }
 
+    .button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
     .footer-note {
       text-align: center;
       margin-top: 25px;
       color: #999999;
       font-size: 12px;
+    }
+
+    .ambi-name-group {
+      margin-top: 4px;
     }
 
     @media (max-width: 600px) {
@@ -176,7 +187,10 @@
 
       <form id="ambiForm">
 
+        <!-- BUSINESS NAME -->
+
         <div class="form-group">
+
           <label for="businessName">
             Business name
           </label>
@@ -187,9 +201,37 @@
             placeholder="e.g. Acme Studio"
             required
           >
+
         </div>
 
+
+        <!-- AMBI NAME -->
+
+        <div class="form-group ambi-name-group">
+
+          <label for="ambiName">
+            AI Ambassador name
+          </label>
+
+          <input
+            type="text"
+            id="ambiName"
+            maxlength="60"
+            placeholder="e.g. Anna"
+          >
+
+          <div class="hint">
+            Give your AI Ambassador a name.
+            Leave empty to use the default name Ambi.
+          </div>
+
+        </div>
+
+
+        <!-- BUSINESS DESCRIPTION -->
+
         <div class="form-group">
+
           <label for="businessType">
             What does your business do?
           </label>
@@ -199,9 +241,14 @@
             placeholder="Describe your business in a few sentences..."
             required
           ></textarea>
+
         </div>
 
+
+        <!-- WEBSITE -->
+
         <div class="form-group">
+
           <label for="website">
             Website
           </label>
@@ -211,9 +258,14 @@
             id="website"
             placeholder="https://yourbusiness.com"
           >
+
         </div>
 
+
+        <!-- SERVICES -->
+
         <div class="form-group">
+
           <label for="services">
             Main services
           </label>
@@ -223,9 +275,14 @@
             placeholder="What products or services do you offer?"
             required
           ></textarea>
+
         </div>
 
+
+        <!-- CUSTOMERS -->
+
         <div class="form-group">
+
           <label for="customers">
             Who are your customers?
           </label>
@@ -235,29 +292,64 @@
             placeholder="Describe your typical customers..."
             required
           ></textarea>
+
         </div>
 
+
+        <!-- LANGUAGE -->
+
         <div class="form-group">
+
           <label for="language">
             Language
           </label>
 
           <select id="language">
-            <option value="English">English</option>
-            <option value="Polish">Polish</option>
-            <option value="Russian">Russian</option>
-            <option value="Ukrainian">Ukrainian</option>
-            <option value="German">German</option>
-            <option value="French">French</option>
-            <option value="Spanish">Spanish</option>
+
+            <option value="English">
+              English
+            </option>
+
+            <option value="Polish">
+              Polish
+            </option>
+
+            <option value="Russian">
+              Russian
+            </option>
+
+            <option value="Ukrainian">
+              Ukrainian
+            </option>
+
+            <option value="German">
+              German
+            </option>
+
+            <option value="French">
+              French
+            </option>
+
+            <option value="Spanish">
+              Spanish
+            </option>
+
           </select>
+
         </div>
 
-        <button class="button" type="submit">
+
+        <!-- SUBMIT -->
+
+        <button
+          class="button"
+          type="submit"
+        >
           Create my Ambi →
         </button>
 
       </form>
+
 
       <div class="footer-note">
         You can change these details later.
@@ -267,106 +359,194 @@
 
   </div>
 
- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script>
-  const SUPABASE_URL =
-    "https://qabvpdmdikjqdzeogrcz.supabase.co";
+  <!-- SUPABASE -->
 
-  const SUPABASE_PUBLISHABLE_KEY =
-    "sb_publishable_bySPn4HxH44yhY11-3H4hQ_2yMEh5FN";
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  const supabaseClient =
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_PUBLISHABLE_KEY
-    );
 
-  document
-    .getElementById("ambiForm")
-    .addEventListener("submit", async function(event) {
+  <script>
 
-      event.preventDefault();
+    /* =========================================================
+       SUPABASE
+    ========================================================= */
 
-      const button =
-        event.target.querySelector("button");
+    const SUPABASE_URL =
+      "https://qabvpdmdikjqdzeogrcz.supabase.co";
 
-      button.disabled = true;
-      button.textContent = "Creating your Ambi...";
 
-      const business = {
-        name:
-          document
-            .getElementById("businessName")
-            .value
-            .trim(),
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_bySPn4HxH44yhY11-3H4hQ_2yMEh5FN";
 
-        description:
-          document
-            .getElementById("businessType")
-            .value
-            .trim(),
 
-        website:
-          document
-            .getElementById("website")
-            .value
-            .trim(),
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
 
-        services:
-          document
-            .getElementById("services")
-            .value
-            .trim(),
 
-        customers:
-          document
-            .getElementById("customers")
-            .value
-            .trim(),
+    /* =========================================================
+       FORM
+    ========================================================= */
 
-        language:
-          document
-            .getElementById("language")
-            .value
-      };
+    document
+      .getElementById("ambiForm")
+      .addEventListener(
+        "submit",
+        async function(event) {
 
-      try {
+          event.preventDefault();
 
-        const { data, error } =
-          await supabaseClient
-            .from("businesses")
-            .insert([business])
-            .select()
-            .single();
 
-        if (error) {
-          throw error;
+          const button =
+            event.target.querySelector(
+              "button"
+            );
+
+
+          button.disabled = true;
+
+          button.textContent =
+            "Creating your Ambi...";
+
+
+          /* ===================================================
+             BUSINESS DATA
+          =================================================== */
+
+          const ambiName =
+            document
+              .getElementById("ambiName")
+              .value
+              .trim();
+
+
+          const business = {
+
+            name:
+              document
+                .getElementById("businessName")
+                .value
+                .trim(),
+
+
+            /*
+             * Optional custom name.
+             *
+             * Empty means the UI will use
+             * the default name "Ambi".
+             */
+
+            ambi_name:
+              ambiName || "",
+
+
+            description:
+              document
+                .getElementById("businessType")
+                .value
+                .trim(),
+
+
+            website:
+              document
+                .getElementById("website")
+                .value
+                .trim(),
+
+
+            services:
+              document
+                .getElementById("services")
+                .value
+                .trim(),
+
+
+            customers:
+              document
+                .getElementById("customers")
+                .value
+                .trim(),
+
+
+            language:
+              document
+                .getElementById("language")
+                .value
+
+          };
+
+
+          /* ===================================================
+             CREATE BUSINESS
+          =================================================== */
+
+          try {
+
+            const {
+              data,
+              error
+            } =
+              await supabaseClient
+                .from("businesses")
+                .insert([business])
+                .select()
+                .single();
+
+
+            if (error) {
+
+              throw error;
+
+            }
+
+
+            /* ===============================================
+               SAVE BUSINESS LOCALLY
+            =============================================== */
+
+            localStorage.setItem(
+              "ambiBusiness",
+              JSON.stringify(data)
+            );
+
+
+            /* ===============================================
+               GO TO AMBI
+            =============================================== */
+
+            window.location.href =
+              "ambi.html";
+
+
+          } catch (error) {
+
+            console.error(
+              "AMBIOZ create business error:",
+              error
+            );
+
+
+            alert(
+              "Could not create your Ambi.\n\n" +
+              error.message
+            );
+
+
+            button.disabled =
+              false;
+
+
+            button.textContent =
+              "Create my Ambi →";
+
+          }
+
         }
+      );
 
-        localStorage.setItem(
-          "ambiBusiness",
-          JSON.stringify(data)
-        );
-
-        window.location.href = "ambi.html";
-
-      } catch (error) {
-
-        console.error(error);
-
-        alert(
-          "Could not create your Ambi.\n\n" +
-          error.message
-        );
-
-        button.disabled = false;
-        button.textContent =
-          "Create my Ambi →";
-      }
-
-    });
-</script>
+  </script>
 
 </body>
 </html>
