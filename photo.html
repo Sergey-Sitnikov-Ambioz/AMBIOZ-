@@ -1,32 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Photo — Ambioz</title>
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Photo — AMBIOZ</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="plan.js"></script>
 
+
   <style>
+
     * {
       box-sizing: border-box;
     }
 
+
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-        "SF Pro Text", "Segoe UI", sans-serif;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        "Segoe UI",
+        sans-serif;
+
       background: #f7f7f5;
       color: #111;
     }
+
 
     .container {
       width: min(760px, calc(100% - 32px));
       margin: 0 auto;
       padding: 42px 0 70px;
     }
+
 
     .back {
       display: inline-block;
@@ -36,9 +54,11 @@
       font-size: 14px;
     }
 
+
     .back:hover {
       color: #111;
     }
+
 
     h1 {
       margin: 0;
@@ -47,12 +67,14 @@
       letter-spacing: -0.8px;
     }
 
+
     .subtitle {
       margin: 12px 0 30px;
       color: #666;
       font-size: 16px;
       line-height: 1.5;
     }
+
 
     .card {
       background: #fff;
@@ -62,12 +84,14 @@
       margin-bottom: 18px;
     }
 
+
     .mode-switch {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 8px;
       margin-bottom: 24px;
     }
+
 
     .mode-button {
       border: 1px solid #ddd;
@@ -78,11 +102,13 @@
       cursor: pointer;
     }
 
+
     .mode-button.active {
       background: #111;
       color: #fff;
       border-color: #111;
     }
+
 
     label {
       display: block;
@@ -90,6 +116,7 @@
       font-weight: 600;
       margin-bottom: 8px;
     }
+
 
     input,
     textarea,
@@ -104,10 +131,12 @@
       outline: none;
     }
 
+
     textarea {
       min-height: 120px;
       resize: vertical;
     }
+
 
     input:focus,
     textarea:focus,
@@ -115,9 +144,11 @@
       border-color: #999;
     }
 
+
     .field {
       margin-bottom: 20px;
     }
+
 
     .hint {
       color: #777;
@@ -126,11 +157,13 @@
       margin-top: 7px;
     }
 
+
     .row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
     }
+
 
     .button {
       width: 100%;
@@ -144,19 +177,23 @@
       cursor: pointer;
     }
 
+
     .button:hover {
-      opacity: 0.9;
+      opacity: .9;
     }
 
+
     .button:disabled {
-      opacity: 0.45;
+      opacity: .45;
       cursor: not-allowed;
     }
+
 
     .secondary {
       background: #f0f0ed;
       color: #111;
     }
+
 
     .usage {
       display: flex;
@@ -170,13 +207,16 @@
       font-size: 13px;
     }
 
+
     .usage strong {
       font-size: 14px;
     }
 
+
     .hidden {
       display: none !important;
     }
+
 
     .appearance {
       border-top: 1px solid #eee;
@@ -184,15 +224,18 @@
       padding-top: 22px;
     }
 
+
     .appearance-title {
       font-size: 16px;
       font-weight: 650;
       margin-bottom: 16px;
     }
 
+
     .result {
       margin-top: 22px;
     }
+
 
     .result img {
       display: block;
@@ -202,18 +245,27 @@
       background: #eee;
     }
 
+
     .result-actions {
-      display: flex;
+      display: grid;
       gap: 10px;
       margin-top: 12px;
     }
 
+
     .result-actions a,
     .result-actions button {
-      flex: 1;
+      width: 100%;
       text-align: center;
       text-decoration: none;
     }
+
+
+    .avatar-button {
+      background: #111;
+      color: #fff;
+    }
+
 
     .status {
       margin-top: 16px;
@@ -225,10 +277,12 @@
       line-height: 1.45;
     }
 
+
     .status.error {
       background: #fff0f0;
       color: #a00000;
     }
+
 
     .upgrade {
       display: none;
@@ -240,10 +294,12 @@
       line-height: 1.45;
     }
 
+
     .upgrade a {
       color: #111;
       font-weight: 600;
     }
+
 
     .business-context {
       padding: 14px;
@@ -254,50 +310,69 @@
       line-height: 1.5;
     }
 
+
     .business-context strong {
       display: block;
       margin-bottom: 4px;
     }
 
+
     @media (max-width: 600px) {
+
       .container {
         width: min(100% - 24px, 760px);
         padding-top: 28px;
       }
 
+
       h1 {
         font-size: 30px;
       }
+
 
       .card {
         padding: 18px;
         border-radius: 17px;
       }
 
+
       .row {
         grid-template-columns: 1fr;
       }
 
-      .result-actions {
-        flex-direction: column;
-      }
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
 <div class="container">
 
-  <a class="back" href="ambi.html">← Back to Ambi</a>
 
-  <h1>Create a photo</h1>
+  <a
+    class="back"
+    href="ambi.html"
+  >
+    ← Back to Ambi
+  </a>
+
+
+  <h1>
+    Create a photo
+  </h1>
+
 
   <p class="subtitle">
     Generate an image for your Ambi or for your business.
   </p>
 
+
   <div class="card">
+
 
     <!-- MODE -->
 
@@ -307,15 +382,18 @@
         type="button"
         id="ambiModeButton"
         class="mode-button active"
-        onclick="setMode('ambi')">
+        onclick="setMode('ambi')"
+      >
         Ambi Photo
       </button>
+
 
       <button
         type="button"
         id="businessModeButton"
         class="mode-button"
-        onclick="setMode('business')">
+        onclick="setMode('business')"
+      >
         Business Content Image
       </button>
 
@@ -337,11 +415,10 @@
     </div>
 
 
-    <!-- =====================================================
-         AMBI PHOTO
-    ====================================================== -->
+    <!-- AMBI -->
 
     <div id="ambiMode">
+
 
       <div class="field">
 
@@ -351,7 +428,8 @@
 
         <textarea
           id="ambiDescription"
-          placeholder="For example: standing in a modern office and presenting the business"></textarea>
+          placeholder="For example: standing in a modern office and presenting the business"
+        ></textarea>
 
         <div class="hint">
           Describe the scene, activity or situation.
@@ -386,11 +464,12 @@
       </div>
 
 
-      <!-- PAID APPEARANCE CONTROLS -->
+      <!-- APPEARANCE -->
 
       <div
         id="appearanceControls"
-        class="appearance hidden">
+        class="appearance hidden"
+      >
 
         <div class="appearance-title">
           Ambi appearance
@@ -398,6 +477,7 @@
 
 
         <div class="row">
+
 
           <div class="field">
 
@@ -456,10 +536,12 @@
 
           </div>
 
+
         </div>
 
 
         <div class="row">
+
 
           <div class="field">
 
@@ -530,10 +612,12 @@
 
           </div>
 
+
         </div>
 
 
         <div class="row">
+
 
           <div class="field">
 
@@ -600,6 +684,7 @@
 
           </div>
 
+
         </div>
 
 
@@ -611,7 +696,8 @@
 
           <input
             id="scene"
-            placeholder="For example: modern office">
+            placeholder="For example: modern office"
+          >
 
         </div>
 
@@ -620,20 +706,19 @@
     </div>
 
 
-    <!-- =====================================================
-         BUSINESS CONTENT IMAGE
-    ====================================================== -->
+    <!-- BUSINESS -->
 
     <div
       id="businessMode"
-      class="hidden">
+      class="hidden"
+    >
+
 
       <div
         id="businessContext"
-        class="business-context">
-
+        class="business-context"
+      >
         Loading business information…
-
       </div>
 
 
@@ -686,7 +771,8 @@
 
         <textarea
           id="businessDescription"
-          placeholder="Describe the image you need..."></textarea>
+          placeholder="Describe the image you need..."
+        ></textarea>
 
         <div class="hint">
           Example: a modern web design studio working with
@@ -697,6 +783,7 @@
 
 
       <div class="row">
+
 
         <div class="field">
 
@@ -763,6 +850,7 @@
 
         </div>
 
+
       </div>
 
     </div>
@@ -773,10 +861,9 @@
     <button
       id="generateButton"
       class="button"
-      onclick="generateImage()">
-
+      onclick="generateImage()"
+    >
       Generate photo
-
     </button>
 
 
@@ -784,15 +871,16 @@
 
     <div
       id="status"
-      class="status hidden">
-    </div>
+      class="status hidden"
+    ></div>
 
 
     <!-- UPGRADE -->
 
     <div
       id="upgrade"
-      class="upgrade">
+      class="upgrade"
+    >
 
       You've reached your monthly photo generation limit.
 
@@ -803,45 +891,59 @@
     </div>
 
 
-    <!-- =====================================================
-         RESULT
-    ====================================================== -->
+    <!-- RESULT -->
 
     <div
       id="result"
-      class="result hidden">
+      class="result hidden"
+    >
+
 
       <img
         id="generatedImage"
-        alt="Generated image">
+        alt="Generated image"
+      >
 
 
       <div class="result-actions">
+
+
+        <!-- NEW -->
+
+        <button
+          id="useAsAvatarButton"
+          type="button"
+          class="button avatar-button"
+          onclick="useAsAmbiAvatar()"
+        >
+          Use as Ambi avatar
+        </button>
+
 
         <a
           id="openImage"
           class="button secondary"
           href="#"
           target="_blank"
-          rel="noopener">
-
+          rel="noopener"
+        >
           Open image
-
         </a>
 
 
         <button
           type="button"
           class="button secondary"
-          onclick="generateAnother()">
-
+          onclick="generateAnother()"
+        >
           Generate another
-
         </button>
+
 
       </div>
 
     </div>
+
 
   </div>
 
@@ -850,12 +952,14 @@
 
 <script>
 
+
   /* =========================================================
      SUPABASE
   ========================================================= */
 
   const SUPABASE_URL =
     "https://qabvpdmdikjqdzeogrcz.supabase.co";
+
 
   const SUPABASE_KEY =
     "sb_publishable_bySPn4HxH44yhY11-3H4hQ_2yMEh5FN";
@@ -874,7 +978,9 @@
 
   let business =
     JSON.parse(
-      localStorage.getItem("ambiBusiness") || "null"
+      localStorage.getItem(
+        "ambiBusiness"
+      ) || "null"
     );
 
 
@@ -882,9 +988,16 @@
      STATE
   ========================================================= */
 
-  let currentMode = "ambi";
+  let currentMode =
+    "ambi";
 
-  let currentImageObjectUrl = null;
+
+  let currentImageObjectUrl =
+    null;
+
+
+  let currentImageBlob =
+    null;
 
 
   /* =========================================================
@@ -900,6 +1013,8 @@
       updatePlanUI();
 
       renderBusinessContext();
+
+      updateAvatarButton();
 
     }
   );
@@ -980,11 +1095,14 @@
     const limit =
       getGenerationLimit("photo");
 
+
     const used =
       getGenerationUsage("photo");
 
 
-    if (limit === Infinity) {
+    if (
+      limit === Infinity
+    ) {
 
       usageText.textContent =
         `${used} used · Unlimited`;
@@ -997,6 +1115,7 @@
           limit - used
         );
 
+
       usageText.textContent =
         `${remaining} remaining`;
 
@@ -1006,12 +1125,15 @@
 
 
   /* =========================================================
-     MODE SWITCH
+     MODE
   ========================================================= */
 
-  function setMode(mode) {
+  function setMode(
+    mode
+  ) {
 
-    currentMode = mode;
+    currentMode =
+      mode;
 
 
     const ambiMode =
@@ -1019,15 +1141,18 @@
         "ambiMode"
       );
 
+
     const businessMode =
       document.getElementById(
         "businessMode"
       );
 
+
     const ambiButton =
       document.getElementById(
         "ambiModeButton"
       );
+
 
     const businessButton =
       document.getElementById(
@@ -1035,23 +1160,29 @@
       );
 
 
-    if (mode === "ambi") {
+    if (
+      mode === "ambi"
+    ) {
 
       ambiMode.classList.remove(
         "hidden"
       );
 
+
       businessMode.classList.add(
         "hidden"
       );
+
 
       ambiButton.classList.add(
         "active"
       );
 
+
       businessButton.classList.remove(
         "active"
       );
+
 
     } else {
 
@@ -1059,24 +1190,59 @@
         "hidden"
       );
 
+
       businessMode.classList.remove(
         "hidden"
       );
+
 
       ambiButton.classList.remove(
         "active"
       );
 
+
       businessButton.classList.add(
         "active"
       );
+
 
       renderBusinessContext();
 
     }
 
 
+    updateAvatarButton();
+
     clearStatus();
+
+  }
+
+
+  /* =========================================================
+     AVATAR BUTTON
+  ========================================================= */
+
+  function updateAvatarButton() {
+
+    const button =
+      document.getElementById(
+        "useAsAvatarButton"
+      );
+
+
+    if (
+      !button
+    ) {
+
+      return;
+
+    }
+
+
+    button.classList.toggle(
+      "hidden",
+      currentMode !== "ambi"
+    );
 
   }
 
@@ -1108,9 +1274,11 @@
       business.name ||
       "Your business";
 
+
     const description =
       business.description ||
       "";
+
 
     const services =
       business.services ||
@@ -1133,9 +1301,13 @@
      DIMENSIONS
   ========================================================= */
 
-  function getDimensions(format) {
+  function getDimensions(
+    format
+  ) {
 
-    if (format === "portrait") {
+    if (
+      format === "portrait"
+    ) {
 
       return {
         width: 1024,
@@ -1145,7 +1317,9 @@
     }
 
 
-    if (format === "landscape") {
+    if (
+      format === "landscape"
+    ) {
 
       return {
         width: 1536,
@@ -1178,7 +1352,9 @@
         getAmbiVisualDescription();
 
 
-      if (description) {
+      if (
+        description
+      ) {
 
         return description;
 
@@ -1199,25 +1375,28 @@
   function buildAmbiPrompt() {
 
     const scene =
-      document.getElementById(
-        "ambiDescription"
-      )
-      .value
-      .trim();
+      document
+        .getElementById(
+          "ambiDescription"
+        )
+        .value
+        .trim();
 
 
     const format =
-      document.getElementById(
-        "ambiFormat"
-      )
-      .value;
+      document
+        .getElementById(
+          "ambiFormat"
+        )
+        .value;
 
 
     const identity =
       getVisualIdentityDescription();
 
 
-    let appearance = "";
+    let appearance =
+      "";
 
 
     if (
@@ -1329,7 +1508,7 @@ Format: ${format}.
 
 
   /* =========================================================
-     BUSINESS IMAGE PROMPT
+     BUSINESS PROMPT
   ========================================================= */
 
   function buildBusinessPrompt() {
@@ -1337,30 +1516,26 @@ Format: ${format}.
     const purpose =
       document.getElementById(
         "businessPurpose"
-      )
-      .value;
+      ).value;
 
 
     const description =
       document.getElementById(
         "businessDescription"
-      )
-      .value
+      ).value
       .trim();
 
 
     const style =
       document.getElementById(
         "businessStyle"
-      )
-      .value;
+      ).value;
 
 
     const format =
       document.getElementById(
         "businessFormat"
-      )
-      .value;
+      ).value;
 
 
     const businessName =
@@ -1442,15 +1617,15 @@ Requirements:
     hideResult();
 
 
+    currentImageBlob =
+      null;
+
+
     const generateButton =
       document.getElementById(
         "generateButton"
       );
 
-
-    /* -----------------------------------------
-       CHECK QUOTA
-    ----------------------------------------- */
 
     if (
       typeof canGenerate === "function" &&
@@ -1464,7 +1639,9 @@ Requirements:
     }
 
 
-    generateButton.disabled = true;
+    generateButton.disabled =
+      true;
+
 
     generateButton.textContent =
       "Generating…";
@@ -1477,11 +1654,9 @@ Requirements:
       let dimensions;
 
 
-      /* ---------------------------------------
-         BUILD PROMPT
-      --------------------------------------- */
-
-      if (currentMode === "ambi") {
+      if (
+        currentMode === "ambi"
+      ) {
 
         prompt =
           buildAmbiPrompt();
@@ -1489,10 +1664,13 @@ Requirements:
 
         dimensions =
           getDimensions(
-            document.getElementById(
-              "ambiFormat"
-            ).value
+            document
+              .getElementById(
+                "ambiFormat"
+              )
+              .value
           );
+
 
       } else {
 
@@ -1502,9 +1680,11 @@ Requirements:
 
         dimensions =
           getDimensions(
-            document.getElementById(
-              "businessFormat"
-            ).value
+            document
+              .getElementById(
+                "businessFormat"
+              )
+              .value
           );
 
       }
@@ -1515,39 +1695,48 @@ Requirements:
       );
 
 
-      /* ---------------------------------------
-         CALL SUPABASE EDGE FUNCTION
-
-         IMPORTANT:
-         generate-image now returns
-         the actual PNG binary.
-      --------------------------------------- */
-
       const response =
         await fetch(
+
           `${SUPABASE_URL}/functions/v1/generate-image`,
+
           {
-            method: "POST",
+
+            method:
+              "POST",
 
             headers: {
-              "Content-Type": "application/json",
-              "apikey": SUPABASE_KEY
+
+              "Content-Type":
+                "application/json",
+
+              "apikey":
+                SUPABASE_KEY
+
             },
 
-            body: JSON.stringify({
-              prompt: prompt,
-              width: dimensions.width,
-              height: dimensions.height
-            })
+            body:
+              JSON.stringify({
+
+                prompt:
+                  prompt,
+
+                width:
+                  dimensions.width,
+
+                height:
+                  dimensions.height
+
+              })
+
           }
+
         );
 
 
-      /* ---------------------------------------
-         CHECK HTTP STATUS
-      --------------------------------------- */
-
-      if (!response.ok) {
+      if (
+        !response.ok
+      ) {
 
         const errorText =
           await response.text();
@@ -1560,7 +1749,9 @@ Requirements:
         try {
 
           const errorData =
-            JSON.parse(errorText);
+            JSON.parse(
+              errorText
+            );
 
 
           errorMessage =
@@ -1570,9 +1761,13 @@ Requirements:
 
         } catch {
 
-          if (errorText) {
+          if (
+            errorText
+          ) {
+
             errorMessage =
               errorText;
+
           }
 
         }
@@ -1584,10 +1779,6 @@ Requirements:
 
       }
 
-
-      /* ---------------------------------------
-         CHECK CONTENT TYPE
-      --------------------------------------- */
 
       const contentType =
         response.headers.get(
@@ -1605,42 +1796,21 @@ Requirements:
           await response.text();
 
 
-        let errorMessage =
-          "Server did not return an image.";
-
-
-        try {
-
-          const data =
-            JSON.parse(
-              unexpectedText
-            );
-
-
-          errorMessage =
-            data.error ||
-            data.message ||
-            errorMessage;
-
-        } catch {}
-
-
         throw new Error(
-          errorMessage
+          unexpectedText ||
+          "Server did not return an image."
         );
 
       }
 
 
-      /* ---------------------------------------
-         READ IMAGE AS BLOB
-      --------------------------------------- */
-
       const blob =
         await response.blob();
 
 
-      if (!blob.size) {
+      if (
+        !blob.size
+      ) {
 
         throw new Error(
           "The generated image is empty."
@@ -1649,9 +1819,9 @@ Requirements:
       }
 
 
-      /* ---------------------------------------
-         RELEASE PREVIOUS IMAGE
-      --------------------------------------- */
+      currentImageBlob =
+        blob;
+
 
       if (
         currentImageObjectUrl
@@ -1663,10 +1833,6 @@ Requirements:
 
       }
 
-
-      /* ---------------------------------------
-         CREATE BLOB URL
-      --------------------------------------- */
 
       currentImageObjectUrl =
         URL.createObjectURL(
@@ -1686,31 +1852,20 @@ Requirements:
         );
 
 
-      /* ---------------------------------------
-         LOAD IMAGE
-      --------------------------------------- */
-
       await new Promise(
         (resolve, reject) => {
 
           image.onload =
-            () => {
-
-              resolve();
-
-            };
+            resolve;
 
 
           image.onerror =
-            () => {
-
+            () =>
               reject(
                 new Error(
                   "The generated image could not be displayed."
                 )
               );
-
-            };
 
 
           image.src =
@@ -1729,10 +1884,6 @@ Requirements:
       openImage.href =
         currentImageObjectUrl;
 
-
-      /* ---------------------------------------
-         SUCCESS
-      --------------------------------------- */
 
       if (
         typeof useGeneration ===
@@ -1756,7 +1907,9 @@ Requirements:
       );
 
 
-    } catch (error) {
+    } catch (
+      error
+    ) {
 
       console.error(
         "AMBIOZ image generation error:",
@@ -1764,16 +1917,11 @@ Requirements:
       );
 
 
-      /*
-       Failed generations do NOT consume quota.
-      */
-
       showStatus(
         error.message ||
         "Image generation failed.",
         true
       );
-
 
     } finally {
 
@@ -1783,6 +1931,249 @@ Requirements:
 
       generateButton.textContent =
         "Generate photo";
+
+    }
+
+  }
+
+
+  /* =========================================================
+     USE AS AMBI AVATAR
+  ========================================================= */
+
+  async function useAsAmbiAvatar() {
+
+    if (
+      currentMode !== "ambi"
+    ) {
+
+      return;
+
+    }
+
+
+    if (
+      !business ||
+      !business.id
+    ) {
+
+      showStatus(
+        "No business ID was found. Please go back and create your business again.",
+        true
+      );
+
+      return;
+
+    }
+
+
+    if (
+      !currentImageBlob
+    ) {
+
+      showStatus(
+        "There is no generated image to save.",
+        true
+      );
+
+      return;
+
+    }
+
+
+    const button =
+      document.getElementById(
+        "useAsAvatarButton"
+      );
+
+
+    button.disabled =
+      true;
+
+
+    button.textContent =
+      "Saving avatar…";
+
+
+    try {
+
+      /*
+       * Use a unique filename.
+       * This avoids requiring public UPDATE
+       * permissions for existing files.
+       */
+
+      const filePath =
+        `${business.id}/avatar-${Date.now()}.png`;
+
+
+      /* -----------------------------------------
+         UPLOAD
+      ----------------------------------------- */
+
+      const {
+        error: uploadError
+      } =
+        await supabaseClient
+          .storage
+          .from("ambi-avatars")
+          .upload(
+            filePath,
+            currentImageBlob,
+            {
+              contentType:
+                "image/png",
+
+              cacheControl:
+                "3600",
+
+              upsert:
+                false
+            }
+          );
+
+
+      if (
+        uploadError
+      ) {
+
+        throw uploadError;
+
+      }
+
+
+      /* -----------------------------------------
+         PUBLIC URL
+      ----------------------------------------- */
+
+      const {
+        data: publicUrlData
+      } =
+        supabaseClient
+          .storage
+          .from("ambi-avatars")
+          .getPublicUrl(
+            filePath
+          );
+
+
+      const avatarUrl =
+        publicUrlData.publicUrl;
+
+
+      if (
+        !avatarUrl
+      ) {
+
+        throw new Error(
+          "Could not create a public avatar URL."
+        );
+
+      }
+
+
+      /* -----------------------------------------
+         SAVE URL TO BUSINESS
+      ----------------------------------------- */
+
+      const {
+        data: updatedBusiness,
+        error: updateError
+      } =
+        await supabaseClient
+          .from("businesses")
+          .update({
+
+            ambi_avatar_url:
+              avatarUrl
+
+          })
+          .eq(
+            "id",
+            business.id
+          )
+          .select()
+          .single();
+
+
+      if (
+        updateError
+      ) {
+
+        throw updateError;
+
+      }
+
+
+      /* -----------------------------------------
+         UPDATE LOCAL BUSINESS
+      ----------------------------------------- */
+
+      business =
+        updatedBusiness;
+
+
+      localStorage.setItem(
+        "ambiBusiness",
+        JSON.stringify(
+          updatedBusiness
+        )
+      );
+
+
+      /* -----------------------------------------
+         SUCCESS
+      ----------------------------------------- */
+
+      showStatus(
+        "This photo is now your Ambi avatar."
+      );
+
+
+      button.textContent =
+        "Ambi avatar saved ✓";
+
+
+      /*
+       * Give the user a moment to see
+       * the successful state, then return
+       * to the Ambi page.
+       */
+
+      setTimeout(
+        () => {
+
+          window.location.href =
+            "ambi.html";
+
+        },
+        900
+      );
+
+
+    } catch (
+      error
+    ) {
+
+      console.error(
+        "AMBIOZ avatar save error:",
+        error
+      );
+
+
+      showStatus(
+        error.message ||
+        "Could not save Ambi avatar.",
+        true
+      );
+
+
+      button.disabled =
+        false;
+
+
+      button.textContent =
+        "Use as Ambi avatar";
 
     }
 
@@ -1800,9 +2191,16 @@ Requirements:
     clearStatus();
 
 
+    currentImageBlob =
+      null;
+
+
     window.scrollTo({
+
       top: 0,
+
       behavior: "smooth"
+
     });
 
   }
@@ -1878,7 +2276,9 @@ Requirements:
     );
 
 
-    if (error) {
+    if (
+      error
+    ) {
 
       status.classList.add(
         "error"
@@ -1925,7 +2325,7 @@ Requirements:
 
 
   /* =========================================================
-     HTML ESCAPE
+     ESCAPE HTML
   ========================================================= */
 
   function escapeHtml(
@@ -1963,5 +2363,7 @@ Requirements:
 
 </script>
 
+
 </body>
+
 </html>
