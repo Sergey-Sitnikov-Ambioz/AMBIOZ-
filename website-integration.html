@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Website Integration — AMBIOZ</title>
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    body {
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        "Segoe UI",
+        sans-serif;
+
+      background: #f7f7f7;
+      color: #111;
+
+    }
+
+
+    header {
+
+      background: #fff;
+
+      border-bottom:
+        1px solid #eee;
+
+      padding:
+        20px 7%;
+
+    }
+
+
+    .logo {
+
+      font-size: 21px;
+
+      font-weight: 800;
+
+      letter-spacing: 2px;
+
+    }
+
+
+    main {
+
+      width:
+        min(900px, calc(100% - 32px));
+
+      margin:
+        0 auto;
+
+      padding:
+        42px 0 70px;
+
+    }
+
+
+    .back {
+
+      display: inline-block;
+
+      margin-bottom: 28px;
+
+      color: #666;
+
+      text-decoration: none;
+
+      font-size: 14px;
+
+    }
+
+
+    h1 {
+
+      font-size:
+        clamp(38px, 7vw, 58px);
+
+      line-height: 1;
+
+      letter-spacing:
+        -2.5px;
+
+      margin-bottom: 15px;
+
+    }
+
+
+    .intro {
+
+      color: #666;
+
+      font-size: 17px;
+
+      line-height: 1.5;
+
+      max-width: 650px;
+
+      margin-bottom: 32px;
+
+    }
+
+
+    .card {
+
+      background: #fff;
+
+      border:
+        1px solid #e5e5e5;
+
+      border-radius: 20px;
+
+      padding: 28px;
+
+      margin-bottom: 18px;
+
+    }
+
+
+    .preview-title {
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      color: #888;
+
+      letter-spacing: 1px;
+
+      margin-bottom: 18px;
+
+    }
+
+
+    .preview {
+
+      position: relative;
+
+      min-height: 380px;
+
+      background: #f1f1ef;
+
+      border-radius: 16px;
+
+      overflow: hidden;
+
+      display: flex;
+
+      align-items: flex-end;
+
+      justify-content: flex-end;
+
+      padding: 20px;
+
+    }
+
+
+    .website-demo {
+
+      width: 100%;
+
+      height: 100%;
+
+      position: absolute;
+
+      inset: 0;
+
+      padding: 28px;
+
+      color: #aaa;
+
+    }
+
+
+    .demo-line {
+
+      height: 10px;
+
+      background: #ddd;
+
+      border-radius: 10px;
+
+      margin-bottom: 12px;
+
+      width: 55%;
+
+    }
+
+
+    .demo-line.short {
+
+      width: 30%;
+
+    }
+
+
+    .widget {
+
+      position: relative;
+
+      z-index: 2;
+
+      width: 300px;
+
+      background: #fff;
+
+      border:
+        1px solid #ddd;
+
+      border-radius: 18px;
+
+      box-shadow:
+        0 15px 45px rgba(0,0,0,.12);
+
+      overflow: hidden;
+
+    }
+
+
+    .widget-header {
+
+      padding: 16px;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      border-bottom:
+        1px solid #eee;
+
+    }
+
+
+    .widget-avatar {
+
+      width: 46px;
+
+      height: 46px;
+
+      border-radius: 50%;
+
+      object-fit: cover;
+
+      background: #eee;
+
+    }
+
+
+    .widget-name {
+
+      font-weight: 700;
+
+      font-size: 15px;
+
+    }
+
+
+    .widget-business {
+
+      color: #777;
+
+      font-size: 12px;
+
+      margin-top: 3px;
+
+    }
+
+
+    .widget-body {
+
+      padding: 16px;
+
+    }
+
+
+    .welcome {
+
+      background: #f6f6f4;
+
+      border-radius: 12px;
+
+      padding: 13px;
+
+      font-size: 14px;
+
+      line-height: 1.45;
+
+      margin-bottom: 12px;
+
+    }
+
+
+    .widget-input {
+
+      border:
+        1px solid #ddd;
+
+      border-radius: 10px;
+
+      padding: 12px;
+
+      color: #aaa;
+
+      font-size: 13px;
+
+    }
+
+
+    .video-preview {
+
+      margin-top: 10px;
+
+      padding: 12px;
+
+      border:
+        1px solid #e5e5e5;
+
+      border-radius: 10px;
+
+      text-align: center;
+
+      font-size: 12px;
+
+      color: #777;
+
+    }
+
+
+    .section-title {
+
+      font-size: 21px;
+
+      margin-bottom: 8px;
+
+    }
+
+
+    .section-text {
+
+      color: #666;
+
+      font-size: 14px;
+
+      line-height: 1.5;
+
+      margin-bottom: 18px;
+
+    }
+
+
+    .code {
+
+      background: #111;
+
+      color: #eee;
+
+      border-radius: 13px;
+
+      padding: 18px;
+
+      font-family:
+        ui-monospace,
+        SFMono-Regular,
+        Menlo,
+        monospace;
+
+      font-size: 12px;
+
+      line-height: 1.6;
+
+      overflow-x: auto;
+
+      white-space: pre-wrap;
+
+      word-break: break-all;
+
+    }
+
+
+    .copy-button {
+
+      width: 100%;
+
+      margin-top: 12px;
+
+      border: 0;
+
+      border-radius: 12px;
+
+      padding: 15px;
+
+      background: #111;
+
+      color: #fff;
+
+      font-size: 15px;
+
+      font-weight: 600;
+
+      cursor: pointer;
+
+    }
+
+
+    .copy-button:disabled {
+
+      opacity: .6;
+
+    }
+
+
+    .status {
+
+      display: none;
+
+      margin-top: 12px;
+
+      padding: 13px;
+
+      border-radius: 11px;
+
+      background: #f0f0ed;
+
+      font-size: 13px;
+
+      color: #555;
+
+    }
+
+
+    .status.visible {
+
+      display: block;
+
+    }
+
+
+    .steps {
+
+      display: grid;
+
+      gap: 12px;
+
+    }
+
+
+    .step {
+
+      display: flex;
+
+      gap: 14px;
+
+      align-items: flex-start;
+
+    }
+
+
+    .step-number {
+
+      width: 28px;
+
+      height: 28px;
+
+      min-width: 28px;
+
+      border-radius: 50%;
+
+      background: #111;
+
+      color: #fff;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+    }
+
+
+    .step strong {
+
+      display: block;
+
+      font-size: 14px;
+
+      margin-bottom: 3px;
+
+    }
+
+
+    .step span {
+
+      color: #777;
+
+      font-size: 13px;
+
+      line-height: 1.4;
+
+    }
+
+
+    .video-card {
+
+      background: #111;
+
+      color: #fff;
+
+    }
+
+
+    .video-card .section-text {
+
+      color: #aaa;
+
+    }
+
+
+    .video-status {
+
+      display: inline-block;
+
+      padding: 7px 10px;
+
+      border-radius: 20px;
+
+      background: #292929;
+
+      color: #ccc;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      letter-spacing: .5px;
+
+    }
+
+
+    @media (max-width: 600px) {
+
+      main {
+
+        padding-top: 28px;
+
+      }
+
+
+      .card {
+
+        padding: 20px;
+
+      }
+
+
+      .preview {
+
+        min-height: 400px;
+
+      }
+
+
+      .widget {
+
+        width: 100%;
+
+        max-width: 300px;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <div class="logo">
+    AMBIOZ
+  </div>
+
+</header>
+
+
+<main>
+
+
+  <a
+    href="ambi.html"
+    class="back"
+  >
+    ← Back to Ambi
+  </a>
+
+
+  <h1>
+    Put your Ambi on your website.
+  </h1>
+
+
+  <p class="intro">
+
+    Give visitors a direct way to talk with
+    your digital business representative —
+    without leaving your website.
+
+  </p>
+
+
+  <!-- PREVIEW -->
+
+  <section class="card">
+
+    <div class="preview-title">
+      LIVE PREVIEW
+    </div>
+
+
+    <div class="preview">
+
+
+      <div class="website-demo">
+
+        <div class="demo-line"></div>
+
+        <div class="demo-line short"></div>
+
+        <br>
+
+        <div class="demo-line"></div>
+
+        <div class="demo-line"></div>
+
+        <div class="demo-line short"></div>
+
+      </div>
+
+
+      <div class="widget">
+
+
+        <div class="widget-header">
+
+
+          <img
+            id="previewAvatar"
+            class="widget-avatar"
+            src=""
+            alt="Ambi"
+          >
+
+
+          <div>
+
+            <div
+              id="previewName"
+              class="widget-name"
+            >
+              Ambi
+            </div>
+
+
+            <div
+              id="previewBusiness"
+              class="widget-business"
+            >
+              Your business
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+        <div class="widget-body">
+
+
+          <div class="welcome">
+
+            Hello. I'm the digital representative
+            of your business. How can I help?
+
+          </div>
+
+
+          <div class="widget-input">
+
+            Ask
+            <span id="previewNameInput">
+              Ambi
+            </span>
+            something…
+
+          </div>
+
+
+          <div class="video-preview">
+
+            🎥 Video conversation — coming soon
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- INSTALL -->
+
+  <section class="card">
+
+
+    <h2 class="section-title">
+      Installation
+    </h2>
+
+
+    <p class="section-text">
+
+      Copy this code and paste it before
+      the closing
+      <strong>&lt;/body&gt;</strong>
+      tag on your website.
+
+    </p>
+
+
+    <div
+      id="code"
+      class="code"
+    >
+      Loading…
+
+    </div>
+
+
+    <button
+      id="copyButton"
+      class="copy-button"
+      onclick="copyCode()"
+    >
+      Copy installation code
+    </button>
+
+
+    <div
+      id="copyStatus"
+      class="status"
+    >
+      Installation code copied.
+
+    </div>
+
+
+  </section>
+
+
+  <!-- STEPS -->
+
+  <section class="card">
+
+
+    <h2 class="section-title">
+      How it works
+    </h2>
+
+
+    <p class="section-text">
+      Your Ambi connects directly to your
+      business knowledge.
+    </p>
+
+
+    <div class="steps">
+
+
+      <div class="step">
+
+        <div class="step-number">
+          1
+        </div>
+
+        <div>
+
+          <strong>
+            Add the code
+          </strong>
+
+          <span>
+            Paste the AMBIOZ script into your website.
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">
+          2
+        </div>
+
+        <div>
+
+          <strong>
+            Ambi appears
+          </strong>
+
+          <span>
+            Visitors can open Ambi directly from your website.
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">
+          3
+        </div>
+
+        <div>
+
+          <strong>
+            Customers ask questions
+          </strong>
+
+          <span>
+            Ambi answers using your business information.
+          </span>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- VIDEO -->
+
+  <section class="card video-card">
+
+
+    <h2 class="section-title">
+      Talk to Ambi by video
+    </h2>
+
+
+    <p class="section-text">
+
+      In the future, customers will be able
+      to have a direct video conversation
+      with your Ambi.
+
+    </p>
+
+
+    <span class="video-status">
+      VIDEO CONVERSATION — COMING SOON
+    </span>
+
+
+  </section>
+
+
+</main>
+
+
+<script>
+
+
+  /* =========================================================
+     BUSINESS
+  ========================================================= */
+
+  let business = null;
+
+
+  const scriptBaseUrl =
+    "https://sergey-sitnikov-ambioz.github.io";
+
+
+  /* =========================================================
+     LOAD BUSINESS
+  ========================================================= */
+
+  function loadBusiness() {
+
+    const saved =
+      localStorage.getItem(
+        "ambiBusiness"
+      );
+
+
+    if (!saved) {
+
+      showNoBusiness();
+
+      return;
+
+    }
+
+
+    try {
+
+      business =
+        JSON.parse(saved);
+
+    } catch {
+
+      showNoBusiness();
+
+      return;
+
+    }
+
+
+    if (
+      !business ||
+      !business.id
+    ) {
+
+      showNoBusiness();
+
+      return;
+
+    }
+
+
+    renderPreview();
+
+    renderCode();
+
+  }
+
+
+  /* =========================================================
+     PREVIEW
+  ========================================================= */
+
+  function renderPreview() {
+
+    const name =
+      business.ambi_name ||
+      "Ambi";
+
+
+    const businessName =
+      business.name ||
+      "Your business";
+
+
+    const avatar =
+      business.ambi_avatar_url ||
+      "";
+
+
+    document
+      .getElementById(
+        "previewName"
+      )
+      .textContent =
+      name;
+
+
+    document
+      .getElementById(
+        "previewNameInput"
+      )
+      .textContent =
+      name;
+
+
+    document
+      .getElementById(
+        "previewBusiness"
+      )
+      .textContent =
+      businessName;
+
+
+    const avatarElement =
+      document.getElementById(
+        "previewAvatar"
+      );
+
+
+    if (avatar) {
+
+      avatarElement.src =
+        avatar;
+
+    } else {
+
+      avatarElement.style.display =
+        "none";
+
+    }
+
+  }
+
+
+  /* =========================================================
+     CODE
+  ========================================================= */
+
+  function getWidgetCode() {
+
+    return `<script src="${scriptBaseUrl}/ambi-widget.js" data-ambi-id="${business.id}"><\/script>`;
+
+  }
+
+
+  function renderCode() {
+
+    document
+      .getElementById(
+        "code"
+      )
+      .textContent =
+      getWidgetCode();
+
+  }
+
+
+  /* =========================================================
+     COPY
+  ========================================================= */
+
+  async function copyCode() {
+
+    const code =
+      getWidgetCode();
+
+
+    const button =
+      document.getElementById(
+        "copyButton"
+      );
+
+
+    try {
+
+      await navigator.clipboard.writeText(
+        code
+      );
+
+
+      button.textContent =
+        "Copied ✓";
+
+
+      document
+        .getElementById(
+          "copyStatus"
+        )
+        .classList
+        .add(
+          "visible"
+        );
+
+
+      setTimeout(
+        () => {
+
+          button.textContent =
+            "Copy installation code";
+
+        },
+        1800
+      );
+
+
+    } catch {
+
+      alert(
+        "Could not copy automatically. Please copy the code manually."
+      );
+
+    }
+
+  }
+
+
+  /* =========================================================
+     NO BUSINESS
+     ========================================================= */
+
+  function showNoBusiness() {
+
+    document
+      .getElementById(
+        "code"
+      )
+      .textContent =
+      "No business profile found.";
+
+
+    document
+      .getElementById(
+        "copyButton"
+      )
+      .disabled =
+      true;
+
+  }
+
+
+  /* =========================================================
+     START
+     ========================================================= */
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    loadBusiness
+  );
+
+
+</script>
+
+
+</body>
+
+</html>
