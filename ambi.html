@@ -33,17 +33,22 @@
         sans-serif;
 
       background: #f7f7f7;
-      color: #111;
+
+      color: #111111;
 
     }
 
 
+    /* ========================================================
+       HEADER
+    ======================================================== */
+
     header {
 
-      background: #fff;
+      background: #ffffff;
 
       border-bottom:
-        1px solid #eee;
+        1px solid #eeeeee;
 
       padding:
         20px 7%;
@@ -59,23 +64,27 @@
 
       letter-spacing: 2px;
 
+      color: inherit;
+
       text-decoration: none;
 
-      color: #111;
+      cursor: pointer;
 
     }
 
 
+    /* ========================================================
+       MAIN
+    ======================================================== */
+
     main {
 
-      width:
-        min(760px, calc(100% - 32px));
+      max-width: 900px;
 
-      margin:
-        0 auto;
+      margin: 0 auto;
 
       padding:
-        35px 0 70px;
+        45px 6% 70px;
 
     }
 
@@ -84,20 +93,20 @@
 
       display: inline-block;
 
-      margin-bottom: 22px;
-
-      color: #777;
+      color: #777777;
 
       text-decoration: none;
 
       font-size: 14px;
+
+      margin-bottom: 35px;
 
     }
 
 
     .back:hover {
 
-      color: #111;
+      color: #111111;
 
     }
 
@@ -108,43 +117,29 @@
 
     .profile {
 
-      background: #fff;
+      background: #ffffff;
+
+      border-radius: 20px;
+
+      padding: 35px;
+
+      margin-bottom: 25px;
 
       border:
-        1px solid #e7e7e7;
-
-      border-radius: 22px;
-
-      padding: 28px;
-
-      margin-bottom: 18px;
-
-    }
-
-
-    .profile-top {
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 18px;
+        1px solid #e8e8e8;
 
     }
 
 
     .avatar {
 
-      width: 82px;
+      width: 90px;
 
-      height: 82px;
-
-      flex:
-        0 0 82px;
+      height: 90px;
 
       border-radius: 50%;
 
-      background: #eee;
+      background: #eeeeee;
 
       display: flex;
 
@@ -152,11 +147,13 @@
 
       justify-content: center;
 
+      font-size: 38px;
+
+      margin-bottom: 22px;
+
       overflow: hidden;
 
-      font-size: 32px;
-
-      font-weight: 600;
+      object-fit: cover;
 
     }
 
@@ -169,42 +166,42 @@
 
       object-fit: cover;
 
+      display: block;
+
     }
 
 
-    .profile-label {
+    .label {
 
-      color: #888;
-
-      font-size: 11px;
+      font-size: 12px;
 
       font-weight: 700;
 
+      color: #888888;
+
       letter-spacing: 1px;
 
-      margin-bottom: 5px;
+      margin-bottom: 8px;
 
     }
 
 
     h1 {
 
-      font-size: 34px;
+      font-size: 42px;
 
-      line-height: 1.1;
+      letter-spacing: -2px;
 
-      letter-spacing: -1.5px;
-
-      margin-bottom: 5px;
+      margin-bottom: 8px;
 
     }
 
 
     .business {
 
-      color: #666;
+      color: #666666;
 
-      font-size: 15px;
+      font-size: 17px;
 
     }
 
@@ -213,17 +210,18 @@
 
       display: inline-block;
 
-      margin-top: 18px;
+      margin-top: 22px;
 
-      padding: 7px 10px;
+      padding:
+        8px 12px;
 
       border-radius: 20px;
 
-      background: #f3f3f3;
+      background: #f0f0f0;
 
-      color: #555;
+      color: #555555;
 
-      font-size: 11px;
+      font-size: 12px;
 
       font-weight: 600;
 
@@ -231,48 +229,152 @@
 
 
     /* ========================================================
-       CARD
+       SECTIONS
     ======================================================== */
 
-    .card {
+    .section {
 
-      background: #fff;
-
-      border:
-        1px solid #e7e7e7;
+      background: #ffffff;
 
       border-radius: 20px;
 
-      margin-bottom: 18px;
+      padding: 30px;
 
-      overflow: hidden;
+      margin-bottom: 25px;
 
-    }
-
-
-    .card-header {
-
-      padding: 24px 25px;
+      border:
+        1px solid #e8e8e8;
 
     }
 
 
-    .card-header h2 {
+    h2 {
 
-      font-size: 21px;
+      font-size: 22px;
 
-      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+
+    }
+
+
+    .section-intro {
+
+      color: #777777;
+
+      font-size: 14px;
+
+      line-height: 1.5;
+
+      margin-bottom: 22px;
+
+    }
+
+
+    /* ========================================================
+       KNOWLEDGE
+    ======================================================== */
+
+    .knowledge-toggle {
+
+      width: 100%;
+
+      border: 0;
+
+      border-top:
+        1px solid #eeeeee;
+
+      margin-top: 22px;
+
+      padding:
+        20px 0 0;
+
+      background: transparent;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      color: #111111;
+
+      font-family: inherit;
+
+      font-size: 16px;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      text-align: left;
+
+    }
+
+
+    .knowledge-toggle span:last-child {
+
+      font-size: 28px;
+
+      font-weight: 400;
+
+      color: #888888;
+
+      line-height: 1;
+
+    }
+
+
+    .knowledge {
+
+      display: none;
+
+      gap: 12px;
+
+      margin-top: 18px;
+
+    }
+
+
+    .knowledge.open {
+
+      display: grid;
+
+    }
+
+
+    .knowledge-item {
+
+      padding: 17px;
+
+      background: #f7f7f7;
+
+      border-radius: 12px;
+
+    }
+
+
+    .knowledge-item span {
+
+      display: block;
+
+      color: #888888;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      letter-spacing: 1px;
 
       margin-bottom: 6px;
 
     }
 
 
-    .card-header p {
+    .knowledge-item strong {
 
-      color: #777;
+      font-size: 15px;
 
-      font-size: 14px;
+      font-weight: 500;
 
       line-height: 1.5;
 
@@ -285,7 +387,7 @@
 
     .chat {
 
-      min-height: 170px;
+      min-height: 190px;
 
       max-height: 420px;
 
@@ -295,30 +397,29 @@
 
       border-radius: 14px;
 
-      padding: 16px;
+      padding: 18px;
 
-      margin:
-        0 25px 14px;
+      margin-bottom: 15px;
 
     }
 
 
     .message {
 
-      background: #fff;
+      background: #ffffff;
 
-      padding: 13px;
+      padding: 14px;
 
       border-radius: 12px;
 
-      border:
-        1px solid #eee;
-
-      margin-bottom: 9px;
-
-      font-size: 14px;
-
       line-height: 1.5;
+
+      font-size: 15px;
+
+      border:
+        1px solid #eeeeee;
+
+      margin-bottom: 10px;
 
     }
 
@@ -334,17 +435,9 @@
 
       display: block;
 
-      margin-bottom: 4px;
+      margin-bottom: 5px;
 
-      font-size: 12px;
-
-    }
-
-
-    .chat-input {
-
-      padding:
-        0 25px 25px;
+      font-size: 13px;
 
     }
 
@@ -353,18 +446,18 @@
 
       width: 100%;
 
-      min-height: 82px;
+      min-height: 90px;
 
-      padding: 14px;
+      padding: 15px;
 
       border:
-        1px solid #ddd;
+        1px solid #dddddd;
 
-      border-radius: 12px;
+      border-radius: 10px;
 
       font-family: inherit;
 
-      font-size: 15px;
+      font-size: 16px;
 
       resize: vertical;
 
@@ -375,35 +468,35 @@
 
     textarea:focus {
 
-      border-color: #111;
+      border-color: #111111;
 
     }
 
 
     textarea:disabled {
 
-      opacity: .55;
+      opacity: 0.6;
 
     }
 
 
-    .button {
+    .ask-button {
 
       width: 100%;
 
-      margin-top: 10px;
+      margin-top: 12px;
 
-      padding: 14px;
+      padding: 16px;
 
-      border: 0;
+      border: none;
 
-      border-radius: 11px;
+      border-radius: 10px;
 
-      background: #111;
+      background: #111111;
 
-      color: #fff;
+      color: #ffffff;
 
-      font-size: 15px;
+      font-size: 16px;
 
       font-weight: 600;
 
@@ -412,9 +505,9 @@
     }
 
 
-    .button:disabled {
+    .ask-button:disabled {
 
-      opacity: .5;
+      opacity: 0.6;
 
       cursor: not-allowed;
 
@@ -427,13 +520,12 @@
 
     .video-card {
 
-      margin:
-        0 25px 25px;
+      margin-top: 18px;
 
-      padding: 17px;
+      padding: 22px;
 
       border:
-        1px solid #e4e4e4;
+        1px solid #e2e2e2;
 
       border-radius: 14px;
 
@@ -442,46 +534,48 @@
     }
 
 
-    .video-card strong {
+    .video-title {
 
-      display: block;
+      font-size: 17px;
 
-      font-size: 14px;
+      font-weight: 700;
 
-      margin-bottom: 5px;
+      margin-bottom: 8px;
 
     }
 
 
-    .video-card span {
+    .video-text {
 
-      color: #777;
+      color: #777777;
 
-      font-size: 13px;
+      font-size: 14px;
 
-      line-height: 1.45;
+      line-height: 1.5;
+
+      margin-bottom: 15px;
 
     }
 
 
     .video-button {
 
-      margin-top: 12px;
-
       width: 100%;
 
-      padding: 12px;
+      padding: 14px;
 
       border:
-        1px solid #ddd;
+        1px solid #dddddd;
 
-      border-radius: 10px;
+      border-radius: 12px;
 
-      background: #fff;
+      background: #ffffff;
 
-      color: #999;
+      color: #999999;
 
-      font-size: 13px;
+      font-family: inherit;
+
+      font-size: 15px;
 
       font-weight: 600;
 
@@ -491,158 +585,59 @@
 
 
     /* ========================================================
-       KNOWLEDGE
-    ======================================================== */
-
-    details {
-
-      border-top:
-        1px solid #eee;
-
-    }
-
-
-    summary {
-
-      list-style: none;
-
-      cursor: pointer;
-
-      padding:
-        18px 25px;
-
-      font-size: 14px;
-
-      font-weight: 600;
-
-      display: flex;
-
-      justify-content: space-between;
-
-      align-items: center;
-
-    }
-
-
-    summary::-webkit-details-marker {
-
-      display: none;
-
-    }
-
-
-    summary::after {
-
-      content: "+";
-
-      color: #888;
-
-      font-size: 18px;
-
-    }
-
-
-    details[open] summary::after {
-
-      content: "−";
-
-    }
-
-
-    .knowledge {
-
-      padding:
-        0 25px 25px;
-
-      display: grid;
-
-      gap: 8px;
-
-    }
-
-
-    .knowledge-item {
-
-      padding: 13px;
-
-      background: #f7f7f7;
-
-      border-radius: 10px;
-
-    }
-
-
-    .knowledge-item span {
-
-      display: block;
-
-      color: #999;
-
-      font-size: 10px;
-
-      font-weight: 700;
-
-      letter-spacing: .8px;
-
-      margin-bottom: 4px;
-
-    }
-
-
-    .knowledge-item strong {
-
-      font-size: 13px;
-
-      font-weight: 500;
-
-      line-height: 1.45;
-
-    }
-
-
-    /* ========================================================
-       ACTIONS
+       CREATE
     ======================================================== */
 
     .actions {
-
-      padding:
-        0 25px 25px;
 
       display: grid;
 
       grid-template-columns:
         1fr 1fr;
 
-      gap: 9px;
+      gap: 15px;
 
     }
 
 
     .action {
 
-      padding: 15px;
+      padding: 22px;
 
       border:
-        1px solid #e4e4e4;
+        1px solid #e2e2e2;
 
-      border-radius: 12px;
+      border-radius: 14px;
 
-      background: #fff;
-
-      cursor: pointer;
+      background: #ffffff;
 
       text-align: left;
 
+      cursor: pointer;
+
       transition:
-        border-color .15s ease;
+        border-color 0.15s ease,
+        transform 0.15s ease;
 
     }
 
 
     .action:hover {
 
-      border-color: #aaa;
+      border-color: #bdbdbd;
+
+      transform:
+        translateY(-1px);
+
+    }
+
+
+    .action:focus-visible {
+
+      outline:
+        2px solid #111111;
+
+      outline-offset: 2px;
 
     }
 
@@ -651,18 +646,18 @@
 
       display: block;
 
-      font-size: 13px;
+      margin-bottom: 7px;
 
-      margin-bottom: 4px;
+      font-size: 16px;
 
     }
 
 
     .action span {
 
-      color: #888;
+      color: #777777;
 
-      font-size: 11px;
+      font-size: 13px;
 
       line-height: 1.4;
 
@@ -670,58 +665,89 @@
 
 
     /* ========================================================
-       WEBSITE
+       USE AMBI
     ======================================================== */
 
-    .website-card {
+    .use-grid {
 
-      margin:
-        0 25px 25px;
+      display: grid;
 
-      padding: 20px;
+      grid-template-columns:
+        1fr 1fr;
 
-      border-radius: 15px;
+      gap: 15px;
 
-      background: #111;
+    }
 
-      color: #fff;
+
+    .use-card {
+
+      padding: 22px;
+
+      border:
+        1px solid #e2e2e2;
+
+      border-radius: 14px;
+
+      background: #ffffff;
+
+      text-align: left;
 
       cursor: pointer;
 
+      transition:
+        border-color 0.15s ease,
+        transform 0.15s ease;
+
     }
 
 
-    .website-card strong {
+    .use-card:hover {
+
+      border-color: #bdbdbd;
+
+      transform:
+        translateY(-1px);
+
+    }
+
+
+    .use-card.primary {
+
+      border-color: #111111;
+
+      background: #111111;
+
+      color: #ffffff;
+
+    }
+
+
+    .use-card strong {
 
       display: block;
+
+      margin-bottom: 7px;
 
       font-size: 16px;
 
-      margin-bottom: 6px;
+    }
+
+
+    .use-card span {
+
+      color: #777777;
+
+      font-size: 13px;
+
+      line-height: 1.5;
 
     }
 
 
-    .website-card span {
+    .use-card.primary span {
 
-      display: block;
-
-      color: #ccc;
-
-      font-size: 13px;
-
-      line-height: 1.45;
-
-    }
-
-
-    .website-arrow {
-
-      margin-top: 14px;
-
-      font-size: 13px;
-
-      font-weight: 600;
+      color: #cfcfcf;
 
     }
 
@@ -730,47 +756,25 @@
        SHARE
     ======================================================== */
 
-    .share {
-
-      margin:
-        0 25px 25px;
-
-      padding: 14px;
-
-      border:
-        1px solid #e4e4e4;
-
-      border-radius: 12px;
-
-      background: #fff;
-
-      cursor: pointer;
-
-      font-size: 13px;
-
-      font-weight: 600;
-
-    }
-
-
     .share-url {
 
       display: none;
 
-      margin:
-        -12px 25px 25px;
+      margin-top: 14px;
 
-      padding: 12px;
+      padding: 14px;
 
-      border-radius: 10px;
+      border-radius: 12px;
 
       background: #f7f7f7;
 
-      color: #666;
+      font-size: 13px;
 
-      font-size: 12px;
+      line-height: 1.5;
 
       word-break: break-all;
+
+      color: #555555;
 
     }
 
@@ -783,36 +787,28 @@
 
       main {
 
-        width:
-          min(100% - 24px, 760px);
-
-        padding-top: 25px;
+        padding-top: 30px;
 
       }
 
 
-      .profile {
+      .profile,
+      .section {
 
-        padding: 22px;
-
-      }
-
-
-      .profile-top {
-
-        align-items: flex-start;
+        padding: 24px;
 
       }
 
 
       h1 {
 
-        font-size: 30px;
+        font-size: 36px;
 
       }
 
 
-      .actions {
+      .actions,
+      .use-grid {
 
         grid-template-columns:
           1fr;
@@ -829,36 +825,43 @@
 <body>
 
 
-<header>
-
-  <a
-    href="index.html"
-    class="logo"
-  >
-    AMBIOZ
-  </a>
-
-</header>
-
-
-<main>
-
-
-  <a
-    class="back"
-    href="create.html"
-  >
-    ← Edit business
-  </a>
-
-
   <!-- ======================================================
-       PROFILE
-  ======================================================= -->
+       HEADER
+  ====================================================== -->
 
-  <section class="profile">
+  <header>
 
-    <div class="profile-top">
+    <a
+      href="index.html"
+      class="logo"
+    >
+      AMBIOZ
+    </a>
+
+  </header>
+
+
+  <main>
+
+
+    <!-- ======================================================
+         BACK
+    ====================================================== -->
+
+    <a
+      class="back"
+      href="create.html"
+    >
+      ← Edit business
+    </a>
+
+
+    <!-- ======================================================
+         PROFILE
+    ====================================================== -->
+
+    <section class="profile">
+
 
       <div
         class="avatar"
@@ -867,147 +870,167 @@
         A
       </div>
 
-      <div>
 
-        <div class="profile-label">
-          AI AMBASSADOR
-        </div>
-
-        <h1 id="ambiName">
-          Ambi
-        </h1>
-
-        <div
-          class="business"
-          id="businessName"
-        >
-          Your business
-        </div>
-
+      <div class="label">
+        YOUR DIGITAL REPRESENTATIVE
       </div>
 
-    </div>
+
+      <h1 id="ambiName">
+        Ambi
+      </h1>
 
 
-    <div class="status">
-      ● Ready to represent your business
-    </div>
+      <div
+        class="business"
+        id="businessName"
+      >
+        Your business
+      </div>
 
-  </section>
+
+      <div class="status">
+        ● Ambi is ready
+      </div>
 
 
-  <!-- ======================================================
-       CHAT
-  ======================================================= -->
+    </section>
 
-  <section class="card">
 
-    <div class="card-header">
+    <!-- ======================================================
+         CHAT
+    ====================================================== -->
 
-      <h2>
-        Talk to your Ambi
+    <section class="section">
+
+
+      <h2 id="chatTitle">
+        Talk to Ambi
       </h2>
 
-      <p>
+
+      <p class="section-intro">
         Ask anything about your business.
-        Your AI Ambassador will answer using your business information.
+        Your Ambi will answer as your digital representative.
       </p>
 
-    </div>
 
+      <div
+        class="chat"
+        id="chatBox"
+      >
 
-    <div
-      class="chat"
-      id="chatBox"
-    >
+        <div class="message">
 
-      <div class="message">
+          <strong id="welcomeName">
+            Ambi
+          </strong>
 
-        <strong id="welcomeLabel">
-          Ambi
-        </strong>
+          <span id="welcomeMessage">
+            Hello. I'm the digital representative
+            of your business. How can I help?
+          </span>
 
-        <div id="welcomeText">
-          Hello. I'm the digital representative of your business.
-          How can I help?
         </div>
 
       </div>
 
-    </div>
-
-
-    <div class="chat-input">
 
       <textarea
         id="messageInput"
         maxlength="1000"
-        placeholder="Ask your Ambi something..."
+        placeholder="Ask Ambi something..."
       ></textarea>
 
 
       <button
         id="askButton"
+        class="ask-button"
         onclick="sendMessage()"
       >
         Ask Ambi →
+
       </button>
 
-    </div>
+
+      <!-- VIDEO -->
+
+      <div class="video-card">
 
 
-    <!-- FUTURE VIDEO -->
-
-    <div class="video-card">
-
-      <strong id="videoTitle">
-        🎥 Talk to Ambi
-      </strong>
-
-      <span>
-        In the future, customers will be able to talk
-        directly with your Ambi through video.
-      </span>
-
-      <button
-        class="video-button"
-        disabled
-      >
-        Video conversation — coming soon
-      </button>
-
-    </div>
-
-  </section>
+        <div
+          class="video-title"
+          id="videoTitle"
+        >
+          🎥 Talk to Ambi
+        </div>
 
 
-  <!-- ======================================================
-       KNOWLEDGE
-  ======================================================= -->
+        <div class="video-text">
 
-  <section class="card">
+          In the future, customers will be able
+          to talk directly with your Ambi through video.
 
-    <div class="card-header">
+        </div>
+
+
+        <button
+          class="video-button"
+          type="button"
+          disabled
+        >
+          Video conversation — coming soon
+        </button>
+
+
+      </div>
+
+
+    </section>
+
+
+    <!-- ======================================================
+         BUSINESS KNOWLEDGE
+    ====================================================== -->
+
+    <section class="section">
+
 
       <h2>
         Business knowledge
       </h2>
 
-      <p>
-        The information your Ambi uses when representing your company.
+
+      <p class="section-intro">
+
+        The information your Ambi uses when
+        representing your company.
+
       </p>
 
-    </div>
+
+      <button
+        id="knowledgeToggle"
+        class="knowledge-toggle"
+        type="button"
+        onclick="toggleKnowledge()"
+      >
+
+        <span>
+          View business information
+        </span>
+
+        <span id="knowledgeIcon">
+          +
+        </span>
+
+      </button>
 
 
-    <details>
-
-      <summary>
-        View business information
-      </summary>
-
-
-      <div class="knowledge">
+      <div
+        class="knowledge"
+        id="knowledge"
+      >
 
 
         <div class="knowledge-item">
@@ -1090,855 +1113,1148 @@
 
       </div>
 
-    </details>
 
-  </section>
+    </section>
 
 
-  <!-- ======================================================
-       CREATE
-  ======================================================= -->
+    <!-- ======================================================
+         CREATE WITH AMBI
+    ====================================================== -->
 
-  <section class="card">
+    <section class="section">
 
-    <div class="card-header">
 
       <h2>
         Create with Ambi
       </h2>
 
-      <p>
+
+      <p class="section-intro">
         Turn your business knowledge into useful content.
       </p>
 
-    </div>
+
+      <div class="actions">
 
 
-    <div class="actions">
+        <!-- BUSINESS INTRODUCTION -->
+
+        <div
+          class="action"
+          role="button"
+          tabindex="0"
+          onclick="
+            window.location.href='business-introduction.html'
+          "
+          onkeydown="
+            if(event.key==='Enter'||event.key===' '){
+              event.preventDefault();
+              window.location.href='business-introduction.html';
+            }
+          "
+        >
+
+          <strong>
+            Business introduction
+          </strong>
+
+          <span>
+            Introduce your business to your audience.
+          </span>
+
+        </div>
 
 
-      <div
-        class="action"
-        onclick="window.location.href='business-introduction.html'"
-      >
+        <!-- SOCIAL MEDIA -->
 
-        <strong>
-          Business introduction
-        </strong>
+        <div
+          class="action"
+          role="button"
+          tabindex="0"
+          onclick="
+            window.location.href='create-content.html'
+          "
+          onkeydown="
+            if(event.key==='Enter'||event.key===' '){
+              event.preventDefault();
+              window.location.href='create-content.html';
+            }
+          "
+        >
 
-        <span>
-          Introduce your business.
-        </span>
+          <strong>
+            Social media post
+          </strong>
+
+          <span>
+            Create a post for your audience.
+          </span>
+
+        </div>
+
+
+        <!-- BUSINESS IMAGE -->
+
+        <div
+          class="action"
+          role="button"
+          tabindex="0"
+          onclick="
+            window.location.href='photo.html'
+          "
+          onkeydown="
+            if(event.key==='Enter'||event.key===' '){
+              event.preventDefault();
+              window.location.href='photo.html';
+            }
+          "
+        >
+
+          <strong>
+            Business image
+          </strong>
+
+          <span>
+            Create an image for your website,
+            marketing or social media.
+          </span>
+
+        </div>
+
+
+        <!-- CUSTOMER REPLY -->
+
+        <div
+          class="action"
+          role="button"
+          tabindex="0"
+          onclick="
+            window.location.href='customer-reply.html'
+          "
+          onkeydown="
+            if(event.key==='Enter'||event.key===' '){
+              event.preventDefault();
+              window.location.href='customer-reply.html';
+            }
+          "
+        >
+
+          <strong>
+            Customer reply
+          </strong>
+
+          <span>
+            Create a professional response to a customer.
+          </span>
+
+        </div>
+
+
+        <!-- PRODUCT DESCRIPTION -->
+
+        <div
+          class="action"
+          role="button"
+          tabindex="0"
+          onclick="
+            window.location.href='product-description.html'
+          "
+          onkeydown="
+            if(event.key==='Enter'||event.key===' '){
+              event.preventDefault();
+              window.location.href='product-description.html';
+            }
+          "
+        >
+
+          <strong>
+            Product description
+          </strong>
+
+          <span>
+            Create a description for your product.
+          </span>
+
+        </div>
+
+
+        <!-- AMBI PHOTO -->
+
+        <div
+          class="action"
+          role="button"
+          tabindex="0"
+          onclick="
+            window.location.href='photo.html'
+          "
+          onkeydown="
+            if(event.key==='Enter'||event.key===' '){
+              event.preventDefault();
+              window.location.href='photo.html';
+            }
+          "
+        >
+
+          <strong>
+            Ambi photo
+          </strong>
+
+          <span>
+            Create a professional image of your Ambi.
+          </span>
+
+        </div>
+
 
       </div>
 
 
-      <div
-        class="action"
-        onclick="window.location.href='create-content.html'"
-      >
-
-        <strong>
-          Social media post
-        </strong>
-
-        <span>
-          Create a post.
-        </span>
-
-      </div>
+    </section>
 
 
-      <div
-        class="action"
-        onclick="window.location.href='product-description.html'"
-      >
+    <!-- ======================================================
+         USE AMBI
+    ====================================================== -->
 
-        <strong>
-          Product description
-        </strong>
+    <section class="section">
 
-        <span>
-          Describe a product or service.
-        </span>
-
-      </div>
-
-
-      <div
-        class="action"
-        onclick="window.location.href='customer-reply.html'"
-      >
-
-        <strong>
-          Customer reply
-        </strong>
-
-        <span>
-          Respond professionally.
-        </span>
-
-      </div>
-
-
-      <div
-        class="action"
-        onclick="window.location.href='photo.html'"
-      >
-
-        <strong>
-          Business image
-        </strong>
-
-        <span>
-          Create a business image.
-        </span>
-
-      </div>
-
-
-      <div
-        class="action"
-        onclick="window.location.href='photo.html'"
-      >
-
-        <strong>
-          Ambi photo
-        </strong>
-
-        <span>
-          Create an image of your Ambi.
-        </span>
-
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-  <!-- ======================================================
-       USE AMBI
-  ======================================================= -->
-
-  <section class="card">
-
-    <div class="card-header">
 
       <h2>
         Use your Ambi
       </h2>
 
-      <p>
-        Let customers interact directly with your digital representative.
+
+      <p class="section-intro">
+
+        Give customers a direct way to interact
+        with your digital business representative.
+
       </p>
 
-    </div>
+
+      <div class="use-grid">
 
 
-    <!-- WEBSITE -->
+        <!-- SHARE -->
 
-    <div
-      class="website-card"
-      onclick="openWebsiteWidget()"
-    >
+        <div
+          class="use-card"
+          role="button"
+          tabindex="0"
+          onclick="shareAmbi()"
+          onkeydown="
+            if(event.key==='Enter'||event.key===' '){
+              event.preventDefault();
+              shareAmbi();
+            }
+          "
+        >
 
-      <strong>
-        Add Ambi to your website
-      </strong>
+          <strong>
+            Share your Ambi
+          </strong>
 
-      <span>
-        Put your AI Ambassador directly on your existing website.
-      </span>
+          <span>
+            Give customers a direct link to talk to your Ambi.
+          </span>
 
-      <div class="website-arrow">
-        Set up website widget →
+        </div>
+
+
+        <!-- WEBSITE -->
+
+        <div
+          class="use-card primary"
+          role="button"
+          tabindex="0"
+          onclick="openWebsiteWidget()"
+          onkeydown="
+            if(event.key==='Enter'||event.key===' '){
+              event.preventDefault();
+              openWebsiteWidget();
+            }
+          "
+        >
+
+          <strong>
+            Add Ambi to your website →
+          </strong>
+
+          <span>
+            Put Ambi directly on your existing website
+            as an interactive AI representative.
+          </span>
+
+        </div>
+
+
       </div>
 
-    </div>
 
+      <div
+        class="share-url"
+        id="shareUrl"
+      ></div>
 
-    <!-- SHARE -->
 
-    <div
-      class="share"
-      onclick="shareAmbi()"
-    >
-      Share your Ambi →
-    </div>
+    </section>
 
 
-    <div
-      class="share-url"
-      id="shareUrl"
-    ></div>
+  </main>
 
-  </section>
 
+  <script>
 
-</main>
 
+    /* ========================================================
+       STATE
+    ======================================================== */
 
-<script>
+    let business = {};
 
+    let conversationHistory = [];
 
-  /* ========================================================
-     STATE
-  ======================================================== */
 
-  let business = {};
+    const MAX_LENGTH =
+      1000;
 
-  let conversationHistory = [];
 
+    const MAX_HISTORY =
+      20;
 
-  const MAX_LENGTH = 1000;
 
-  const MAX_HISTORY = 20;
+    /* ========================================================
+       LOAD BUSINESS
+    ======================================================== */
 
+    function loadBusiness() {
 
-  /* ========================================================
-     LOAD BUSINESS
-  ======================================================== */
 
-  const savedBusiness =
-    localStorage.getItem(
-      "ambiBusiness"
-    );
-
-
-  if (savedBusiness) {
-
-    try {
-
-      business =
-        JSON.parse(
-          savedBusiness
-        );
-
-    } catch (error) {
-
-      business = {};
-
-      console.error(
-        "Could not read business data.",
-        error
-      );
-
-    }
-
-  }
-
-
-  /* ========================================================
-     AMBI NAME
-  ======================================================== */
-
-  const ambiName =
-    (
-      business.ambi_name ||
-      ""
-    )
-    .trim() ||
-    "Ambi";
-
-
-  document.getElementById(
-    "ambiName"
-  ).textContent =
-    ambiName;
-
-
-  document.getElementById(
-    "welcomeLabel"
-  ).textContent =
-    ambiName;
-
-
-  document.getElementById(
-    "videoTitle"
-  ).textContent =
-    "🎥 Talk to " +
-    ambiName;
-
-
-  document.getElementById(
-    "askButton"
-  ).textContent =
-    "Ask " +
-    ambiName +
-    " →";
-
-
-  document.getElementById(
-    "messageInput"
-  ).placeholder =
-    "Ask " +
-    ambiName +
-    " something...";
-
-
-  /* ========================================================
-     BUSINESS
-  ======================================================== */
-
-  document.getElementById(
-    "businessName"
-  ).textContent =
-    business.name ||
-    "Your business";
-
-
-  document.getElementById(
-    "knowledgeName"
-  ).textContent =
-    business.name ||
-    "—";
-
-
-  document.getElementById(
-    "knowledgeDescription"
-  ).textContent =
-    business.description ||
-    "—";
-
-
-  document.getElementById(
-    "knowledgeServices"
-  ).textContent =
-    business.services ||
-    "—";
-
-
-  document.getElementById(
-    "knowledgeCustomers"
-  ).textContent =
-    business.customers ||
-    "—";
-
-
-  document.getElementById(
-    "knowledgeWebsite"
-  ).textContent =
-    business.website ||
-    "Not provided";
-
-
-  document.getElementById(
-    "knowledgeLanguage"
-  ).textContent =
-    business.language ||
-    "English";
-
-
-  /* ========================================================
-     AVATAR
-  ======================================================== */
-
-  const avatar =
-    document.getElementById(
-      "avatar"
-    );
-
-
-  if (
-    business.ambi_avatar_url
-  ) {
-
-    const image =
-      document.createElement(
-        "img"
-      );
-
-
-    image.src =
-      business.ambi_avatar_url;
-
-
-    image.alt =
-      ambiName;
-
-
-    image.onerror =
-      function() {
-
-        image.remove();
-
-        avatar.textContent =
-          (
-            ambiName.charAt(0) ||
-            "A"
-          )
-          .toUpperCase();
-
-      };
-
-
-    avatar.textContent = "";
-
-    avatar.appendChild(
-      image
-    );
-
-  } else {
-
-    avatar.textContent =
-      (
-        ambiName.charAt(0) ||
-        "A"
-      )
-      .toUpperCase();
-
-  }
-
-
-  /* ========================================================
-     CHAT
-  ======================================================== */
-
-  function scrollChatToBottom(
-    chat
-  ) {
-
-    chat.scrollTop =
-      chat.scrollHeight;
-
-  }
-
-
-  function appendMessage(
-    chat,
-    label,
-    text
-  ) {
-
-    const message =
-      document.createElement(
-        "div"
-      );
-
-
-    message.className =
-      "message";
-
-
-    const messageLabel =
-      document.createElement(
-        "strong"
-      );
-
-
-    messageLabel.textContent =
-      label;
-
-
-    const messageText =
-      document.createElement(
-        "div"
-      );
-
-
-    messageText.textContent =
-      text;
-
-
-    message.appendChild(
-      messageLabel
-    );
-
-
-    message.appendChild(
-      messageText
-    );
-
-
-    chat.appendChild(
-      message
-    );
-
-
-    scrollChatToBottom(
-      chat
-    );
-
-
-    return message;
-
-  }
-
-
-  /* ========================================================
-     SEND MESSAGE
-  ======================================================== */
-
-  async function sendMessage() {
-
-
-    const input =
-      document.getElementById(
-        "messageInput"
-      );
-
-
-    const button =
-      document.getElementById(
-        "askButton"
-      );
-
-
-    const chat =
-      document.getElementById(
-        "chatBox"
-      );
-
-
-    const question =
-      input.value.trim();
-
-
-    if (!question) {
-
-      return;
-
-    }
-
-
-    if (
-      question.length >
-      MAX_LENGTH
-    ) {
-
-      alert(
-        `Please keep your message under ${MAX_LENGTH} characters.`
-      );
-
-      return;
-
-    }
-
-
-    conversationHistory.push({
-
-      role:
-        "user",
-
-      content:
-        question
-
-    });
-
-
-    appendMessage(
-      chat,
-      "You",
-      question
-    );
-
-
-    input.value = "";
-
-    input.disabled = true;
-
-    button.disabled = true;
-
-    button.textContent =
-      ambiName +
-      " is thinking...";
-
-
-    const loadingMessage =
-      appendMessage(
-        chat,
-        ambiName,
-        "Thinking..."
-      );
-
-
-    try {
-
-
-      const response =
-        await fetch(
-
-          "https://qabvpdmdikjqdzeogrcz.supabase.co/functions/v1/chat-with-ambi",
-
-          {
-
-            method:
-              "POST",
-
-            headers: {
-
-              "Content-Type":
-                "application/json",
-
-              "apikey":
-                "sb_publishable_bySPn4HxH44yhY11-3H4hQ_2yMEh5FN"
-
-            },
-
-            body:
-              JSON.stringify({
-
-                message:
-                  question,
-
-                business:
-                  business,
-
-                history:
-                  conversationHistory
-
-              })
-
-          }
-
+      const savedBusiness =
+        localStorage.getItem(
+          "ambiBusiness"
         );
 
 
-      const data =
-        await response.json();
+      if (!savedBusiness) {
 
-
-      loadingMessage.remove();
-
-
-      if (
-        !data.success
-      ) {
-
-        throw new Error(
-          data.error ||
-          "Ambi could not answer."
+        console.warn(
+          "AMBIOZ: no ambiBusiness in localStorage."
         );
+
+        return;
 
       }
 
+
+      try {
+
+        business =
+          JSON.parse(
+            savedBusiness
+          );
+
+      } catch (error) {
+
+        console.error(
+          "AMBIOZ: could not read business data.",
+          error
+        );
+
+        business = {};
+
+        return;
+
+      }
+
+
+      renderBusiness();
+
+    }
+
+
+    /* ========================================================
+       RENDER BUSINESS
+    ======================================================== */
+
+    function renderBusiness() {
+
+
+      const businessName =
+        business.name ||
+        "Your business";
+
+
+      const ambiName =
+        business.ambi_name ||
+        "Ambi";
+
+
+      /*
+       * Business name
+       */
+
+      document.getElementById(
+        "businessName"
+      ).textContent =
+        businessName;
+
+
+      /*
+       * Ambi name
+       */
+
+      document.getElementById(
+        "ambiName"
+      ).textContent =
+        ambiName;
+
+
+      document.getElementById(
+        "chatTitle"
+      ).textContent =
+        `Talk to ${ambiName}`;
+
+
+      document.getElementById(
+        "welcomeName"
+      ).textContent =
+        ambiName;
+
+
+      document.getElementById(
+        "messageInput"
+      ).placeholder =
+        `Ask ${ambiName} something...`;
+
+
+      document.getElementById(
+        "askButton"
+      ).textContent =
+        `Ask ${ambiName} →`;
+
+
+      document.getElementById(
+        "videoTitle"
+      ).textContent =
+        `🎥 Talk to ${ambiName}`;
+
+
+      /*
+       * Welcome message
+       */
+
+      document.getElementById(
+        "welcomeMessage"
+      ).textContent =
+        `Hello. I'm ${ambiName}, the digital representative of ${businessName}. How can I help?`;
+
+
+      /*
+       * Knowledge
+       */
+
+      document.getElementById(
+        "knowledgeName"
+      ).textContent =
+        business.name ||
+        "—";
+
+
+      document.getElementById(
+        "knowledgeDescription"
+      ).textContent =
+        business.description ||
+        "—";
+
+
+      document.getElementById(
+        "knowledgeServices"
+      ).textContent =
+        business.services ||
+        "—";
+
+
+      document.getElementById(
+        "knowledgeCustomers"
+      ).textContent =
+        business.customers ||
+        "—";
+
+
+      document.getElementById(
+        "knowledgeWebsite"
+      ).textContent =
+        business.website ||
+        "Not provided";
+
+
+      document.getElementById(
+        "knowledgeLanguage"
+      ).textContent =
+        business.language ||
+        "English";
+
+
+      /*
+       * Avatar
+       */
+
+      renderAvatar();
+
+    }
+
+
+    /* ========================================================
+       AVATAR
+    ======================================================== */
+
+    function renderAvatar() {
+
+
+      const avatar =
+        document.getElementById(
+          "avatar"
+        );
+
+
+      const avatarUrl =
+        business.ambi_avatar_url;
+
+
+      if (avatarUrl) {
+
+
+        avatar.innerHTML = "";
+
+
+        const image =
+          document.createElement(
+            "img"
+          );
+
+
+        image.src =
+          avatarUrl;
+
+
+        image.alt =
+          business.ambi_name ||
+          "Ambi";
+
+
+        image.onload =
+          function () {
+
+            avatar.textContent = "";
+
+            avatar.appendChild(
+              image
+            );
+
+          };
+
+
+        image.onerror =
+          function () {
+
+            renderAvatarFallback();
+
+          };
+
+
+        return;
+
+      }
+
+
+      renderAvatarFallback();
+
+    }
+
+
+    /* ========================================================
+       AVATAR FALLBACK
+    ======================================================== */
+
+    function renderAvatarFallback() {
+
+
+      const avatar =
+        document.getElementById(
+          "avatar"
+        );
+
+
+      const firstLetter =
+        (
+          business.ambi_name ||
+          business.name ||
+          "A"
+        )
+        .trim()
+        .charAt(0)
+        .toUpperCase();
+
+
+      avatar.innerHTML = "";
+
+
+      avatar.textContent =
+        firstLetter ||
+        "A";
+
+    }
+
+
+    /* ========================================================
+       CHAT HELPERS
+    ======================================================== */
+
+    function scrollChatToBottom(
+      chat
+    ) {
+
+      chat.scrollTop =
+        chat.scrollHeight;
+
+    }
+
+
+    function appendMessage(
+      chat,
+      label,
+      text
+    ) {
+
+
+      const message =
+        document.createElement(
+          "div"
+        );
+
+
+      message.className =
+        "message";
+
+
+      const messageLabel =
+        document.createElement(
+          "strong"
+        );
+
+
+      messageLabel.textContent =
+        label;
+
+
+      const messageText =
+        document.createElement(
+          "div"
+        );
+
+
+      messageText.textContent =
+        text;
+
+
+      message.appendChild(
+        messageLabel
+      );
+
+
+      message.appendChild(
+        messageText
+      );
+
+
+      chat.appendChild(
+        message
+      );
+
+
+      scrollChatToBottom(
+        chat
+      );
+
+
+      return message;
+
+    }
+
+
+    /* ========================================================
+       SEND MESSAGE
+    ======================================================== */
+
+    async function sendMessage() {
+
+
+      const input =
+        document.getElementById(
+          "messageInput"
+        );
+
+
+      const button =
+        document.getElementById(
+          "askButton"
+        );
+
+
+      const chat =
+        document.getElementById(
+          "chatBox"
+        );
+
+
+      const question =
+        input.value.trim();
+
+
+      if (!question) {
+
+        return;
+
+      }
+
+
+      if (
+        question.length >
+        MAX_LENGTH
+      ) {
+
+        alert(
+          `Please keep your message under ${MAX_LENGTH} characters.`
+        );
+
+        return;
+
+      }
+
+
+      /*
+       * User message
+       */
 
       conversationHistory.push({
 
         role:
-          "assistant",
+          "user",
 
         content:
-          data.reply
+          question
 
       });
 
 
-      if (
-        conversationHistory.length >
-        MAX_HISTORY
+      appendMessage(
+        chat,
+        "You",
+        question
+      );
+
+
+      input.value =
+        "";
+
+
+      input.disabled =
+        true;
+
+
+      button.disabled =
+        true;
+
+
+      button.textContent =
+        "Thinking…";
+
+
+      /*
+       * Loading message
+       */
+
+      const loadingMessage =
+        appendMessage(
+          chat,
+          business.ambi_name ||
+          "Ambi",
+          "Thinking..."
+        );
+
+
+      try {
+
+
+        const response =
+          await fetch(
+
+            "https://qabvpdmdikjqdzeogrcz.supabase.co/functions/v1/chat-with-ambi",
+
+            {
+
+              method:
+                "POST",
+
+              headers: {
+
+                "Content-Type":
+                  "application/json",
+
+                "apikey":
+                  "sb_publishable_bySPn4HxH44yhY11-3H4hQ_2yMEh5FN"
+
+              },
+
+              body:
+                JSON.stringify({
+
+                  message:
+                    question,
+
+                  business:
+                    business,
+
+                  history:
+                    conversationHistory
+
+                })
+
+            }
+
+          );
+
+
+        const data =
+          await response.json();
+
+
+        loadingMessage.remove();
+
+
+        if (
+          !data.success
+        ) {
+
+          throw new Error(
+            data.error ||
+            "Ambi could not answer."
+          );
+
+        }
+
+
+        /*
+         * Assistant history
+         */
+
+        conversationHistory.push({
+
+          role:
+            "assistant",
+
+          content:
+            data.reply
+
+        });
+
+
+        /*
+         * Limit history
+         */
+
+        if (
+          conversationHistory.length >
+          MAX_HISTORY
+        ) {
+
+          conversationHistory =
+            conversationHistory.slice(
+              -MAX_HISTORY
+            );
+
+        }
+
+
+        /*
+         * Assistant message
+         */
+
+        appendMessage(
+          chat,
+          business.ambi_name ||
+          "Ambi",
+          data.reply
+        );
+
+
+      } catch (
+        error
       ) {
 
-        conversationHistory =
-          conversationHistory.slice(
-            -MAX_HISTORY
+
+        loadingMessage.remove();
+
+
+        appendMessage(
+
+          chat,
+
+          business.ambi_name ||
+          "Ambi",
+
+          "Sorry, I couldn't answer that right now."
+
+        );
+
+
+        console.error(
+          "AMBIOZ chat error:",
+          error
+        );
+
+      }
+
+
+      input.disabled =
+        false;
+
+
+      button.disabled =
+        false;
+
+
+      button.textContent =
+        `Ask ${
+          business.ambi_name ||
+          "Ambi"
+        } →`;
+
+
+      input.focus();
+
+    }
+
+
+    /* ========================================================
+       ENTER TO SEND
+    ======================================================== */
+
+    document
+      .getElementById(
+        "messageInput"
+      )
+      .addEventListener(
+        "keydown",
+        function(e) {
+
+          if (
+            e.key === "Enter" &&
+            !e.shiftKey
+          ) {
+
+            e.preventDefault();
+
+            sendMessage();
+
+          }
+
+        }
+      );
+
+
+    /* ========================================================
+       KNOWLEDGE TOGGLE
+    ======================================================== */
+
+    function toggleKnowledge() {
+
+
+      const knowledge =
+        document.getElementById(
+          "knowledge"
+        );
+
+
+      const icon =
+        document.getElementById(
+          "knowledgeIcon"
+        );
+
+
+      const isOpen =
+        knowledge.classList.toggle(
+          "open"
+        );
+
+
+      icon.textContent =
+        isOpen
+          ? "−"
+          : "+";
+
+    }
+
+
+    /* ========================================================
+       SHARE AMBI
+    ======================================================== */
+
+    function shareAmbi() {
+
+
+      if (
+        !business ||
+        !business.id
+      ) {
+
+        alert(
+          "This Ambi does not have a shareable link yet."
+        );
+
+        return;
+
+      }
+
+
+      const shareUrl =
+
+        window.location.origin +
+
+        window.location.pathname.replace(
+          "ambi.html",
+          "share.html"
+        ) +
+
+        "?id=" +
+
+        encodeURIComponent(
+          business.id
+        );
+
+
+      /*
+       * Native share
+       */
+
+      if (
+        navigator.share
+      ) {
+
+        navigator
+          .share({
+
+            title:
+              `Talk to ${
+                business.ambi_name ||
+                "Ambi"
+              }`,
+
+            text:
+              "Talk to the digital representative of this business.",
+
+            url:
+              shareUrl
+
+          })
+          .catch(
+            () => {}
+          );
+
+
+        return;
+
+      }
+
+
+      /*
+       * Fallback
+       */
+
+      const shareBox =
+        document.getElementById(
+          "shareUrl"
+        );
+
+
+      shareBox.style.display =
+        "block";
+
+
+      shareBox.textContent =
+        shareUrl;
+
+
+      if (
+        navigator.clipboard
+      ) {
+
+        navigator
+          .clipboard
+          .writeText(
+            shareUrl
+          )
+          .then(
+            () => {
+
+              shareBox.textContent =
+                "Link copied:\n\n" +
+                shareUrl;
+
+            }
+          )
+          .catch(
+            () => {}
           );
 
       }
 
-
-      appendMessage(
-        chat,
-        ambiName,
-        data.reply
-      );
+    }
 
 
-    } catch (error) {
+    /* ========================================================
+       WEBSITE WIDGET
+    ======================================================== */
+
+    function openWebsiteWidget() {
 
 
-      loadingMessage.remove();
+      if (
+        !business ||
+        !business.id
+      ) {
+
+        alert(
+          "This Ambi does not have a business ID yet."
+        );
+
+        return;
+
+      }
 
 
-      appendMessage(
-        chat,
-        ambiName,
-        "Error: " +
-        error.message
-      );
-
-
-      console.error(
-        error
-      );
+      window.location.href =
+        "website-integration.html";
 
     }
 
 
-    input.disabled = false;
+    /* ========================================================
+       START
+    ======================================================== */
 
-    button.disabled = false;
+    document.addEventListener(
+      "DOMContentLoaded",
+      function() {
 
-    button.textContent =
-      "Ask " +
-      ambiName +
-      " →";
-
-
-    input.focus();
-
-  }
-
-
-  /* ========================================================
-     ENTER
-  ======================================================== */
-
-  document
-    .getElementById(
-      "messageInput"
-    )
-    .addEventListener(
-      "keydown",
-      function(e) {
-
-        if (
-          e.key === "Enter" &&
-          !e.shiftKey
-        ) {
-
-          e.preventDefault();
-
-          sendMessage();
-
-        }
+        loadBusiness();
 
       }
     );
 
 
-  /* ========================================================
-     SHARE
-  ======================================================== */
-
-  function shareAmbi() {
-
-
-    if (
-      !business ||
-      !business.id
-    ) {
-
-      alert(
-        "This Ambi does not have a shareable link yet."
-      );
-
-      return;
-
-    }
-
-
-    const shareUrl =
-
-      window.location.origin +
-
-      window.location.pathname.replace(
-        "ambi.html",
-        "share.html"
-      ) +
-
-      "?id=" +
-
-      encodeURIComponent(
-        business.id
-      );
-
-
-    if (
-      navigator.share
-    ) {
-
-      navigator
-        .share({
-
-          title:
-            "Talk to " +
-            ambiName,
-
-          text:
-            "Talk to the digital representative of this business.",
-
-          url:
-            shareUrl
-
-        })
-        .catch(
-          () => {}
-        );
-
-
-      return;
-
-    }
-
-
-    const shareBox =
-      document.getElementById(
-        "shareUrl"
-      );
-
-
-    shareBox.style.display =
-      "block";
-
-
-    shareBox.textContent =
-      shareUrl;
-
-
-    if (
-      navigator.clipboard
-    ) {
-
-      navigator
-        .clipboard
-        .writeText(
-          shareUrl
-        )
-        .then(
-          () => {
-
-            shareBox.textContent =
-              "Link copied:\n\n" +
-              shareUrl;
-
-          }
-        )
-        .catch(
-          () => {}
-        );
-
-    }
-
-  }
-
-
-  /* ========================================================
-     WEBSITE WIDGET
-  ======================================================== */
-
-  function openWebsiteWidget() {
-
-
-    /*
-     * The integration page will be created
-     * in the next step.
-     */
-
-    alert(
-
-      "Website Widget is ready to be built next.\n\n" +
-
-      "Your Ambi will be available on your customer's website."
-
-    );
-
-  }
-
-
-</script>
+  </script>
 
 
 </body>
