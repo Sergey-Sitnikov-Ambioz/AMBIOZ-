@@ -980,7 +980,6 @@
     const limit =
       getGenerationLimit("photo");
 
-
     const used =
       getGenerationUsage("photo");
 
@@ -1020,18 +1019,15 @@
         "ambiMode"
       );
 
-
     const businessMode =
       document.getElementById(
         "businessMode"
       );
 
-
     const ambiButton =
       document.getElementById(
         "ambiModeButton"
       );
-
 
     const businessButton =
       document.getElementById(
@@ -1112,11 +1108,9 @@
       business.name ||
       "Your business";
 
-
     const description =
       business.description ||
       "";
-
 
     const services =
       business.services ||
@@ -1228,7 +1222,7 @@
 
     if (
       typeof canCustomizeAppearance ===
-        "function" &&
+      "function" &&
       canCustomizeAppearance()
     ) {
 
@@ -1522,7 +1516,11 @@ Requirements:
 
 
       /* ---------------------------------------
-         CALL EDGE FUNCTION
+         CALL SUPABASE EDGE FUNCTION
+
+         IMPORTANT:
+         generate-image now returns
+         the actual PNG binary.
       --------------------------------------- */
 
       const response =
@@ -1545,62 +1543,136 @@ Requirements:
         );
 
 
-      const rawText =
-        await response.text();
-
-
-      let data;
-
-
-      try {
-
-        data =
-          JSON.parse(rawText);
-
-      } catch {
-
-        throw new Error(
-          rawText ||
-          `Server returned HTTP ${response.status}`
-        );
-
-      }
-
+      /* ---------------------------------------
+         CHECK HTTP STATUS
+      --------------------------------------- */
 
       if (!response.ok) {
 
+        const errorText =
+          await response.text();
+
+
+        let errorMessage =
+          `Image generation failed (${response.status})`;
+
+
+        try {
+
+          const errorData =
+            JSON.parse(errorText);
+
+
+          errorMessage =
+            errorData.error ||
+            errorData.message ||
+            errorMessage;
+
+        } catch {
+
+          if (errorText) {
+            errorMessage =
+              errorText;
+          }
+
+        }
+
+
         throw new Error(
-          data.error ||
-          data.message ||
-          `Image generation failed (${response.status})`
-        );
-
-      }
-
-
-      if (!data.success) {
-
-        throw new Error(
-          data.error ||
-          data.message ||
-          "Image generation failed."
-        );
-
-      }
-
-
-      if (!data.imageUrl) {
-
-        throw new Error(
-          "The image was generated, but no image URL was returned."
+          errorMessage
         );
 
       }
 
 
       /* ---------------------------------------
-         CONVERT BASE64 TO BLOB URL
+         CHECK CONTENT TYPE
       --------------------------------------- */
+
+      const contentType =
+        response.headers.get(
+          "content-type"
+        ) || "";
+
+
+      if (
+        !contentType.startsWith(
+          "image/"
+        )
+      ) {
+
+        const unexpectedText =
+          await response.text();
+
+
+        let errorMessage =
+          "Server did not return an image.";
+
+
+        try {
+
+          const data =
+            JSON.parse(
+              unexpectedText
+            );
+
+
+          errorMessage =
+            data.error ||
+            data.message ||
+            errorMessage;
+
+        } catch {}
+
+
+        throw new Error(
+          errorMessage
+        );
+
+      }
+
+
+      /* ---------------------------------------
+         READ IMAGE AS BLOB
+      --------------------------------------- */
+
+      const blob =
+        await response.blob();
+
+
+      if (!blob.size) {
+
+        throw new Error(
+          "The generated image is empty."
+        );
+
+      }
+
+
+      /* ---------------------------------------
+         RELEASE PREVIOUS IMAGE
+      --------------------------------------- */
+
+      if (
+        currentImageObjectUrl
+      ) {
+
+        URL.revokeObjectURL(
+          currentImageObjectUrl
+        );
+
+      }
+
+
+      /* ---------------------------------------
+         CREATE BLOB URL
+      --------------------------------------- */
+
+      currentImageObjectUrl =
+        URL.createObjectURL(
+          blob
+        );
+
 
       const image =
         document.getElementById(
@@ -1614,11 +1686,38 @@ Requirements:
         );
 
 
-      const imageObjectUrl =
-        await loadImage(
-          image,
-          data.imageUrl
-        );
+      /* ---------------------------------------
+         LOAD IMAGE
+      --------------------------------------- */
+
+      await new Promise(
+        (resolve, reject) => {
+
+          image.onload =
+            () => {
+
+              resolve();
+
+            };
+
+
+          image.onerror =
+            () => {
+
+              reject(
+                new Error(
+                  "The generated image could not be displayed."
+                )
+              );
+
+            };
+
+
+          image.src =
+            currentImageObjectUrl;
+
+        }
+      );
 
 
       image.alt =
@@ -1628,11 +1727,11 @@ Requirements:
 
 
       openImage.href =
-        imageObjectUrl;
+        currentImageObjectUrl;
 
 
       /* ---------------------------------------
-         SUCCESS → CONSUME ONE GENERATION
+         SUCCESS
       --------------------------------------- */
 
       if (
@@ -1640,7 +1739,9 @@ Requirements:
         "function"
       ) {
 
-        useGeneration("photo");
+        useGeneration(
+          "photo"
+        );
 
       }
 
@@ -1664,7 +1765,6 @@ Requirements:
 
 
       /*
-       IMPORTANT:
        Failed generations do NOT consume quota.
       */
 
@@ -1677,247 +1777,12 @@ Requirements:
 
     } finally {
 
-      generateButton.disabled = false;
+      generateButton.disabled =
+        false;
+
 
       generateButton.textContent =
         "Generate photo";
-
-    }
-
-  }
-
-
-  /* =========================================================
-     LOAD IMAGE
-     
-     IMPORTANT:
-     The Edge Function returns:
-     
-     data:image/png;base64,...
-     
-     We convert it into a Blob URL before displaying it.
-  ========================================================= */
-
-  async function loadImage(
-    img,
-    dataUrl
-  ) {
-
-    try {
-
-      if (
-        typeof dataUrl !== "string"
-      ) {
-
-        throw new Error(
-          "Invalid image data received from server."
-        );
-
-      }
-
-
-      /* ---------------------------------------
-         BASE64 DATA URL
-      --------------------------------------- */
-
-      if (
-        dataUrl.startsWith(
-          "data:image/"
-        )
-      ) {
-
-        const commaIndex =
-          dataUrl.indexOf(",");
-
-
-        if (commaIndex === -1) {
-
-          throw new Error(
-            "Invalid image data."
-          );
-
-        }
-
-
-        const metadata =
-          dataUrl.slice(
-            0,
-            commaIndex
-          );
-
-
-        const base64 =
-          dataUrl.slice(
-            commaIndex + 1
-          );
-
-
-        const mimeMatch =
-          metadata.match(
-            /^data:(image\/[^;]+);base64$/i
-          );
-
-
-        const mimeType =
-          mimeMatch
-            ? mimeMatch[1]
-            : "image/png";
-
-
-        /* Decode base64 */
-
-        const binaryString =
-          atob(base64);
-
-
-        const length =
-          binaryString.length;
-
-
-        const bytes =
-          new Uint8Array(length);
-
-
-        for (
-          let i = 0;
-          i < length;
-          i++
-        ) {
-
-          bytes[i] =
-            binaryString.charCodeAt(i);
-
-        }
-
-
-        const blob =
-          new Blob(
-            [bytes],
-            {
-              type: mimeType
-            }
-          );
-
-
-        /*
-         * Release previous image URL.
-         */
-
-        if (
-          currentImageObjectUrl
-        ) {
-
-          URL.revokeObjectURL(
-            currentImageObjectUrl
-          );
-
-        }
-
-
-        currentImageObjectUrl =
-          URL.createObjectURL(
-            blob
-          );
-
-
-        /*
-         * Wait until browser actually
-         * loads the Blob URL.
-         */
-
-        await new Promise(
-          (resolve, reject) => {
-
-            img.onload =
-              () => {
-
-                resolve();
-
-              };
-
-
-            img.onerror =
-              () => {
-
-                reject(
-                  new Error(
-                    "The generated image could not be displayed."
-                  )
-                );
-
-              };
-
-
-            img.src =
-              currentImageObjectUrl;
-
-          }
-        );
-
-
-        return currentImageObjectUrl;
-
-      }
-
-
-      /* ---------------------------------------
-         NORMAL HTTPS URL FALLBACK
-      --------------------------------------- */
-
-      if (
-        dataUrl.startsWith(
-          "https://"
-        ) ||
-        dataUrl.startsWith(
-          "http://"
-        )
-      ) {
-
-        await new Promise(
-          (resolve, reject) => {
-
-            img.onload =
-              () => resolve();
-
-
-            img.onerror =
-              () => {
-
-                reject(
-                  new Error(
-                    "The generated image could not be displayed."
-                  )
-                );
-
-              };
-
-
-            img.src =
-              dataUrl;
-
-          }
-        );
-
-
-        return dataUrl;
-
-      }
-
-
-      throw new Error(
-        "Unsupported image format returned by server."
-      );
-
-
-    } catch (error) {
-
-      throw (
-        error instanceof Error
-          ? error
-          : new Error(
-              "Could not process generated image."
-            )
-      );
 
     }
 
@@ -1954,7 +1819,9 @@ Requirements:
         "result"
       )
       .classList
-      .remove("hidden");
+      .remove(
+        "hidden"
+      );
 
   }
 
@@ -1966,7 +1833,9 @@ Requirements:
         "result"
       )
       .classList
-      .add("hidden");
+      .add(
+        "hidden"
+      );
 
   }
 
@@ -1978,7 +1847,8 @@ Requirements:
         "upgrade"
       )
       .style
-      .display = "block";
+      .display =
+      "block";
 
 
     showStatus(
@@ -2048,7 +1918,8 @@ Requirements:
         "upgrade"
       )
       .style
-      .display = "none";
+      .display =
+      "none";
 
   }
 
